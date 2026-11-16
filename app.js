@@ -10,7 +10,11 @@ let selected=0, region=0, multi=false, selectedSites=new Set(), currentSite=null
 const emptyFilters=()=>({templates:[],company:"",verified:null,published:null});
 const copyFilters=value=>({...value,templates:[...value.templates]});
 let filters=emptyFilters(), draft=copyFilters(filters), filterOpen=false, templateDraft=null;
+let sortField="order", sortDirection=1, selectedOnly=false;
 const rows=document.getElementById("rows"), stage=document.getElementById("stage");
+const registryDetail=document.querySelector(".detail");
+function syncRegistryScroll(){registryDetail.classList.toggle("is-scrolled",registryDetail.scrollTop>0)}
+registryDetail.addEventListener("scroll",syncRegistryScroll,{passive:true});
 const filterButton=document.querySelector('[aria-label="Фильтр"]');
 const multiButton=document.querySelector('.toolbar [aria-label="Панель"]');
 multiButton.setAttribute("aria-label","Множественный выбор");multiButton.title="Множественный выбор";
@@ -18,37 +22,121 @@ sites.forEach(site=>{site.regionId ??= 1;site.published=!site.muted;site.setting
 const iconHtml=(hex,size="icon")=>'<i aria-hidden="true" class="'+size+'">'+icon(hex)+'</i>';
 function visibleSites(){
 const query=document.getElementById("search").value.trim().toLocaleLowerCase("ru");
-return sites.filter(site=>(region===0||site.regionId===region)&&[site.name,site.address,site.company,site.inn].join(" ").toLocaleLowerCase("ru").includes(query)&&(!filters.templates.length||filters.templates.includes(site.template))&&(!filters.company||(site.company||"")===filters.company)&&(filters.verified===null||Boolean(site.verified)===filters.verified)&&(filters.published===null||site.published===filters.published));
+const result=sites.filter(site=>(region===0||site.regionId===region)&&(!selectedOnly||selectedSites.has(site.id))&&[site.name,site.address,site.company,site.inn].join(" ").toLocaleLowerCase("ru").includes(query)&&(!filters.templates.length||filters.templates.includes(site.template))&&(!filters.company||(site.company||"")===filters.company)&&(filters.verified===null||Boolean(site.verified)===filters.verified)&&(filters.published===null||site.published===filters.published));
+if(sortField!=="order")result.sort((a,b)=>sortValue(a,sortField)-sortValue(b,sortField)||a.id-b.id);
+return sortField!=="order"&&sortDirection===-1?result.reverse():result;
+}
+function sortValue(site,field){
+if(field!=="date")return Number(String(site[field]||0).replace(/\s/g,""))||0;
+const months=["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"];
+const [day,month]=String(site.date||"").trim().split(/\s+/);
+return site.date?(months.indexOf(month)+1)*32+Number(day):0;
 }
 function render(){
+closeMarksMenu();
+syncRegistryScroll();
 // Folder counters describe the full dataset, independently of search and filters.
 const counts=sites.reduce((totals,site)=>{totals[site.regionId]=(totals[site.regionId]||0)+1;return totals},{});
 document.querySelectorAll('[data-region]').forEach(button=>{const id=Number(button.dataset.region);button.querySelector('.count').textContent=String(id===0?sites.length:counts[id]||0)});
 const visible=visibleSites();rows.setAttribute("aria-multiselectable",String(multi));stage.classList.toggle("multi-mode",multi);
 let bar=document.getElementById("operations");if(!bar){bar=document.createElement("div");bar.id="operations";document.querySelector(".columns").before(bar);}
 bar.hidden=!multi;
-bar.innerHTML='<label class="mark-all"><input id="mark-all" type="checkbox" '+(visible.length&&visible.every(s=>selectedSites.has(s.id))?'checked':'')+'> <span>'+(selectedSites.size?'Отмечено '+selectedSites.size:'Отметить')+'</span></label><button data-operation="publish">'+iconHtml("E631")+'Опубликовать</button><button data-operation="unpublish">'+iconHtml("E62F")+'Снять с публикации</button><button class="operations-close" aria-label="Закрыть множественный выбор">'+iconHtml("E66C","icon24")+'</button>';
+bar.innerHTML='<div class="mark-all"><input aria-label="Отметить все сайты" id="mark-all" type="checkbox" '+(visible.length&&visible.every(s=>selectedSites.has(s.id))?'checked':'')+'> <button id="marks-toggle" aria-haspopup="menu" aria-expanded="false">'+(selectedSites.size?'Отмечено '+selectedSites.size:'Отметить')+'</button></div><button data-operation="publish">'+iconHtml("E631")+'Опубликовать</button><button data-operation="unpublish">'+iconHtml("E62F")+'Снять с публикации</button><button class="operations-close" aria-label="Закрыть множественный выбор">'+iconHtml("E66C","icon24")+'</button>';
 const all=document.getElementById("mark-all");all.indeterminate=visible.some(s=>selectedSites.has(s.id))&&!visible.every(s=>selectedSites.has(s.id));
-rows.innerHTML=visible.map(site=>'<div class="site-row" role="option" tabindex="0" aria-selected="'+(multi?selectedSites.has(site.id):site.id===selected)+'" data-site="'+site.id+'"><span class="site-main"><label class="check"><input class="row-check" type="checkbox" aria-label="Выбрать '+esc(site.name)+'" '+(selectedSites.has(site.id)?'checked':'')+'></label><span class="site-text"><span class="site-line"><span class="site-name '+(!site.published?'muted':'')+'">'+esc(site.name)+'</span>'+(site.address?'<span class="address">'+esc(site.address)+'</span>':'')+'</span>'+(site.company?'<span class="company-line"><span class="company">'+esc(site.company)+'</span><span class="inn">'+esc(site.inn)+'</span></span>':'')+'</span></span><span class="site-status"><i class="icon" aria-label="'+(site.verified?'Проверено дизайнером':'')+'">'+(site.verified?icon("EB4D"):'')+'</i></span><span class="metrics"><span>'+esc(site.date)+'</span><span>'+esc(site.visitors)+'</span><span>'+esc(site.responses)+'</span><span>'+esc(site.template)+'</span></span></div>').join("");
+rows.innerHTML=visible.map(site=>'<div class="site-row" role="option" tabindex="0" aria-selected="'+(multi?selectedSites.has(site.id):site.id===selected)+'" data-current="'+(site.id===selected)+'" data-site="'+site.id+'"><span class="site-main"><label class="check"><input class="row-check" type="checkbox" aria-label="Выбрать '+esc(site.name)+'" '+(selectedSites.has(site.id)?'checked':'')+'></label><span class="site-text"><span class="site-line"><span class="site-name '+(!site.published?'muted':'')+'">'+esc(site.name)+'</span>'+(site.address?'<span class="address">'+esc(site.address)+'</span>':'')+'</span>'+(site.company?'<span class="company-line"><span class="company">'+esc(site.company)+'</span><span class="inn">'+esc(site.inn)+'</span></span>':'')+'</span></span><span class="site-status"><i class="icon" aria-label="'+(site.verified?'Проверено дизайнером':'')+'">'+(site.verified?icon("EB4D"):'')+'</i></span><span class="metrics"><span>'+esc(site.date)+'</span><span>'+esc(site.visitors)+'</span><span>'+esc(site.responses)+'</span><span>'+esc(site.template)+'</span></span><span class="row-commands"><button data-row-action="publication" aria-label="'+(site.published?'Снять с публикации':'Опубликовать')+'" title="'+(site.published?'Снять с публикации':'Опубликовать')+'">'+iconHtml(site.published?'E62F':'E631')+'</button><button data-row-action="delete" aria-label="Удалить сайт" title="Удалить">'+iconHtml('E65C')+'</button></span></div>').join("");
 document.querySelector('.detail').classList.toggle('empty-registry',!visible.length);
 let empty=document.getElementById('empty-result');if(!empty){empty=document.createElement('div');empty.id='empty-result';empty.setAttribute('role','status');empty.innerHTML='<div>Не найдено ни одной записи</div><img src="assets/bf295.svg" width="200" height="200" alt="">';rows.after(empty)}empty.hidden=!!visible.length;
-filterButton.classList.toggle("has-filters",(filters.templates.length||filters.company||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));
+filterButton.classList.toggle("has-filters",(filters.templates.length||filters.company||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
 }
+
+let pendingRegistryAction=null, confirmationOrigin=null, toastTimer;
+function closeRegistryConfirmation(){document.getElementById("registry-confirmation")?.remove();pendingRegistryAction=null;confirmationOrigin?.focus();confirmationOrigin=null}
+function confirmRegistryAction(action,ids,bulk=false){
+if(pendingRegistryAction)return;
+closeMarksMenu();closeSort();confirmationOrigin=document.activeElement;pendingRegistryAction={action,ids:[...ids],bulk};
+const messages={publish:"Опубликовать сайт?",unpublish:"Снять сайт с публикации?",delete:"Уверены, что хотите удалить<br>сайт?"};
+const overlay=document.createElement("div");overlay.id="registry-confirmation";
+overlay.innerHTML='<section class="registry-confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="registry-confirm-text"><span class="confirm-accent"></span><p id="registry-confirm-text">'+messages[action]+'</p><div class="confirm-actions"><button id="registry-confirm-yes">Да</button><button id="registry-confirm-no">Нет</button></div></section>';
+stage.append(overlay);overlay.querySelector('#registry-confirm-no').focus({preventScroll:true});
+}
+document.addEventListener("click",event=>{
+if(event.target.closest("#registry-confirm-no")){closeRegistryConfirmation();return}
+if(!event.target.closest("#registry-confirm-yes")||!pendingRegistryAction)return;
+const {action,ids,bulk}=pendingRegistryAction;closeRegistryConfirmation();
+if(action==="delete"){for(let i=sites.length-1;i>=0;i--)if(ids.includes(sites[i].id)){selectedSites.delete(sites[i].id);sites.splice(i,1)}}
+else for(const site of sites)if(ids.includes(site.id))site.published=action==="publish";
+if(bulk){selectedSites.clear();selectedOnly=false}render();
+});
+document.addEventListener("keydown",event=>{
+if(!pendingRegistryAction)return;
+if(event.key==="Escape"){event.preventDefault();event.stopImmediatePropagation();closeRegistryConfirmation()}
+if(event.key==="Tab"){event.preventDefault();document.getElementById(document.activeElement.id==="registry-confirm-no"?"registry-confirm-yes":"registry-confirm-no").focus()}
+},true);
+function closeMarksMenu(){document.getElementById("marks-menu")?.remove();document.getElementById("marks-toggle")?.setAttribute("aria-expanded","false")}
+function openMarksMenu(){
+if(document.getElementById("marks-menu")){closeMarksMenu();return}
+closeSort();const menu=document.createElement("section");menu.id="marks-menu";menu.setAttribute("role","menu");menu.setAttribute("aria-label","Отметки сайтов");
+menu.innerHTML='<div class="marks-title">ОТМЕЧЕНО '+selectedSites.size+'<button id="marks-close" aria-label="Закрыть меню отметок">'+iconHtml("E66C","icon24")+'</button></div>'+[["all","Отметить все"],["clear","Снять"],["invert","Инвертировать"],["only","Отобрать отмеченные"]].map(([value,label])=>'<button role="menuitem" data-marks="'+value+'">'+label+'</button>').join('');
+const bounds=document.getElementById('operations').getBoundingClientRect(), origin=stage.getBoundingClientRect(), scale=origin.width/1600;
+menu.style.left=(bounds.left-origin.left)/scale+'px';menu.style.top=(bounds.top-origin.top)/scale-4+'px';stage.append(menu);document.getElementById("marks-toggle").setAttribute("aria-expanded","true");
+}
+document.addEventListener("click",event=>{
+if(event.target.closest('#marks-toggle')){openMarksMenu();return}
+if(event.target.closest('#marks-close')){closeMarksMenu();return}
+const command=event.target.closest('[data-marks]');
+if(command){const action=command.dataset.marks;const visible=visibleSites();
+if(action==="all")visible.forEach(site=>selectedSites.add(site.id));
+if(action==="clear"){selectedSites.clear();selectedOnly=false}
+if(action==="invert")visible.forEach(site=>{if(selectedSites.has(site.id))selectedSites.delete(site.id);else selectedSites.add(site.id)});
+if(action==="only"){selectedOnly=true;registryDetail.scrollTop=0}render();return}
+if(!event.target.closest('#marks-menu'))closeMarksMenu();
+});
+document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMarksMenu()});
+function showCopiedToast(){
+document.getElementById('registry-toast')?.remove();clearTimeout(toastTimer);
+const toast=document.createElement('div');toast.id='registry-toast';toast.setAttribute('role','status');toast.innerHTML='<span class="copied-check">✓</span><span>Скопировано в буфер обмена</span><button aria-label="Закрыть уведомление">'+iconHtml('E66C','icon24')+'</button>';toast.querySelector('button').onclick=()=>toast.remove();stage.append(toast);toastTimer=setTimeout(()=>toast.remove(),4000);
+}
+document.querySelector('.toolbar [aria-label="Ссылка"]').addEventListener('click',async()=>{
+try{await navigator.clipboard.writeText(location.href);showCopiedToast()}
+catch{const field=document.createElement('textarea');field.value=location.href;field.style.position='fixed';field.style.opacity='0';stage.append(field);field.select();const copied=document.execCommand('copy');field.remove();if(copied)showCopiedToast()}
+});
+
 function toggleSite(id){if(selectedSites.has(id))selectedSites.delete(id);else selectedSites.add(id);render()}
 rows.addEventListener("click",event=>{
 const row=event.target.closest("[data-site]");if(!row)return;const id=Number(row.dataset.site);
-if(event.target.closest(".check")){event.preventDefault();multi=true;toggleSite(id);return}
-if(multi){toggleSite(id);return}selected=id;render();openCard(id);
+const action=event.target.closest("[data-row-action]");
+if(action){const site=sites.find(s=>s.id===id);confirmRegistryAction(action.dataset.rowAction==="delete"?"delete":site.published?"unpublish":"publish",[id]);return}
+if(event.target.closest(".check"))return;
+if(multi){selected=id;toggleSite(id);return}selected=id;render();openCard(id);
 });
-rows.addEventListener("keydown",event=>{if(event.target.matches("input"))return;if(event.key==="Enter"||event.key===" "){event.preventDefault();event.target.closest("[data-site]")?.click()}});
-document.addEventListener("change",event=>{if(event.target.id==="mark-all"){for(const s of visibleSites()){if(event.target.checked)selectedSites.add(s.id);else selectedSites.delete(s.id)}render()}});
+rows.addEventListener("keydown",event=>{if(event.target.closest("input,button"))return;if(event.key==="Enter"||event.key===" "){event.preventDefault();event.target.closest("[data-site]")?.click()}});
+document.addEventListener("change",event=>{if(event.target.matches(".row-check")){multi=true;selected=Number(event.target.closest("[data-site]").dataset.site);toggleSite(selected);return}if(event.target.id==="mark-all"){for(const s of visibleSites()){if(event.target.checked)selectedSites.add(s.id);else selectedSites.delete(s.id)}render()}});
 document.addEventListener("click",event=>{
-if(event.target.closest(".operations-close")){multi=false;selectedSites.clear();render()}
-const operation=event.target.closest("[data-operation]");if(operation&&selectedSites.size){for(const site of sites)if(selectedSites.has(site.id))site.published=operation.dataset.operation==="publish";selectedSites.clear();render()}
+if(event.target.closest(".operations-close")){multi=false;selectedOnly=false;selectedSites.clear();render()}
+const operation=event.target.closest("[data-operation]");if(operation&&selectedSites.size)confirmRegistryAction(operation.dataset.operation,[...selectedSites],true)
 });
-multiButton.addEventListener("click",()=>{multi=!multi;if(!multi)selectedSites.clear();render()});
+multiButton.addEventListener("click",()=>{multi=!multi;if(!multi){selectedOnly=false;selectedSites.clear()}render()});
 document.getElementById("search").addEventListener("input",render);
 document.getElementById("regions").addEventListener("click",event=>{const button=event.target.closest("[data-region]");if(!button)return;region=Number(button.dataset.region);document.querySelectorAll("[data-region]").forEach(node=>{const active=Number(node.dataset.region)===region;node.classList.toggle("selected",active);node.setAttribute("aria-pressed",String(active))});render()});
+
+const sortButton=document.querySelector('.toolbar [aria-label="Настроить"]');
+sortButton.setAttribute("aria-label","Сортировать");sortButton.title="Сортировать";sortButton.setAttribute("aria-haspopup","menu");sortButton.setAttribute("aria-expanded","false");
+function closeSort(){document.getElementById("sort-menu")?.remove();sortButton.setAttribute("aria-expanded","false")}
+function drawSort(){
+let menu=document.getElementById("sort-menu");if(!menu){menu=document.createElement("section");menu.id="sort-menu";menu.setAttribute("role","menu");menu.setAttribute("aria-label","Сортировать");stage.append(menu)}
+menu.innerHTML='<div class="sort-title">СОРТИРОВАТЬ<button aria-label="Закрыть сортировку" id="sort-close">'+iconHtml("E66C","icon24")+'</button></div>'+[["order","По порядку","EB66"],["visitors","По посещаемости","E632"],["responses","По количеству откликов","EA66"],["date","По дате посещения","E6C4"]].map(([field,label,glyph])=>'<div class="sort-option"><button role="menuitemradio" aria-checked="'+(sortField===field)+'" data-sort="'+field+'"><span class="sort-dot" aria-hidden="true"></span>'+iconHtml(glyph)+'<span>'+label+'</span></button>'+(field!=="order"?'<button class="sort-direction" data-direction="'+field+'" aria-label="'+label+': '+(sortField===field&&sortDirection===-1?'по убыванию':'по возрастанию')+'">'+(sortField===field&&sortDirection===-1?'↓':'↑')+'</button>':'')+'</div>').join('');
+sortButton.setAttribute("aria-expanded","true");
+}
+sortButton.addEventListener("click",()=>{if(document.getElementById("sort-menu"))closeSort();else{closeFilter();drawSort()}});
+document.addEventListener("click",event=>{
+if(event.target.closest("#sort-close")){closeSort();return}
+const direction=event.target.closest("[data-direction]");const option=event.target.closest("[data-sort]");
+if(direction){const field=direction.dataset.direction;sortDirection=sortField===field?-sortDirection:-1;sortField=field;render();drawSort();return}
+if(option){sortField=option.dataset.sort;sortDirection=1;render();closeSort();return}
+if(!event.target.closest('#sort-menu, [aria-label="Сортировать"]'))closeSort();
+});
+document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSort()});
+
 function closeFilter(){closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false")}
 function drawFilter(){
 let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
@@ -128,6 +216,6 @@ if(event.target.closest("#indexing-switch")){currentSite.settings.indexing=!curr
 const device=event.target.closest("[data-device]");if(device){document.querySelectorAll("[data-device]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===device)));document.getElementById("site-preview").classList.toggle("mobile",device.dataset.device==="mobile")}
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedSites.clear();render()}}});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
 function fit(){const scale=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform="none";stage.style.zoom=String(scale)}addEventListener("resize",fit);fit();render();
 

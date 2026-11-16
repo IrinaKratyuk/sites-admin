@@ -35,3 +35,38 @@ main{flex:1;min-width:0;display:flex;flex-direction:column;height:900px}header{h
 #filter-template-clear{position:absolute;right:22px;top:3px;width:16px;height:16px;display:flex;align-items:center;justify-content:center}
 
 .filter-fields{border-radius:0 0 12px 12px;padding-top:2px}.filter-fields label{padding-bottom:2px}.filter-fields label>span>img{width:16px;height:16px}#filter-template-clear{position:static;color:#ccc;margin:0 18px 3px 0;flex:none}#filter-template.filled{width:auto;max-width:calc(100% - 34px);padding-right:0}.filter-flags>span{flex:1;justify-content:flex-start;padding:0 10px}.filter-flags{gap:0}.template-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,var(--template-bg),transparent 16.25%)}
+
+/* Registry interactions: preserve the existing row geometry. */
+.row-commands{position:absolute;right:0;bottom:0;display:flex;align-items:flex-end;gap:6px;padding:4px 6px 3px;background:#f3f4f8;visibility:hidden;pointer-events:none}
+.row-commands button{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#656c87;border-radius:100px}
+.row-commands button:hover{background:#e8eaf0}.row-commands [data-row-action="delete"]{color:#c2140a}
+.site-row:hover .row-commands,.site-row:focus-within .row-commands{visibility:visible;pointer-events:auto}
+.site-row:focus-within .check{opacity:1}.check{visibility:hidden}.site-row:hover .check,.site-row:focus-within .check,.multi-mode .check{visibility:visible}
+.multi-mode .site-row[aria-selected=true]{background:transparent}.multi-mode .site-row:hover,.multi-mode .site-row:focus-within{background:#f3f4f8}
+.site-row[aria-selected=true]:before{display:none}.site-row[data-current=true]:before,.multi-mode .site-row[data-current=true]:before{content:"";display:block;position:absolute;top:2px;left:0;width:3px;height:16px;border-radius:4px;background:#cc3d00}
+#operations{position:sticky;top:0;z-index:5;background:#f5faff;border-radius:8px 8px 0 0;min-height:36px}
+.columns{position:sticky;top:0;z-index:4;background:white}.multi-mode .columns{top:36px}.detail .columns{box-shadow:none}.detail.is-scrolled .columns{box-shadow:0 3px 4px #0000000d}
+#mark-all:indeterminate{background:#cc3d00;border-radius:3px;box-shadow:inset 0 0 0 3px white}
+#sort-menu{position:absolute;right:0;top:46px;width:300px;z-index:12;background:#fff;border-radius:8px;box-shadow:0 5px 20px #00000026;padding:12px 8px}
+.sort-title{position:relative;height:28px;padding:0 32px 0 24px;display:flex;align-items:flex-start;color:#8991a9;letter-spacing:1.5px;font-size:14px}.sort-title button{position:absolute;right:0;top:0;display:flex;align-items:center;justify-content:center;color:#656c87;width:24px;height:24px;letter-spacing:0}
+.sort-option{display:flex;align-items:center;height:38px;border-radius:20px}.sort-option:hover{background:#f3f4f8}
+.sort-option>[data-sort]{display:flex;align-items:center;gap:10px;flex:1;text-align:left;font-size:15px;height:100%}.sort-option .icon{width:20px;color:#656c87}.sort-dot{width:7px;height:7px;flex:none;border-radius:50%;margin-left:9px;background:white;border:1px solid #e5e7eb;visibility:hidden}.sort-option:hover .sort-dot,.sort-option:focus-within .sort-dot{visibility:visible}.sort-option [aria-checked=true] .sort-dot{visibility:visible;width:5px;height:5px;margin-left:10px;margin-right:1px;border:0;background:#cc3d00}
+.sort-direction{width:32px;height:32px;color:#8991a9;font-size:22px;font-weight:300;border-radius:50%}.sort-direction:hover{background:white;box-shadow:0 0 4px #00000018}
+.row-check:checked,.row-check:checked:hover,#mark-all:checked{background-image:url('assets/template-checked.svg')}
+
+#registry-confirmation{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding-right:52px}
+.registry-confirm-box{width:350px;padding:20px 40px 24px;background:linear-gradient(120deg,#fff,#f4faff);border-radius:8px;box-shadow:0 8px 30px #00000026;text-align:center}
+.confirm-accent{display:block;width:40px;height:3px;border-radius:2px;background:#0085f2;margin:0 auto 22px}
+.registry-confirm-box p{font-size:18px;line-height:24px;margin:0 0 26px;letter-spacing:-.254px}
+.confirm-actions{display:flex;gap:8px;justify-content:center}.confirm-actions button{width:86px;height:24px;border:1px solid #0085f2;background:white;border-radius:20px;font-size:14px;line-height:20px}.confirm-actions #registry-confirm-yes{border-color:#ff8151}.confirm-actions button:hover{background:#ebf4ff}.confirm-actions #registry-confirm-yes:hover{background:#fff2eb}.confirm-actions button:focus:not(:focus-visible){outline:none}
+#marks-menu{position:absolute;width:220px;z-index:15;background:#f5faff;border-radius:8px;padding:12px 0 10px;box-shadow:0 5px 24px #00000026}
+.marks-title{position:relative;padding:0 36px 0 20px;height:28px;font-size:14px;letter-spacing:1.5px;color:#8991a9}.marks-title button{position:absolute;right:12px;top:0;width:24px;height:24px;color:#656c87;letter-spacing:0}
+#marks-menu>[data-marks]{display:block;width:100%;height:38px;text-align:left;padding:0 20px;font-size:16px}#marks-menu>[data-marks]:hover{background:#ebedf2}
+#registry-toast{position:absolute;right:16px;bottom:16px;z-index:45;display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(105deg,#dff2e4,#f5fbf6);border-radius:6px;box-shadow:0 0 8px #00000026;font-size:16px}
+.copied-check{color:#279a3f;font-size:24px;line-height:24px}#registry-toast button{width:24px;height:24px;color:#656c87}
+
+/* Confirmation: desktop standard, Figma 15763:15482. */
+.registry-confirm-box{position:relative;padding:43px 24px 24px;background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 350 182' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.07999999821186066'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(30.15 44.65 44.907 -30.323 87.5 -27.5)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>"), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);box-shadow:0 0 18px #0000001f;overflow:hidden}
+.confirm-accent{position:absolute;top:20px;left:calc(50% - 20px);margin:0}
+.registry-confirm-box p{line-height:23px;margin:0 0 24px;letter-spacing:-.2538px}
+.confirm-actions button{width:80px;border-color:#5292dc}.confirm-actions #registry-confirm-yes{border-color:#f88f62}
