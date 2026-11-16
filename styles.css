@@ -70,3 +70,14 @@ main{flex:1;min-width:0;display:flex;flex-direction:column;height:900px}header{h
 .confirm-accent{position:absolute;top:20px;left:calc(50% - 20px);margin:0}
 .registry-confirm-box p{line-height:23px;margin:0 0 24px;letter-spacing:-.2538px}
 .confirm-actions button{width:80px;border-color:#5292dc}.confirm-actions #registry-confirm-yes{border-color:#f88f62}
+
+/* Registry search and command hovers. */
+.registry-search{position:relative;width:300px;height:26px;flex:none}
+.registry-search #search{width:100%;height:26px;border-radius:14px;padding:0 54px 0 12px;font-size:14px}
+.registry-search #search::-webkit-search-cancel-button{display:none}
+.registry-search>button{position:absolute;top:1px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#656c87;border-radius:50%}
+#search-submit{right:4px}#search-clear{right:28px;color:#8991a9}.registry-search>button:hover{background:#f3f4f8}
+.site-text mark{background:#ffffcc;color:inherit}
+.site-name:hover{text-decoration:underline;text-underline-offset:2px}
+#operations [data-operation]:hover>span,#marks-toggle:hover{text-decoration:underline;text-underline-offset:2px}
+.sort-title{display:flex;align-items:center;padding-top:0;padding-bottom:0}.sort-title button{top:2px}
