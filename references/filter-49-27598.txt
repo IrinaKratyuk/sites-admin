@@ -1,0 +1,301 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/57ad96f2-a233-404b-84d1-ceffc8d54310";
+const imgUiBurger = `${assetPathPrefix}/023da.svg`;
+
+type ClearClearButtonProps = {
+  className?: string;
+  hover?: boolean;
+};
+
+function ClearClearButton({ className, hover = false }: ClearClearButtonProps) {
+  return (
+    <div className={className || "content-stretch flex flex-col items-center justify-center relative"} data-node-id="21886:141099">
+      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="21886:141101" data-name="icons">
+        <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I21886:141101;5565:16629" data-name="Ui базовый набор / Font">
+          <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I21886:141101;5565:16629;8306:1722">{`\uE66C`}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type FilterProps = {
+  className?: string;
+  calendarVisible?: boolean;
+  clearButtonVisible?: boolean;
+  counter?: string;
+  dateTemplate?: string;
+  inputType?: "text" | "date" | "rangeDate" | "lookup" | "range" | "lookupSolo" | "rangeDate + Time";
+  leftDateTemplate?: string;
+  leftRange?: string;
+  leftTime?: string;
+  moneyVisible?: boolean;
+  panelButton?: boolean;
+  rightDateTemplate?: string;
+  rightRange?: string;
+  rightTextTemplate?: string;
+  rightTime?: string;
+  style?: "default" | "contrast";
+  textTemplate?: string;
+};
+
+export default function Filter({ className, calendarVisible = true, clearButtonVisible = true, counter = "(N)", dateTemplate = "31.03.23", inputType = "lookupSolo", leftDateTemplate = "31.03.23", leftRange = "24", leftTime = "00:00", moneyVisible = false, panelButton = true, rightDateTemplate = "31.03.23", rightRange = "44", rightTextTemplate = "Текст", rightTime = "23:59", style = "default", textTemplate = "Текст" }: FilterProps) {
+  const isContrast = style === "contrast";
+  const isContrastAndIsRangeDateOrRangeDateTime = style === "contrast" && ["rangeDate", "rangeDate + Time"].includes(inputType);
+  const isDate = inputType === "date";
+  const isDateAndContrast = inputType === "date" && style === "contrast";
+  const isDateAndDefault = inputType === "date" && style === "default";
+  const isDateOrRangeDateOrRangeDateTime = ["date", "rangeDate", "rangeDate + Time"].includes(inputType);
+  const isLookup = inputType === "lookup";
+  const isLookupAndContrast = inputType === "lookup" && style === "contrast";
+  const isLookupAndDefault = inputType === "lookup" && style === "default";
+  const isLookupSolo = inputType === "lookupSolo";
+  const isLookupSoloAndContrast = inputType === "lookupSolo" && style === "contrast";
+  const isRangeAndDefault = inputType === "range" && style === "default";
+  const isRangeDate = inputType === "rangeDate";
+  const isRangeDateAndContrast = inputType === "rangeDate" && style === "contrast";
+  const isRangeDateTimeAndContrast = inputType === "rangeDate + Time" && style === "contrast";
+  const isRangeDateTimeAndDefault = inputType === "rangeDate + Time" && style === "default";
+  const isTextAndDefault = inputType === "text" && style === "default";
+  return (
+    <div className={className || `content-stretch flex relative ${isRangeAndDefault ? "items-center w-[316px]" : isDateOrRangeDateOrRangeDateTime ? "gap-[8px] h-[24px] items-center" : isLookup ? "border-[#d2d6da] border-b border-solid flex-col h-[24px] items-start justify-center w-[282px]" : isTextAndDefault ? "h-[24px] items-center w-[174px]" : "border-[#d2d6da] border-b border-solid flex-col h-[24px] items-start justify-center w-[174px]"}`} id={isRangeAndDefault ? "node-161_44545" : isDateAndContrast ? "node-132_36961" : isLookupSoloAndContrast ? "node-68_30015" : isRangeDateTimeAndContrast ? "node-918_83203" : isRangeDateAndContrast ? "node-132_37547" : isRangeDateTimeAndDefault ? "node-918_83191" : inputType === "rangeDate" && style === "default" ? "node-132_37498" : isDateAndDefault ? "node-132_36910" : isLookupAndContrast ? "node-148_37865" : isLookupAndDefault ? "node-148_37799" : isTextAndDefault ? "node-161_47569" : "node-49_27597"}>
+      {(isLookupSolo || isTextAndDefault || isLookup || isDate) && (
+        <div className={`content-stretch flex items-center relative ${isDateAndContrast ? "bg-white border-[#d2d6da] border-b border-solid h-full shrink-0" : isLookupSoloAndContrast ? "bg-white flex-[1_0_0] min-h-px px-[4px] w-full" : isDateAndDefault ? "border-[#d2d6da] border-b border-solid h-full shrink-0" : isLookupAndContrast ? "bg-white flex-[1_0_0] gap-[4px] min-h-px px-[4px] w-full" : isLookupAndDefault ? "flex-[1_0_0] gap-[4px] min-h-px w-full" : isTextAndDefault ? "border-[#d2d6da] border-b border-solid flex-[1_0_0] h-full min-w-px" : "flex-[1_0_0] min-h-px w-full"}`} id={isDateAndContrast ? "node-132_36962" : isLookupSoloAndContrast ? "node-68_30016" : isDateAndDefault ? "node-132_36911" : isLookupAndContrast ? "node-148_37866" : isLookupAndDefault ? "node-148_37800" : isTextAndDefault ? "node-161_47570" : "node-49_27579"} data-name="Поле">
+          {(isLookupSolo || isTextAndDefault || isDate) && (
+            <div className={`content-stretch flex h-full items-end pb-[4px] relative shrink-0 ${isDateAndContrast ? "px-[4px]" : ""}`} id={isDateAndContrast ? "node-132_36963" : isLookupSoloAndContrast ? "node-68_30017" : isDateAndDefault ? "node-132_36912" : isTextAndDefault ? "node-161_47571" : "node-49_27580"} data-name="Текст">
+              {(isLookupSolo || isTextAndDefault) && (
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="49:27581">
+                  <p className="leading-[normal]">{textTemplate}</p>
+                </div>
+              )}
+              {isDate && (
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="132:36913">
+                  <p className="leading-[normal]">{dateTemplate}</p>
+                </div>
+              )}
+            </div>
+          )}
+          {isLookupSolo && clearButtonVisible && <ClearClearButton className="content-stretch flex flex-col items-center justify-center relative shrink-0" />}
+          {isLookup && (
+            <div className="content-stretch flex gap-[4px] items-start relative shrink-0" id={isContrast ? "node-148_37867" : "node-148_37835"} data-name="Пункты">
+              <div className="content-stretch flex items-center relative shrink-0" id={isContrast ? "node-148_37868" : "node-148_37830"} data-name="Параметр 1">
+                <div className="content-stretch flex h-[24px] items-end pb-[4px] relative shrink-0" id={isContrast ? "node-148_37869" : "node-148_37801"} data-name="Текст">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="148:37802">
+                    <p className="leading-[normal]">{textTemplate}</p>
+                  </div>
+                </div>
+                {clearButtonVisible && <ClearClearButton className="content-stretch flex flex-col items-center justify-center relative shrink-0" />}
+              </div>
+              <div className="content-stretch flex items-center relative shrink-0" id={isContrast ? "node-148_37872" : "node-148_37831"} data-name="Параметр 2">
+                <div className="content-stretch flex h-[24px] items-end pb-[4px] relative shrink-0" id={isContrast ? "node-148_37873" : "node-148_37825"} data-name="Текст">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="148:37826">
+                    <p className="leading-[normal]">{rightTextTemplate}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-gradient-to-l from-white h-[23px] right-0 to-[rgba(255,255,255,0)] top-0 w-[24px]" id={isContrast ? "node-148_37875" : "node-148_37836"} />
+            </div>
+          )}
+          {isLookupAndDefault && clearButtonVisible && (
+            <div className="absolute content-stretch flex flex-col items-center justify-center right-[24px] top-[4px]" data-node-id="148:37832" data-name="clear/clearButton">
+              <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I148:37832;4008:18186" data-name="icons">
+                <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I148:37832;4008:18186;5565:16629" data-name="Ui базовый набор / Font">
+                  <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I148:37832;4008:18186;5565:16629;8306:1722">{`\uE66C`}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {isLookupAndDefault && (
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="148:37837" data-name="Параметр 3">
+              <div className="content-stretch flex h-[24px] items-end pb-[4px] relative shrink-0" data-node-id="148:37838" data-name="Текст">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="148:37839">
+                  <p className="leading-[normal]">{counter}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {isLookupAndContrast && clearButtonVisible && (
+            <div className="absolute content-stretch flex flex-col items-center justify-center right-[28px] top-[4px]" data-node-id="148:37876" data-name="clear/clearButton">
+              <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I148:37876;4008:18186" data-name="icons">
+                <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I148:37876;4008:18186;5565:16629" data-name="Ui базовый набор / Font">
+                  <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I148:37876;4008:18186;5565:16629;8306:1722">{`\uE66C`}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {isLookupAndContrast && (
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="148:37877" data-name="Параметр 3">
+              <div className="content-stretch flex h-[24px] items-end pb-[4px] relative shrink-0" data-node-id="148:37878" data-name="Текст">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="148:37879">
+                  <p className="leading-[normal]">{counter}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {["rangeDate", "rangeDate + Time"].includes(inputType) && (
+        <div className="content-stretch flex gap-[4px] items-center relative shrink-0" id={isRangeDateTimeAndContrast ? "node-918_83204" : isRangeDateAndContrast ? "node-132_37548" : isRangeDateTimeAndDefault ? "node-918_83192" : "node-132_37528"}>
+          {(isRangeDate || isRangeDateTimeAndContrast) && (
+            <div className={`border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0 ${isContrastAndIsRangeDateOrRangeDateTime ? "bg-white" : ""}`} id={isRangeDateTimeAndContrast ? "node-918_83205" : isRangeDateAndContrast ? "node-132_37549" : "node-132_37499"} data-name="Поле">
+              <div className={`content-stretch flex h-full items-end pb-[4px] relative shrink-0 ${isContrastAndIsRangeDateOrRangeDateTime ? "px-[4px]" : ""}`} id={isRangeDateTimeAndContrast ? "node-918_83206" : isRangeDateAndContrast ? "node-132_37550" : "node-132_37500"} data-name="Текст">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="132:37501">
+                  <p className="leading-[normal]">{leftDateTemplate}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          <div className={`relative shrink-0 ${isRangeDateTimeAndDefault ? "content-stretch flex gap-[8px] items-start" : "bg-black h-px w-[5px]"}`} id={isRangeDateTimeAndContrast ? "node-918_83208" : isRangeDateAndContrast ? "node-132_37552" : isRangeDateTimeAndDefault ? "node-918_83230" : "node-132_37527"}>
+            {isRangeDateTimeAndDefault && (
+              <>
+                <div className="border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0" data-node-id="918:83193" data-name="Поле">
+                  <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="918:83194" data-name="Текст">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="918:83195">
+                      <p className="leading-[normal]">{leftDateTemplate}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0" data-node-id="918:83227" data-name="Поле">
+                  <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="918:83228" data-name="Текст">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="918:83229">
+                      <p className="leading-[normal]">{leftTime}</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+          {(isRangeDate || isRangeDateTimeAndContrast) && (
+            <div className={`border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0 ${isContrastAndIsRangeDateOrRangeDateTime ? "bg-white" : ""}`} id={isRangeDateTimeAndContrast ? "node-918_83209" : isRangeDateAndContrast ? "node-132_37553" : "node-132_37524"} data-name="Поле">
+              <div className={`content-stretch flex h-full items-end pb-[4px] relative shrink-0 ${isContrastAndIsRangeDateOrRangeDateTime ? "px-[4px]" : ""}`} id={isRangeDateTimeAndContrast ? "node-918_83210" : isRangeDateAndContrast ? "node-132_37554" : "node-132_37525"} data-name="Текст">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="132:37526">
+                  <p className="leading-[normal]">{rightDateTemplate}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {isRangeDateTimeAndDefault && (
+            <>
+              <div className="bg-black h-px relative shrink-0 w-[5px]" data-node-id="918:83196" />
+              <div className="content-stretch flex gap-[8px] items-start relative shrink-0" data-node-id="918:83235">
+                <div className="border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0" data-node-id="918:83197" data-name="Поле">
+                  <div className="content-stretch flex h-[24px] items-end pb-[4px] relative shrink-0" data-node-id="918:83198" data-name="Текст">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="918:83199">
+                      <p className="leading-[normal]">{rightDateTemplate}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="border-[#d2d6da] border-b border-solid content-stretch flex h-[24px] items-center relative shrink-0" data-node-id="918:83231" data-name="Поле">
+                  <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="918:83232" data-name="Текст">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="918:83233">
+                      <p className="leading-[normal]">{rightTime}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+      {isDateOrRangeDateOrRangeDateTime && calendarVisible && (
+        <div className="content-stretch flex h-full items-center pb-[2px] relative shrink-0" data-node-id="132:37026">
+          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[100px] shrink-0 size-[16px]" data-node-id="132:36977" data-name="Button">
+            <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I132:36977;3979:16897" data-name="_button">
+              <div className="content-stretch flex flex-col h-full items-center justify-center pb-px relative shrink-0" data-node-id="I132:36977;3979:16897;3970:20098" data-name="Иконка">
+                <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[#8991a9] text-[16px] whitespace-nowrap" data-node-id="I132:36977;3979:16897;3970:14604">{`\uE6C4`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isDateOrRangeDateOrRangeDateTime && clearButtonVisible && (
+        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="132:36942" data-name="clear/clearButton">
+          <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I132:36942;4008:18186" data-name="icons">
+            <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I132:36942;4008:18186;5565:16629" data-name="Ui базовый набор / Font">
+              <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I132:36942;4008:18186;5565:16629;8306:1722">{`\uE66C`}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {isLookup && (
+        <div className={`absolute content-stretch flex flex-col items-center justify-center rounded-[100px] size-[16px] top-[3px] ${isContrast ? "right-[4px]" : "right-0"}`} id={isContrast ? "node-148_37880" : "node-148_37804"} data-name="Button">
+          <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" id={isContrast ? "node-I148_37880-3971_14994" : "node-I148_37804-3971_14994"} data-name="_button">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[16px]" id={isContrast ? "node-I148_37880-3971_14994-4008_17638" : "node-I148_37804-3971_14994-4008_17638"} data-name="Иконка">
+              <div className="flex-[1_0_0] min-h-px relative w-full" id={isContrast ? "node-I148_37880-3971_14994-4008_17639" : "node-I148_37804-3971_14994-4008_17639"} data-name="Ui базовый набор / Меню /  Burger">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUiBurger} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {inputType === "lookupSolo" && style === "default" && panelButton && (
+        <div className="absolute content-stretch flex flex-col items-center justify-center right-0 rounded-[100px] size-[16px] top-[3px]" data-node-id="49:27583" data-name="Button">
+          <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I49:27583;3971:14994" data-name="_button">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[16px]" data-node-id="I49:27583;3971:14994;4008:17638" data-name="Иконка">
+              <div className="flex-[1_0_0] min-h-px relative w-full" data-node-id="I49:27583;3971:14994;4008:17639" data-name="Ui базовый набор / Меню /  Burger">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUiBurger} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isTextAndDefault && clearButtonVisible && <ClearClearButton className="content-stretch flex flex-col items-center justify-center relative shrink-0" />}
+      {isLookupSoloAndContrast && panelButton && (
+        <div className="absolute content-stretch flex flex-col items-center justify-center right-[4px] rounded-[100px] size-[16px] top-[3px]" data-node-id="68:30020" data-name="Button">
+          <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I68:30020;3971:14994" data-name="_button">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[16px]" data-node-id="I68:30020;3971:14994;4008:17638" data-name="Иконка">
+              <div className="flex-[1_0_0] min-h-px relative w-full" data-node-id="I68:30020;3971:14994;4008:17639" data-name="Ui базовый набор / Меню /  Burger">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUiBurger} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isRangeAndDefault && (
+        <div className="content-stretch flex flex-[1_0_0] gap-[6px] h-[24px] items-center justify-center min-w-px pr-[10px] relative rounded-[12px]" data-node-id="161:44315" data-name="Поля">
+          <div className="content-stretch flex flex-col h-full items-start justify-center pb-px relative shrink-0" data-node-id="161:44316" data-name="От">
+            <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="161:44317">
+              от
+            </p>
+          </div>
+          <div className="border-[#d2d6da] border-b border-solid content-stretch flex flex-[1_0_0] h-full items-center min-w-px relative" data-node-id="161:44561" data-name="Поле слева">
+            <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="161:44562" data-name="Текст">
+              <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="161:44563">
+                <p className="leading-[normal]">{leftRange}</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col h-full items-start justify-center pb-px relative shrink-0" data-node-id="161:44319" data-name="До">
+            <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="161:44320">
+              до
+            </p>
+          </div>
+          <div className="border-[#d2d6da] border-b border-solid content-stretch flex flex-[1_0_0] h-full items-center min-w-px relative" data-node-id="161:44573" data-name="Поле справа">
+            <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="161:44574" data-name="Текст">
+              <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black tracking-[-0.1974px] whitespace-nowrap" data-node-id="161:44575">
+                <p className="leading-[normal]">{rightRange}</p>
+              </div>
+            </div>
+          </div>
+          {moneyVisible && (
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="7638:56701" data-name="_filter/money">
+              <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/secondary_text-color,#313e78)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I7638:56701;7638:56676">
+                ₽
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+      {isRangeAndDefault && clearButtonVisible && <ClearClearButton className="content-stretch flex flex-col items-center justify-center relative shrink-0" />}
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: TEXT/text-color: #000000, TEXT/Regular/font-size_m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), ICONS/icon-size_s: Font(family: "icon/font-family/s_icon_font-family", style: Regular, size: icon/icon_size/icon-size_s, weight: 400, lineHeight: 100, letterSpacing: 0), ICONS/unaccented_icon-color: #CCCCCC, BORDER/unaccented_border-color: #D2D6DA, TEXT/label_text-color: #8991A9, BACKGROUND/background-color: #FFFFFF, ICONS/label_icon-color: #8991A9.
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

@@ -1,0 +1,1081 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/05aba7a9-b0ab-4dcc-8ade-c3deb76b12de";
+const imgStreamlineWeb = `${assetPathPrefix}/33421.svg`;
+const imgHugeiconsApple = `${assetPathPrefix}/d1772.svg`;
+const imgLaAndroid = `${assetPathPrefix}/13e74.svg`;
+const imgProperty1Default = `${assetPathPrefix}/5839e.svg`;
+const imgProperty1Light = `${assetPathPrefix}/f16e7.svg`;
+const imgProperty1Dark = `${assetPathPrefix}/2dacf.svg`;
+const imgUnion = `${assetPathPrefix}/f5938.svg`;
+const imgWorkingBanner4 = `${assetPathPrefix}/d46e3.png`;
+const imgModeLightTypeDefault = `${assetPathPrefix}/e49f9.svg`;
+const imgTypeLinkButtonHoverFalseClickFalse = `${assetPathPrefix}/45501.svg`;
+const imgStyleSuccess = `${assetPathPrefix}/c48aa.svg`;
+const imgStyleDefault = `${assetPathPrefix}/e60d0.svg`;
+const imgUnion1 = `${assetPathPrefix}/5917e.svg`;
+const imgImage9 = `${assetPathPrefix}/7372d.png`;
+const imgCloseButton = `${assetPathPrefix}/d9440.svg`;
+const imgFrame = `${assetPathPrefix}/cecd5.svg`;
+const imgIconDevice = `${assetPathPrefix}/8c1b3.svg`;
+const imgIconDevice1 = `${assetPathPrefix}/45403.svg`;
+const imgIconDevice2 = `${assetPathPrefix}/be23e.svg`;
+const img = `${assetPathPrefix}/f1f36.svg`;
+const imgUiBackText = `${assetPathPrefix}/798a9.svg`;
+
+type IconsDevelopmenProps = {
+  className?: string;
+  iconDevelopmen?: "andriod" | "ios" | "web";
+};
+
+function IconsDevelopmen({ className, iconDevelopmen = "ios" }: IconsDevelopmenProps) {
+  const isAndriod = iconDevelopmen === "andriod";
+  const isIos = iconDevelopmen === "ios";
+  return (
+    <div className={className || "content-stretch flex items-center pt-px relative"} id={isAndriod ? "node-30295_21993" : isIos ? "node-30295_21992" : "node-30295_21991"}>
+      {iconDevelopmen === "web" && (
+        <div className="relative shrink-0 size-[16px]" data-node-id="30295:21994" data-name="streamline:web">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStreamlineWeb} />
+        </div>
+      )}
+      {isIos && (
+        <div className="relative shrink-0 size-[16px]" data-node-id="30295:21997" data-name="hugeicons:apple">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgHugeiconsApple} />
+        </div>
+      )}
+      {isAndriod && (
+        <div className="relative shrink-0 size-[16px]" data-node-id="30295:21999" data-name="la:android">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLaAndroid} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+type IconsDesignerProps = {
+  className?: string;
+  property1?: "Default";
+};
+
+function IconsDesigner({ className, property1 = "Default" }: IconsDesignerProps) {
+  return (
+    <div className={className || "relative size-[16px]"} data-node-id="30295:21860">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgProperty1Default} />
+    </div>
+  );
+}
+
+type IconsThemeProps = {
+  className?: string;
+  property1?: "light" | "dark";
+};
+
+function IconsTheme({ className, property1 = "light" }: IconsThemeProps) {
+  const isDark = property1 === "dark";
+  return (
+    <div className={className || "relative size-[16px]"} id={isDark ? "node-13916_21854" : "node-13916_21853"}>
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={isDark ? imgProperty1Dark : imgProperty1Light} />
+    </div>
+  );
+}
+
+type Switch2Props = {
+  className?: string;
+  hover?: boolean;
+  readOnly?: "false";
+  selected?: boolean;
+};
+
+function Switch2({ className, hover = false, readOnly = "false", selected = false }: Switch2Props) {
+  const isSelectedAndFalse = selected && !hover;
+  return <div className={className || `h-[20px] relative rounded-[10px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.1)] w-[40px] ${isSelectedAndFalse ? "bg-[#05121e]" : "bg-white"}`} id={isSelectedAndFalse ? "node-18454_25066" : "node-18454_25064"} />;
+}
+
+type ButtonGroupProps = {
+  className?: string;
+  buttonGroup?: "yesNoCancel" | "ok";
+};
+
+function ButtonGroup({ className, buttonGroup = "yesNoCancel" }: ButtonGroupProps) {
+  const isOk = buttonGroup === "ok";
+  const isYesNoCancel = buttonGroup === "yesNoCancel";
+  return (
+    <div className={className || `content-stretch flex items-center justify-center px-[24px] relative ${isOk ? "" : "gap-[12px]"}`} id={isOk ? "node-21024_1973" : "node-21024_1963"}>
+      <div className="bg-[#f85411] content-stretch drop-shadow-[0px_0px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[16px] relative rounded-[8px] shrink-0 w-[160px]" id={isOk ? "node-21024_1974" : "node-21024_1964"} data-name="Button">
+        <div className="content-stretch flex gap-[8px] items-center justify-center relative rounded-[100px] shrink-0" id={isOk ? "node-I21024_1974-1703_651" : "node-I21024_1964-1703_651"} data-name="_button">
+          <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[29px] text-white tracking-[-0.4089px] whitespace-nowrap" id={isOk ? "node-I21024_1974-1703_651-1703_607" : "node-I21024_1964-1703_651-1703_607"}>
+            {isOk ? "ОК" : "Да"}
+          </p>
+        </div>
+      </div>
+      {isYesNoCancel && (
+        <>
+          <div className="bg-[#3f5975] content-stretch drop-shadow-[0px_0px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[16px] relative rounded-[8px] shrink-0 w-[160px]" data-node-id="21024:1965" data-name="Button">
+            <div className="content-stretch flex gap-[8px] items-center justify-center relative rounded-[100px] shrink-0" data-node-id="I21024:1965;1703:643" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[#e4e4e4] text-[29px] tracking-[-0.4089px] whitespace-nowrap" data-node-id="I21024:1965;1703:643;1703:607">
+                Нет
+              </p>
+            </div>
+          </div>
+          <div className="bg-[#3f5975] content-stretch drop-shadow-[0px_0px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[16px] relative rounded-[8px] shrink-0 w-[160px]" data-node-id="21024:1966" data-name="Button">
+            <div className="content-stretch flex gap-[8px] items-center justify-center relative rounded-[100px] shrink-0" data-node-id="I21024:1966;1703:643" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[#e4e4e4] text-[29px] tracking-[-0.4089px] whitespace-nowrap" data-node-id="I21024:1966;1703:643;1703:607">
+                Отмена
+              </p>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+type CloseButtonProps = {
+  className?: string;
+  closeButtonViewMode?: "linkButton";
+  inlineHeight?: "xl (74)";
+};
+
+function CloseButton({ className, closeButtonViewMode = "linkButton", inlineHeight = "xl (74)" }: CloseButtonProps) {
+  return (
+    <div className={className || "content-stretch flex flex-col items-start relative"} data-node-id="25665:29897">
+      <div className="content-stretch flex flex-col items-center justify-center relative rounded-[100px] shrink-0 size-[74px]" data-node-id="25665:29905" data-name="_closeButton">
+        <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I25665:29905;1905:16025" data-name="_button">
+          <div className="relative shrink-0 size-[24px]" data-node-id="I25665:29905;1905:16026" data-name="Union">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type MarkerProps = {
+  className?: string;
+  style?: "Default";
+};
+
+function Marker({ className, style = "Default" }: MarkerProps) {
+  return <div className={className || "bg-[#0c94ff] h-[4px] overflow-clip relative rounded-[3px] w-[53px]"} data-node-id="21024:1955" />;
+}
+
+type HeaderProps = {
+  className?: string;
+  header?: "Default";
+  visibleCloseButton?: boolean;
+  visibleIndicator?: boolean;
+};
+
+function Header({ className, header = "Default", visibleCloseButton = true, visibleIndicator = true }: HeaderProps) {
+  return (
+    <div className={className || "content-stretch flex items-center justify-center relative w-[446px]"} data-node-id="21024:1902">
+      <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-w-px py-[28px] relative" data-node-id="21024:1903">
+        {visibleIndicator && <Marker className="bg-[#0c94ff] h-[4px] relative rounded-[3px] shrink-0 w-[53px]" />}
+      </div>
+      <div className="absolute content-stretch flex items-start justify-end pr-[16px] pt-[12px] right-0 top-0" data-node-id="21024:1905">
+        {visibleCloseButton && <CloseButton className="content-stretch flex flex-col items-start relative shrink-0" />}
+      </div>
+    </div>
+  );
+}
+
+type ConformitionProps = {
+  className?: string;
+  comment?: string;
+  conformition?: "Default" | "castom";
+  header?: string;
+  visibleComment?: boolean;
+  visibleHeader?: boolean;
+};
+
+function Conformition({ className, comment = "Чтобы продолжить редактирование, \nнажмите «Отмена»", conformition = "Default", header = "Сохранить изменения?", visibleComment = true, visibleHeader = true }: ConformitionProps) {
+  const isCastom = conformition === "castom";
+  const isDefault = conformition === "Default";
+  return (
+    <div className={className || `content-stretch drop-shadow-[0px_0px_10px_rgba(0,0,0,0.65)] flex flex-col items-center pb-[32px] relative rounded-[16px] ${isCastom ? "w-[900px]" : "w-[700px]"}`} id={isCastom ? "node-21024_1948" : "node-21024_1908"} style={isCastom ? { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 900 482' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.1599999964237213'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(77.529 118.25 115.47 -80.307 225 -72.83)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(39, 55, 73) 0%, rgb(39, 55, 73) 100%)" } : { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 700 314' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.1599999964237213'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(60.3 77.034 89.813 -52.316 175 -47.445)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(39, 55, 73) 0%, rgb(39, 55, 73) 100%)" }}>
+      <Header className="content-stretch flex items-center justify-center relative shrink-0 w-full" visibleCloseButton={isDefault ? false : undefined} visibleIndicator={isCastom ? false : undefined} />
+      <div className={`content-stretch flex items-center justify-center pb-[32px] px-[58px] relative shrink-0 w-full ${isCastom ? "gap-[20px]" : "flex-col gap-[16px]"}`} id={isCastom ? "node-21024_1950" : "node-21024_1910"}>
+        {isDefault && visibleHeader && (
+          <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-node-id="21024:1911">
+            <p className="[word-break:break-word] flex-[1_0_0] font-['Inter:Regular'] font-normal leading-[46px] min-w-px not-italic relative text-[#e4e4e4] text-[37px] text-center tracking-[-0.5217px]" data-node-id="21024:1912">
+              {header}
+            </p>
+          </div>
+        )}
+        {isDefault && visibleComment && (
+          <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-node-id="21024:1913">
+            <div className="[word-break:break-word] flex-[1_0_0] font-['Inter:Regular'] font-normal leading-[0] min-w-px not-italic relative text-[#839ebc] text-[29px] text-center tracking-[-0.4089px] whitespace-pre-wrap" data-node-id="21024:1914">
+              {comment ? (
+                <p className="leading-[normal] mb-0">{comment}</p>
+              ) : (
+                <>
+                  <p className="leading-[normal] mb-0">{`Чтобы продолжить редактирование, `}</p>
+                  <p className="leading-[normal]">нажмите «Отмена»</p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+        {isCastom && (
+          <>
+            <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] min-w-px not-italic relative text-[#e4e4e4] text-[0px] tracking-[-0.4089px] whitespace-pre-wrap" data-node-id="21024:1951">
+              <p className="leading-[normal] mb-0 text-[29px]">
+                {`СБИС может рассчитать `}
+                <br aria-hidden />
+                на основании плановой нагрузки потребность в сотрудниках.
+              </p>
+              <p className="leading-[normal] mb-0 text-[29px]">​</p>
+              <p className="text-[29px]">
+                <span className="leading-[normal]">{`Определите `}</span>
+                <span className="leading-[normal] text-[#fc9]">норму</span>
+                <span className="leading-[normal]">
+                  {`, например, `}
+                  <br aria-hidden />8 звонков, обращений или продаж в час на одного человека.
+                </span>
+              </p>
+            </div>
+            <div className="relative shrink-0 size-[300px]" data-node-id="21024:1952" data-name="Working_Banner 4">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgWorkingBanner4} />
+            </div>
+          </>
+        )}
+      </div>
+      <ButtonGroup buttonGroup={isCastom ? "ok" : undefined} className={`content-stretch flex items-center justify-center px-[24px] relative shrink-0 w-full ${isCastom ? "" : "gap-[12px]"}`} />
+    </div>
+  );
+}
+
+type IndicatorProps = {
+  className?: string;
+  style?: "brand";
+};
+
+function Indicator({ className, style = "brand" }: IndicatorProps) {
+  return (
+    <div className={className || "h-[3px] relative w-[40px]"} data-node-id="15769:36685">
+      <div className="absolute bg-[#0085f2] inset-0 rounded-[3px]" data-node-id="15769:36686" />
+    </div>
+  );
+}
+
+type Header1Props = {
+  className?: string;
+  style?: "Default";
+  visibleIndicator?: boolean;
+};
+
+function Header1({ className, style = "Default", visibleIndicator = true }: Header1Props) {
+  return (
+    <div className={className || "content-stretch flex h-[43px] items-center justify-center py-[20px] relative w-[351px]"} data-node-id="15769:36788">
+      {visibleIndicator && <Indicator className="h-[3px] relative shrink-0 w-[40px]" />}
+    </div>
+  );
+}
+
+type TimeProps = {
+  className?: string;
+  mode?: "Light";
+  type?: "Default";
+};
+
+function Time({ className, mode = "Light", type = "Default" }: TimeProps) {
+  return (
+    <div className={className || "h-[21px] relative w-[54px]"} data-node-id="18617:27046">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgModeLightTypeDefault} />
+    </div>
+  );
+}
+
+type LogoBirdProps = {
+  className?: string;
+  theme?: "onlne";
+};
+
+function LogoBird({ className, theme = "onlne" }: LogoBirdProps) {
+  return (
+    <div className={className || "bg-[#273748] content-stretch flex flex-col items-center justify-center relative rounded-[16px] size-[32px]"} data-node-id="26734:27220">
+      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="26734:27221" data-name="icons">
+        <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[24px]" data-node-id="I26734:27221;5565:16627" data-name="Ui базовый набор / Font">
+          <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[#0c94ff] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I26734:27221;5565:16627;8306:1722">{`\uE9E2`}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type ButtonGroup1Props = {
+  className?: string;
+  view?: "yesNoCancel" | "ok";
+};
+
+function ButtonGroup1({ className, view = "yesNoCancel" }: ButtonGroup1Props) {
+  const isOk = view === "ok";
+  const isYesNoCancel = view === "yesNoCancel";
+  return (
+    <div className={className || `content-stretch flex items-center justify-center px-[24px] relative ${isOk ? "" : "gap-[8px]"}`} id={isOk ? "node-15763_15476" : "node-15763_15469"}>
+      <div className="bg-[var(--background\/background-color,white)] border border-[var(--border\/primary_border-color,#f88f62)] border-solid content-stretch flex flex-col h-[24px] items-center justify-center px-[var(--offset\/offset_m,12px)] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 w-[80px]" id={isOk ? "node-15763_15477" : "node-15763_15470"} data-name="Button">
+        <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px]" id={isOk ? "node-I15763_15477-3970_15337" : "node-I15763_15470-3970_15337"} data-name="_button">
+          <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[14px] text-[color:var(--text\/text-color,black)] tracking-[-0.1974px] whitespace-nowrap" id={isOk ? "node-I15763_15477-3970_15337-3970_14605" : "node-I15763_15470-3970_15337-3970_14605"}>
+            {isOk ? "ОК" : "Да"}
+          </p>
+        </div>
+      </div>
+      {isYesNoCancel && (
+        <>
+          <div className="bg-[var(--background\/background-color,white)] border border-[var(--border\/secondary_border-color,#5292dc)] border-solid content-stretch flex flex-col h-[24px] items-center justify-center px-[var(--offset\/offset_m,12px)] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 w-[80px]" data-node-id="15763:15471" data-name="Button">
+            <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px]" data-node-id="I15763:15471;3972:15906" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[14px] text-[color:var(--text\/text-color,black)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I15763:15471;3972:15906;3970:14605">
+                Нет
+              </p>
+            </div>
+          </div>
+          <div className="bg-[var(--background\/background-color,white)] border border-[var(--border\/secondary_border-color,#5292dc)] border-solid content-stretch flex flex-col h-[24px] items-center justify-center px-[var(--offset\/offset_m,12px)] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 w-[80px]" data-node-id="15763:15472" data-name="Button">
+            <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px]" data-node-id="I15763:15472;3972:15906" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[14px] text-[color:var(--text\/text-color,black)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I15763:15472;3972:15906;3970:14605">
+                Отмена
+              </p>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+type CloseButton1Props = {
+  className?: string;
+  click?: boolean;
+  hover?: boolean;
+  type?: "linkButton";
+};
+
+function CloseButton1({ className, click = false, hover = false, type = "linkButton" }: CloseButton1Props) {
+  return (
+    <div className={className || "relative size-[32px]"} data-node-id="25665:29954">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTypeLinkButtonHoverFalseClickFalse} />
+    </div>
+  );
+}
+
+type CloseButton2Props = {
+  className?: string;
+  closeButtonViewMode?: "linkButton";
+  inlineHeight?: "m (24)";
+};
+
+function CloseButton2({ className, closeButtonViewMode = "linkButton", inlineHeight = "m (24)" }: CloseButton2Props) {
+  return (
+    <div className={className || "content-stretch flex flex-col items-start relative size-[var(--inline_height\\/inline_height_m,24px)]"} data-node-id="25665:29978">
+      <CloseButton1 className="flex-[1_0_0] min-h-px relative w-full" />
+    </div>
+  );
+}
+
+type Indicator1Props = {
+  className?: string;
+  style?: "default" | "success";
+};
+
+function Indicator1({ className, style = "success" }: Indicator1Props) {
+  const isDefault = style === "default";
+  return (
+    <div className={className || "h-[3px] relative w-[40px]"} id={isDefault ? "node-15763_15460" : "node-15763_15450"}>
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={isDefault ? imgStyleDefault : imgStyleSuccess} />
+    </div>
+  );
+}
+
+type Header2Props = {
+  className?: string;
+  header?: "Default";
+  visiblaeIndicator?: boolean;
+  visibleCloseButton?: boolean;
+};
+
+function Header2({ className, header = "Default", visiblaeIndicator = true, visibleCloseButton = true }: Header2Props) {
+  return (
+    <div className={className || "content-stretch flex items-start justify-center relative w-[140px]"} data-node-id="15763:15463">
+      <div className="content-stretch flex flex-[1_0_0] flex-col h-[43px] items-center justify-center min-w-px pl-[32px] py-[20px] relative" data-node-id="15763:15464">
+        {visiblaeIndicator && <Indicator1 className="h-[3px] relative shrink-0 w-[40px]" style="default" />}
+      </div>
+      <div className="content-stretch flex items-start pr-[var(--offset\/offset_s,8px)] pt-[8px] relative self-stretch shrink-0" data-node-id="15763:15466">
+        {visibleCloseButton && <CloseButton2 className="content-stretch flex flex-col items-start relative shrink-0 size-[24px]" />}
+      </div>
+    </div>
+  );
+}
+
+type ConfirmationProps = {
+  className?: string;
+  backgroundStyle?: "Default" | "castom";
+  comment?: string;
+  header?: string;
+  visibleComment?: boolean;
+  visibleHeader?: boolean;
+};
+
+function Confirmation({ className, backgroundStyle = "Default", comment = "Чтобы продолжить редактирование, \nнажмите «Отмена»", header = "Сохранить изменения?", visibleComment = true, visibleHeader = true }: ConfirmationProps) {
+  const isCastom = backgroundStyle === "castom";
+  const isDefault = backgroundStyle === "Default";
+  return (
+    <div className={className || `content-stretch flex flex-col items-center overflow-clip pb-[24px] relative rounded-[8px] shadow-[0px_0px_18px_0px_rgba(0,0,0,0.12)] ${isCastom ? "w-[500px]" : "w-[350px]"}`} id={isCastom ? "node-15763_15490" : "node-15763_15482"} style={isCastom ? { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 500 319' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.07999999821186066'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(43.071 78.26 64.152 -53.149 125 -48.201)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" } : { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 350 182' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.07999999821186066'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(30.15 44.65 44.907 -30.323 87.5 -27.5)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
+      <Header2 className="content-stretch flex items-start justify-center relative shrink-0 w-full" visiblaeIndicator={isCastom ? false : undefined} visibleCloseButton={isDefault ? false : undefined} />
+      <div className={`content-stretch flex flex-col items-center pb-[24px] px-[24px] relative shrink-0 w-full ${isCastom ? "" : "gap-[8px]"}`} id={isCastom ? "node-15763_15492" : "node-15763_15484"} data-name="Контент окна">
+        {isDefault && visibleHeader && (
+          <div className="content-stretch flex items-center justify-center overflow-clip relative shrink-0 w-full" data-node-id="15763:15485">
+            <p className="[word-break:break-word] flex-[1_0_0] font-['Inter:Regular'] font-normal leading-[23px] min-w-px not-italic relative text-[18px] text-black text-center tracking-[-0.2538px]" data-node-id="15763:15486">
+              {header}
+            </p>
+          </div>
+        )}
+        {isDefault && visibleComment && (
+          <div className="content-stretch flex items-center justify-center overflow-clip relative shrink-0 w-full" data-node-id="15763:15487">
+            <div className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[0] min-w-px not-italic relative text-[#656c87] text-[length:var(--font\/font-size\/font-size_l,15px)] text-center tracking-[-0.2115px] whitespace-pre-wrap" data-node-id="15763:15488">
+              {comment ? (
+                <p className="leading-[normal] mb-0">{comment}</p>
+              ) : (
+                <>
+                  <p className="leading-[normal] mb-0">{`Чтобы продолжить редактирование, `}</p>
+                  <p className="leading-[normal]">нажмите «Отмена»</p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+        {isCastom && (
+          <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-node-id="15763:15493" data-name="Контент окна">
+            <div className="content-stretch flex gap-[12px] items-center overflow-clip relative shrink-0 w-full" data-node-id="15763:15494">
+              <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-w-px overflow-clip relative" data-node-id="15763:15495">
+                <div className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[0] not-italic relative shrink-0 text-[0px] text-black tracking-[-0.1974px] w-full whitespace-pre-wrap" data-node-id="15763:15496">
+                  <p className="leading-[normal] mb-0 text-[14px]">СБИС может рассчитать на основании плановой нагрузки потребность в сотрудниках.</p>
+                  <p className="leading-[normal] mb-0 text-[14px]">​</p>
+                  <p className="mb-0 text-[14px]">
+                    <span className="leading-[normal]">{`Определите `}</span>
+                    <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic text-[#cc3d00] tracking-[-0.1974px]">норму</span>
+                    <span className="leading-[normal]">, например, 8 звонков, обращений или продаж в час на одного человека.</span>
+                  </p>
+                  <p className="leading-[normal] mb-0 text-[14px]">​</p>
+                  <p className="text-[14px]">
+                    <span className="leading-[normal]">{`Затем укажите `}</span>
+                    <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic text-[#cc3d00] tracking-[-0.1974px]">{`плановый объем нагрузки `}</span>
+                    <span className="leading-[normal]">{`на подразделение или компанию в целом и `}</span>
+                    <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic text-[#cc3d00] tracking-[-0.1974px]">сравните</span>
+                    <span className="leading-[normal]">{` с `}</span>
+                    <span className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic text-[#cc3d00] tracking-[-0.1974px]">графиком работы</span>
+                    <span className="leading-[normal]">{` ваших сотрудников.`}</span>
+                  </p>
+                </div>
+              </div>
+              <div className="relative shrink-0 size-[150px]" data-node-id="15763:15497" data-name="Working_Banner 1">
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgWorkingBanner4} />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <ButtonGroup1 className={`content-stretch flex items-center justify-center px-[24px] relative shrink-0 w-full ${isCastom ? "" : "gap-[8px]"}`} view={isCastom ? "ok" : undefined} />
+    </div>
+  );
+}
+
+type ButtonGroup2Props = {
+  className?: string;
+  buttonGroup?: "yesNoCancel" | "ok";
+};
+
+function ButtonGroup2({ className, buttonGroup = "yesNoCancel" }: ButtonGroup2Props) {
+  const isOk = buttonGroup === "ok";
+  const isYesNoCancel = buttonGroup === "yesNoCancel";
+  return (
+    <div className={className || `content-stretch flex items-center justify-center px-[24px] relative ${isOk ? "" : "gap-[12px]"}`} id={isOk ? "node-21024_1534" : "node-21024_1524"}>
+      <div className="bg-[var(--components\/button\/primary_contrast_background-color_button,#f85f20)] content-stretch drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[var(--components\/button\/padding-horizontal_-default_button,16px)] relative rounded-[8px] shrink-0 w-[160px]" id={isOk ? "node-21024_1535" : "node-21024_1525"} data-name="ButtonLarge">
+        <div className="content-stretch flex gap-[var(--components\/button\/icon-offset_button,12px)] items-center justify-center relative rounded-[100px] shrink-0" id={isOk ? "node-I21024_1535-1706_855" : "node-I21024_1525-1706_855"} data-name="_button">
+          <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[29px] text-[color:var(--text\/contrast_text-color,white)] tracking-[-0.4089px] whitespace-nowrap" id={isOk ? "node-I21024_1535-1706_855-1706_744" : "node-I21024_1525-1706_855-1706_744"}>
+            {isOk ? "ОК" : "Да"}
+          </p>
+        </div>
+      </div>
+      {isYesNoCancel && (
+        <>
+          <div className="bg-[var(--components\/button\/secondary_contrast_background-color_button,#f3f6fa)] content-stretch drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[var(--components\/button\/padding-horizontal_-default_button,16px)] relative rounded-[8px] shrink-0 w-[160px]" data-node-id="21024:1526" data-name="ButtonLarge">
+            <div className="content-stretch flex gap-[var(--components\/button\/icon-offset_button,12px)] items-center justify-center relative rounded-[100px] shrink-0" data-node-id="I21024:1526;1706:847" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[29px] text-[color:var(--text\/text-color,black)] tracking-[-0.4089px] whitespace-nowrap" data-node-id="I21024:1526;1706:847;1706:744">
+                Нет
+              </p>
+            </div>
+          </div>
+          <div className="bg-[var(--components\/button\/secondary_contrast_background-color_button,#f3f6fa)] content-stretch drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.45)] flex flex-col h-[58px] items-center justify-center px-[var(--components\/button\/padding-horizontal_-default_button,16px)] relative rounded-[8px] shrink-0 w-[160px]" data-node-id="21024:1527" data-name="ButtonLarge">
+            <div className="content-stretch flex gap-[var(--components\/button\/icon-offset_button,12px)] items-center justify-center relative rounded-[100px] shrink-0" data-node-id="I21024:1527;1706:847" data-name="_button">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[29px] text-[color:var(--text\/text-color,black)] tracking-[-0.4089px] whitespace-nowrap" data-node-id="I21024:1527;1706:847;1706:744">
+                Отмена
+              </p>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+type CloseButton3Props = {
+  className?: string;
+  closeButtonViewMode?: "linkButton";
+  inlineHeight?: "xl (74)";
+};
+
+function CloseButton3({ className, closeButtonViewMode = "linkButton", inlineHeight = "xl (74)" }: CloseButton3Props) {
+  return (
+    <div className={className || "content-stretch flex flex-col items-start relative"} data-node-id="25665:28155">
+      <div className="content-stretch flex flex-col items-center justify-center relative rounded-[100px] shrink-0 size-[74px]" data-node-id="25665:28163" data-name="_closeButton">
+        <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I25665:28163;2113:18129" data-name="_button">
+          <div className="relative shrink-0 size-[24px]" data-node-id="I25665:28163;2113:18130" data-name="Union">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion1} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type Marker1Props = {
+  className?: string;
+  style?: "Default";
+};
+
+function Marker1({ className, style = "Default" }: Marker1Props) {
+  return <div className={className || "bg-[#0085f2] h-[4px] overflow-clip relative rounded-[3px] w-[53px]"} data-node-id="21024:1516" />;
+}
+
+type Header3Props = {
+  className?: string;
+  header?: "Default";
+  visibleCloseButton?: boolean;
+  visibleIndicator?: boolean;
+};
+
+function Header3({ className, header = "Default", visibleCloseButton = true, visibleIndicator = true }: Header3Props) {
+  return (
+    <div className={className || "content-stretch flex items-center justify-center relative w-[446px]"} data-node-id="21024:1463">
+      <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-w-px py-[28px] relative" data-node-id="21024:1464">
+        {visibleIndicator && <Marker1 className="bg-[#0085f2] h-[4px] relative rounded-[3px] shrink-0 w-[53px]" />}
+      </div>
+      <div className="absolute content-stretch flex items-start justify-end pr-[16px] pt-[12px] right-0 top-0 w-[98px]" data-node-id="21024:1466">
+        {visibleCloseButton && <CloseButton3 className="content-stretch flex flex-col items-start relative shrink-0" />}
+      </div>
+    </div>
+  );
+}
+
+type Conformition1Props = {
+  className?: string;
+  comment?: string;
+  conformition?: "Default" | "castom";
+  header?: string;
+  visibleComment?: boolean;
+  visibleHeader?: boolean;
+};
+
+function Conformition1({ className, comment = "Чтобы продолжить редактирование, \nнажмите «Отмена»", conformition = "Default", header = "Сохранить изменения?", visibleComment = true, visibleHeader = true }: Conformition1Props) {
+  const isCastom = conformition === "castom";
+  const isDefault = conformition === "Default";
+  return (
+    <div className={className || `content-stretch drop-shadow-[0px_0px_5px_rgba(0,0,0,0.45)] flex flex-col items-center pb-[32px] relative rounded-[16px] ${isCastom ? "w-[900px]" : "w-[700px]"}`} id={isCastom ? "node-21024_1509" : "node-21024_1469"} style={isCastom ? { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 900 482' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.07999999821186066'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(77.529 118.25 115.47 -80.307 225 -72.83)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" } : { backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 700 314' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='0.07999999821186066'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(60.3 77.034 89.813 -52.316 175 -47.445)'><stop stop-color='rgba(12,148,255,0)' offset='0'/><stop stop-color='rgba(12,148,255,1)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }}>
+      <Header3 className="content-stretch flex items-center justify-center relative shrink-0 w-full" visibleCloseButton={isDefault ? false : undefined} visibleIndicator={isCastom ? false : undefined} />
+      <div className={`content-stretch flex items-center justify-center pb-[32px] px-[58px] relative shrink-0 w-full ${isCastom ? "gap-[20px]" : "flex-col gap-[16px]"}`} id={isCastom ? "node-21024_1511" : "node-21024_1471"}>
+        {isDefault && visibleHeader && (
+          <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-node-id="21024:1472">
+            <p className="[word-break:break-word] flex-[1_0_0] font-['Inter:Regular'] font-normal leading-[46px] min-w-px not-italic relative text-[37px] text-black text-center tracking-[-0.5217px]" data-node-id="21024:1473">
+              {header}
+            </p>
+          </div>
+        )}
+        {isDefault && visibleComment && (
+          <div className="content-stretch flex items-center justify-center relative shrink-0 w-full" data-node-id="21024:1474">
+            <div className="[word-break:break-word] flex-[1_0_0] font-['Inter:Regular'] font-normal leading-[0] min-w-px not-italic relative text-[#656c87] text-[29px] text-center tracking-[-0.4089px] whitespace-pre-wrap" data-node-id="21024:1475">
+              {comment ? (
+                <p className="leading-[normal] mb-0">{comment}</p>
+              ) : (
+                <>
+                  <p className="leading-[normal] mb-0">{`Чтобы продолжить редактирование, `}</p>
+                  <p className="leading-[normal]">нажмите «Отмена»</p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+        {isCastom && (
+          <>
+            <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] min-w-px not-italic relative text-[29px] text-black tracking-[-0.4089px] whitespace-pre-wrap" data-node-id="21024:1512">
+              <p className="leading-[normal] mb-0">
+                {`СБИС может рассчитать `}
+                <br aria-hidden />
+                на основании плановой нагрузки потребность в сотрудниках.
+              </p>
+              <p className="leading-[normal] mb-0">​</p>
+              <p>
+                <span className="leading-[normal]">{`Определите `}</span>
+                <span className="leading-[normal] text-[#cc3d00]">норму</span>
+                <span className="leading-[normal]">
+                  {`, например, `}
+                  <br aria-hidden />8 звонков, обращений или продаж в час на одного человека.
+                </span>
+              </p>
+            </div>
+            <div className="relative shrink-0 size-[300px]" data-node-id="21024:1513" data-name="Working_Banner 4">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgWorkingBanner4} />
+            </div>
+          </>
+        )}
+      </div>
+      <ButtonGroup2 buttonGroup={isCastom ? "ok" : undefined} className={`content-stretch flex items-center justify-center px-[24px] relative shrink-0 w-full ${isCastom ? "" : "gap-[12px]"}`} />
+    </div>
+  );
+}
+
+type TodayInformerProps = {
+  className?: string;
+  day?: string;
+  number?: string;
+  type?: "default";
+};
+
+function TodayInformer({ className, day = "чт", number = "16", type = "default" }: TodayInformerProps) {
+  return (
+    <div className={className || "content-stretch flex items-center relative"} data-node-id="30327:27635">
+      <div className="bg-[var(--background\/contrast\/pale_color,rgba(51,51,51,0.05))] content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="30327:27636" data-name="filled">
+        <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I30327:27636;17890:4317" data-name="_buttonContent">
+          <div className="content-stretch flex items-center relative shrink-0" data-node-id="I30327:27636;17890:4317;17890:165" data-name="iconWrap">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I30327:27636;17890:4317;17890:166" data-name="icons/font">
+              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I30327:27636;17890:4317;17890:166;17887:22647" data-name="iconWrap">
+                <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic opacity-0 relative shrink-0 text-[length:var(--icon\/icon_size\/icon-size_s,16px)] text-[transparent] whitespace-nowrap" data-node-id="I30327:27636;17890:4317;17890:166;17887:22661">{`\uE636`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col items-center left-[calc(50%+1px)] top-1/2" data-node-id="30327:27637">
+        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] mb-[-4px] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="30327:27638">
+          {number}
+        </p>
+        <div className="relative shrink-0 size-[13px]" data-node-id="30327:27639">
+          <p className="[word-break:break-word] absolute font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] left-0 not-italic text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_2xs,11px)] top-0 tracking-[-0.1551px] whitespace-nowrap" data-node-id="30327:27640">
+            {day}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type Component255201Props = {
+  className?: string;
+  propValue?: "Web";
+  propValue1?: "Инфо";
+  propValue2?: "По-умолчанию";
+  propValue3?: boolean;
+  theme?: "light";
+};
+
+function Component255201({ className, propValue = "Web", propValue1 = "Инфо", propValue2 = "По-умолчанию", propValue3 = false, theme = "light" }: Component255201Props) {
+  return (
+    <div className={className || "content-stretch flex gap-[20px] items-start relative"} data-node-id="35647:27794">
+      <div className="border border-[var(--border\/border-color,#eaeaea)] border-solid h-[768px] overflow-clip relative rounded-[6px] shrink-0 w-[1024px]" data-node-id="35647:27795">
+        <div className="absolute h-[768px] left-[-1px] rounded-[6px] top-[-0.5px] w-[1024px]" data-node-id="35647:27796" data-name="image 9">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[6px] size-full" src={imgImage9} />
+        </div>
+        <div className="absolute content-stretch flex flex-col gap-[10px] h-[768px] items-center justify-center left-[-1px] top-[-0.5px] w-[1024px]" data-node-id="35647:27797">
+          <div className="absolute bg-[var(--background\/unaccented_background-color,#f8f8f8)] content-stretch drop-shadow-[var(--components\/stack\/box-shadow_stack_offset_first,-6px)_0px_calc(var(--components\/stack\/box-shadow_stack_blur_first,22px)/2)_var(--components\/stack\/box-shadow_stack_color_first,rgba(0,0,0,0.11)),var(--components\/stack\/box-shadow_stack_offset_second,-2px)_0px_calc(var(--components\/stack\/box-shadow_stack_blur_second,8px)/2)_var(--components\/stack\/box-shadow_stack_color_second,rgba(0,0,0,0.02))] flex h-[768px] items-end left-[292px] top-[-1px] w-[732px]" data-node-id="35647:27798" data-name="Default/ВыезжающаяПанель">
+            <div className="bg-[var(--background\/unaccented_background-color,#f8f8f8)] content-stretch flex flex-[1_0_0] flex-col h-full items-end min-w-px relative" data-node-id="I35647:27798;2241:40116">
+              <div className="h-[44px] relative shrink-0 w-full" data-node-id="I35647:27798;2241:40117" />
+              <div className="content-stretch flex flex-col h-[32px] items-end justify-center px-[6px] relative shrink-0 w-full" data-node-id="I35647:27798;2241:40118">
+                <div className="bg-[var(--components\/skeleton\/background-color_skeleton,rgba(51,51,51,0.1))] h-[22px] relative rounded-[100px] shrink-0 w-[298px]" data-node-id="I35647:27798;2241:40119" />
+              </div>
+              <div className="bg-[var(--background\/background-color,white)] flex-[1_0_0] min-h-px relative rounded-tr-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_b,8px)_0px_var(--color\/shadow-color_b,rgba(0,0,0,0.14))] w-full" data-node-id="I35647:27798;2241:40120" />
+            </div>
+            <div className="bg-[var(--background\/unaccented_background-color,#f8f8f8)] content-stretch flex flex-col gap-[6px] h-[768px] items-center overflow-clip pb-[6px] pt-[7px] px-[10px] relative shrink-0 w-[52px]" data-node-id="I35647:27798;2241:40121" data-name="rightPanel">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[7px] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7857:24824" data-name="topButtons">
+                <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24699" data-name="_systemButton">
+                  <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24699;21408:9238" data-name="close/closeButton">
+                    <div className="flex-[1_0_0] min-h-px relative w-full" data-node-id="I35647:27798;2241:40121;7782:24699;21408:9238;19062:34126" data-name="_closeButton">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCloseButton} />
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col gap-[var(--offset\/offset_xs,6px)] items-start relative shrink-0" data-node-id="I35647:27798;2241:40121;25954:345" data-name="buttonGroup">
+                  <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24724" data-name="ghost">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7782:24724;17890:9799" data-name="_buttonContent">
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24724;17890:9799;17890:165" data-name="iconWrap">
+                        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24724;17890:9799;17890:166" data-name="icons/font">
+                          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I35647:27798;2241:40121;7782:24724;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;7782:24724;17890:9799;17890:166;17887:22652">{`\uE75D`}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24661" data-name="ghost">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7782:24661;17890:9799" data-name="_buttonContent">
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24661;17890:9799;17890:165" data-name="iconWrap">
+                        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24661;17890:9799;17890:166" data-name="icons/font">
+                          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I35647:27798;2241:40121;7782:24661;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;7782:24661;17890:9799;17890:166;17887:22652">{`\uE708`}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24712" data-name="ghost">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7782:24712;17890:9799" data-name="_buttonContent">
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24712;17890:9799;17890:165" data-name="iconWrap">
+                        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24712;17890:9799;17890:166" data-name="icons/font">
+                          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I35647:27798;2241:40121;7782:24712;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;7782:24712;17890:9799;17890:166;17887:22652">{`\uE631`}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24718" data-name="ghost">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7782:24718;17890:9799" data-name="_buttonContent">
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24718;17890:9799;17890:165" data-name="iconWrap">
+                        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24718;17890:9799;17890:166" data-name="icons/font">
+                          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I35647:27798;2241:40121;7782:24718;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;7782:24718;17890:9799;17890:166;17887:22652">{`\uEAC7`}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7782:24730" data-name="ghost">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;7782:24730;17890:9799" data-name="_buttonContent">
+                      <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24730;17890:9799;17890:165" data-name="iconWrap">
+                        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;7782:24730;17890:9799;17890:166" data-name="icons/font">
+                          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I35647:27798;2241:40121;7782:24730;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;7782:24730;17890:9799;17890:166;17887:22652">{`\uE9D9`}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col gap-[var(--offset\/offset_l,16px)] items-start relative shrink-0" data-node-id="I35647:27798;2241:40121;7857:24831" data-name="Informers">
+                <TodayInformer className="content-stretch flex items-center relative shrink-0" />
+                <div className="bg-[var(--background\/contrast\/pale_color,rgba(51,51,51,0.05))] content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;22487:27156" data-name="filled">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;22487:27156;17890:4317" data-name="_buttonContent">
+                    <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;22487:27156;17890:4317;17890:165" data-name="iconWrap">
+                      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;22487:27156;17890:4317;17890:166" data-name="icons/font">
+                        <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I35647:27798;2241:40121;22487:27156;17890:4317;17890:166;17887:22647" data-name="iconWrap">
+                          <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/icon-color,#333)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;22487:27156;17890:4317;17890:166;17887:22661">{`\uE636`}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/contrast\/pale_color,rgba(51,51,51,0.05))] content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;22487:27321" data-name="filled">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I35647:27798;2241:40121;22487:27321;17890:4317" data-name="_buttonContent">
+                    <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27798;2241:40121;22487:27321;17890:4317;17890:165" data-name="iconWrap">
+                      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35647:27798;2241:40121;22487:27321;17890:4317;17890:166" data-name="icons/font">
+                        <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I35647:27798;2241:40121;22487:27321;17890:4317;17890:166;17887:22647" data-name="iconWrap">
+                          <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/icon-color,#333)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I35647:27798;2241:40121;22487:27321;17890:4317;17890:166;17887:22661">{`\uE65D`}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/same\/info_same_background-color,#eeebff)] border border-[var(--background\/same\/info_active_same_background-color,#d4ccff)] border-solid content-stretch flex items-center justify-center relative rounded-[16px] shrink-0 size-[32px]" data-node-id="I35647:27798;2241:40121;7857:24828" data-name="helpButton">
+                  <div className="h-[16px] relative shrink-0 w-[12px]" data-node-id="I35647:27798;2241:40121;7857:24828;7857:24819" data-name="Frame">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Confirmation className="content-stretch flex flex-col items-center overflow-clip pb-[24px] relative rounded-[8px] shadow-[0px_0px_18px_0px_rgba(0,0,0,0.12)] shrink-0 w-[350px]" />
+        </div>
+        <div className="absolute bg-[#283848] content-stretch flex gap-[10px] h-[32px] items-center left-[9px] top-[5px] w-[112px]" data-node-id="35647:27800" data-name="logo">
+          <LogoBird className="bg-[#273748] content-stretch flex flex-col items-center justify-center relative rounded-[16px] shrink-0 size-[32px]" />
+          <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I35647:27800;6281:22189" data-name="nameApp">
+            <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I35647:27800;6281:22189;6281:22095" data-name="size">
+              <p className="[word-break:break-word] font-['Maison_Neue:Extended_Book'] leading-[normal] not-italic relative shrink-0 text-[21px] text-[color:var(--text\/navigation_text-color,#e9ebec)] whitespace-nowrap" data-node-id="I35647:27800;6281:22189;6281:22095;6281:22231">
+                saby
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white content-stretch flex flex-col items-start relative rounded-[8px] self-stretch shrink-0 w-[300px]" data-node-id="35647:27801" data-name="switch 25 5201">
+        <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px relative w-full" data-node-id="I35647:27801;35647:27944">
+          <div className="content-stretch flex flex-col gap-[6px] items-start justify-center px-[6px] py-[8px] relative shrink-0 w-full" data-node-id="I35647:27801;35647:27945" data-name="Bricks/system_area/switch">
+            <div className="content-stretch flex gap-[2px] items-center relative shrink-0" data-node-id="I35647:27801;35647:27945;2390:14098">
+              <button className="content-stretch cursor-pointer flex gap-[10px] h-[20px] items-center justify-center relative rounded-[10px] shrink-0" data-node-id="I35647:27801;35647:27945;2394:15694" data-name="телефон">
+                <div className="bg-white h-[20px] relative rounded-[10px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.1)] shrink-0 w-[40px]" data-node-id="I35647:27801;35647:27945;2394:15694;2394:15669" data-name="back01" />
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[16px] top-1/2" data-node-id="I35647:27801;35647:27945;2394:15694;2394:15640" data-name="_iconDevice">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIconDevice} />
+                </div>
+              </button>
+              <button className="content-stretch cursor-pointer flex gap-[10px] h-[20px] items-center justify-center relative rounded-[10px] shrink-0" data-node-id="I35647:27801;35647:27945;2394:15720" data-name="pos-terminal">
+                <div className="bg-white h-[20px] relative rounded-[10px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.1)] shrink-0 w-[40px]" data-node-id="I35647:27801;35647:27945;2394:15720;2394:15669" data-name="back01" />
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[16px] top-1/2" data-node-id="I35647:27801;35647:27945;2394:15720;2394:15640" data-name="_iconDevice">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIconDevice1} />
+                </div>
+              </button>
+              <div className="content-stretch flex gap-[10px] h-[20px] items-center justify-center relative rounded-[10px] shrink-0" data-node-id="I35647:27801;35647:27945;2732:29005" data-name="Bricks/system_area/componentsSwitch">
+                <Switch2 className="bg-[#05121e] h-[20px] relative rounded-[10px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.1)] shrink-0 w-[40px]" selected />
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[16px] top-1/2" data-node-id="I35647:27801;35647:27945;2732:29005;2394:15672" data-name="_iconDevice">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIconDevice2} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[20px] items-center relative shrink-0" data-node-id="I35647:27801;35647:27945;2390:14107">
+              <div className="content-stretch flex h-full items-center pl-[6px] relative shrink-0" data-node-id="I35647:27801;35647:27945;2394:16149" data-name="Bricks/system_area/size">
+                <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[12px] tracking-[-0.1692px] whitespace-nowrap" data-node-id="I35647:27801;35647:27945;2394:16149;2394:16064">
+                  <p className="leading-[normal]">1024х768</p>
+                </div>
+              </div>
+              <div className="content-stretch flex h-full items-center pl-[6px] relative shrink-0" data-node-id="I35647:27801;35647:27945;2394:16191" data-name="Bricks/system_area/device">
+                <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[12px] tracking-[-0.1692px] whitespace-nowrap" data-node-id="I35647:27801;35647:27945;2394:16191;2394:16174">
+                  <p className="leading-[normal]">монитор</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#f2f2f2] content-stretch flex flex-col gap-[8px] items-start justify-center p-[6px] relative rounded-[8px] shrink-0 w-full" data-node-id="I35647:27801;35647:27946" data-name="Bricks/systemArea">
+            <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0" data-node-id="I35647:27801;35647:27947">
+              <div className="content-stretch flex h-[18px] items-center pl-[6px] relative shrink-0 w-[288px]" data-node-id="I35647:27801;35647:27948" data-name="header">
+                <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-black tracking-[-0.1833px] uppercase whitespace-nowrap" data-node-id="I35647:27801;35647:27949">
+                  <p className="leading-[normal]">Стиль</p>
+                </div>
+              </div>
+              <div className="bg-white content-stretch flex flex-col items-start p-[6px] relative rounded-[8px] shrink-0 w-[288px]" data-node-id="I35647:27801;35647:27950" data-name="switches1">
+                <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27951" data-name="переключателисостояний260">
+                  <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0 w-[20px]" data-node-id="I35647:27801;35647:27951;1628:6498" data-name="Радиокнопка">
+                    <div className="relative shrink-0 size-[12px]" data-node-id="I35647:27801;35647:27951;1628:6499" data-name="Радиокнопка/Внешний контур">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={img} />
+                    </div>
+                  </div>
+                  <div className="content-stretch flex items-start pb-[4px] pt-[3px] relative shrink-0" data-node-id="I35647:27801;35647:27951;1628:6501" data-name="Текст">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27951;1628:6502">
+                      По умолчанию
+                    </p>
+                  </div>
+                </div>
+                <button className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27952" data-name="переключателисостояний261">
+                  <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0 w-[20px]" data-node-id="I35647:27801;35647:27952;1628:6488" data-name="Радиокнопка">
+                    <div className="border border-[var(--border\/unaccented_border-color,#d2d6da)] border-solid relative rounded-[6px] shrink-0 size-[12px]" data-node-id="I35647:27801;35647:27952;1628:6489" data-name="Радиокнопка/Внешний контур" />
+                  </div>
+                  <div className="content-stretch flex items-start pb-[4px] pt-[3px] relative shrink-0" data-node-id="I35647:27801;35647:27952;1628:6490" data-name="Текст">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27952;1628:6491">
+                      Окно ошибки
+                    </p>
+                  </div>
+                </button>
+                <button className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27953" data-name="переключателисостояний262">
+                  <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0 w-[20px]" data-node-id="I35647:27801;35647:27953;1628:6488" data-name="Радиокнопка">
+                    <div className="border border-[var(--border\/unaccented_border-color,#d2d6da)] border-solid relative rounded-[6px] shrink-0 size-[12px]" data-node-id="I35647:27801;35647:27953;1628:6489" data-name="Радиокнопка/Внешний контур" />
+                  </div>
+                  <div className="content-stretch flex items-start pb-[4px] pt-[3px] relative shrink-0" data-node-id="I35647:27801;35647:27953;1628:6490" data-name="Текст">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27953;1628:6491">
+                      Окно успеха
+                    </p>
+                  </div>
+                </button>
+                <button className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27954" data-name="переключателисостояний263">
+                  <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0 w-[20px]" data-node-id="I35647:27801;35647:27954;1628:6488" data-name="Радиокнопка">
+                    <div className="border border-[var(--border\/unaccented_border-color,#d2d6da)] border-solid relative rounded-[6px] shrink-0 size-[12px]" data-node-id="I35647:27801;35647:27954;1628:6489" data-name="Радиокнопка/Внешний контур" />
+                  </div>
+                  <div className="content-stretch flex items-start pb-[4px] pt-[3px] relative shrink-0" data-node-id="I35647:27801;35647:27954;1628:6490" data-name="Текст">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27954;1628:6491">
+                      Окно предупреждения
+                    </p>
+                  </div>
+                </button>
+                <button className="content-stretch cursor-pointer flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27955" data-name="переключателисостояний264">
+                  <div className="content-stretch flex h-[24px] items-center justify-center relative shrink-0 w-[20px]" data-node-id="I35647:27801;35647:27955;1628:6488" data-name="Радиокнопка">
+                    <div className="border border-[var(--border\/unaccented_border-color,#d2d6da)] border-solid relative rounded-[6px] shrink-0 size-[12px]" data-node-id="I35647:27801;35647:27955;1628:6489" data-name="Радиокнопка/Внешний контур" />
+                  </div>
+                  <div className="content-stretch flex items-start pb-[4px] pt-[3px] relative shrink-0" data-node-id="I35647:27801;35647:27955;1628:6490" data-name="Текст">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27955;1628:6491">
+                      Пользовательский шаблон
+                    </p>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-[var(--system_background-color,#f2f2f2)] content-stretch flex flex-col gap-[4px] items-center justify-end p-[6px] relative rounded-[8px] shrink-0 w-[300px]" data-node-id="I35647:27801;35647:27962" data-name="Bricks/sticker">
+          <div className="bg-[var(--background\/background-color,white)] content-stretch flex flex-col items-start p-[6px] relative rounded-[8px] shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:14578" data-name="Design">
+            <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:14579" data-name="Design">
+              <IconsDesigner className="relative shrink-0 size-[16px]" />
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-w-px relative" data-node-id="I35647:27801;35647:27962;3784:14581" data-name="Info">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] min-w-full not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] w-[min-content]" data-node-id="I35647:27801;35647:27962;3784:14582">
+                  Генералова Ирина
+                </p>
+                <div className="content-stretch flex items-start relative shrink-0" data-node-id="I35647:27801;35647:27962;4232:6901" data-name="_LinkForList">
+                  <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;4232:6901;3784:14919">
+                    <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://online.sbis.ru/opendoc.html?guid=179804c4-ffb1-409b-bedb-8f4e0caa2b75" target="_blank">
+                      Согласование макета
+                    </a>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3829:6592" data-name="_documentation">
+                  <div className="content-start flex flex-wrap gap-[6px_16px] items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3829:6592;3830:7587" data-name="component">
+                    <div className="content-stretch flex items-center relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:14203" data-name="specification">
+                      <div className="content-stretch flex items-start relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:14020" data-name="spec 1">
+                        <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3829:6592;3826:14020;3784:14919">
+                          <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://n.sbis.ru/article/13b04ab4-0385-4c66-a152-ae15947d9eac" target="_blank">
+                            Спецификация
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519" data-name="_linkPlatform">
+                      <div className="content-stretch flex items-center pt-px relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7351" data-name="iconWeb">
+                        <div className="relative shrink-0 size-[16px]" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7352" data-name="streamline:web">
+                          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgStreamlineWeb} />
+                        </div>
+                      </div>
+                      <div className="content-stretch flex items-start relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7355" data-name="API">
+                        <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7355;3784:14919">
+                          <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://wi.sbis.ru/page/autodoc-ts/Controls/popup/Confirmation/" target="_blank">
+                            API
+                          </a>
+                        </div>
+                      </div>
+                      <div className="content-stretch flex items-start relative shrink-0" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7356" data-name="WI">
+                        <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3829:6592;3826:15519;3827:7356;3784:14919">
+                          <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://link.sbis.ru/article/wasaby/7efd671b-7069-4037-aba4-df9e8248919a" target="_blank">
+                            WI
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[var(--background\/background-color,white)] content-stretch flex flex-col gap-[6px] items-start p-[6px] relative rounded-[8px] shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18462" data-name="_Develop">
+            <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18465" data-name="develop">
+              <IconsDevelopmen className="content-stretch flex items-center pt-px relative shrink-0" iconDevelopmen="web" />
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-w-px pb-[2px] relative" data-node-id="I35647:27801;35647:27962;3784:18507" data-name="link web">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18239">
+                  Загладкин Григорий
+                </p>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18240" data-name="rework">
+                  <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18241" data-name="text">
+                    <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] min-w-px not-italic relative text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] tracking-[-0.1692px]" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18242">
+                      Доработка
+                    </p>
+                  </div>
+                  <div className="content-stretch flex items-start relative shrink-0" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18243" data-name="_LinkForList">
+                    <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18243;3784:14919">
+                      <a className="[text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://online.sbis.ru/opendoc.html?guid=c84693d3-7db7-40b1-b1fc-26f312ea4588&client=3" target="_blank">
+                        Ошибка
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18244" data-name="mainTask">
+                  <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18245" data-name="text">
+                    <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] min-w-px not-italic relative text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] tracking-[-0.1692px]" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18246">
+                      Основная задача, с согласованием
+                    </p>
+                  </div>
+                  <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18247" data-name="_LinkForList">
+                    <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3784:18507;3784:18247;3784:14919">
+                      <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://online.sbis.ru/opendoc.html?guid=c64d1d1e-77be-4f4d-ac95-2f1982019441&client=3" target="_blank">
+                        Разработка компонента
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18477" data-name="develop">
+              <IconsDevelopmen className="content-stretch flex items-center pt-px relative shrink-0" />
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-w-px pb-[2px] relative" data-node-id="I35647:27801;35647:27962;3784:18513" data-name="link ios">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] w-full" data-node-id="I35647:27801;35647:27962;3784:18513;3784:18235">
+                  Хлиманкова Галина
+                </p>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18513;3784:18236" data-name="mainTask">
+                  <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18513;3784:18237" data-name="_LinkForList">
+                    <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3784:18513;3784:18237;3784:14919">
+                      <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://online.sbis.ru/opendoc.html?guid=8b538812-b1fc-4d0c-b095-eb66dfda72b9&client=3" target="_blank">
+                        Разработка компонента
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18489" data-name="develop">
+              <IconsDevelopmen className="content-stretch flex items-center pt-px relative shrink-0" iconDevelopmen="andriod" />
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-w-px pb-[2px] relative" data-node-id="I35647:27801;35647:27962;3784:18519" data-name="link android">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] w-full" data-node-id="I35647:27801;35647:27962;3784:18519;3784:18235">
+                  Гераськин Роман
+                </p>
+                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18519;3784:18236" data-name="mainTask">
+                  <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I35647:27801;35647:27962;3784:18519;3784:18237" data-name="_LinkForList">
+                    <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[0px] text-[color:var(--text\/secondary_text-color,#313e78)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I35647:27801;35647:27962;3784:18519;3784:18237;3784:14919">
+                      <a className="[text-decoration-skip-ink:none] [text-underline-position:from-font] block cursor-pointer decoration-from-font decoration-solid leading-[normal] text-[14px] underline" href="https://online.sbis.ru/opendoc.html?guid=1a7d5bd2-b3ac-4650-868e-dbf4ff7c859d" target="_blank">
+                        Разработка компонента
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Component() {
+  return (
+    <div className="bg-white relative size-full" data-node-id="21197:1050" data-name="Концепт">
+      <div className="absolute content-stretch flex flex-col gap-[20px] items-start left-[10px] top-[10px]" data-node-id="35768:32317">
+        <div className="content-stretch flex flex-col gap-[8px] items-start pt-[40px] relative shrink-0 w-[1300px]" data-node-id="35768:32318" data-name="_Heading">
+          <a className="content-stretch cursor-pointer flex gap-[12px] items-center relative shrink-0 w-full" href="http://axure.tensor.ru/StandardsV8/guidelines.html" data-node-id="I35768:32318;2033:1508" target="_blank" data-name="Title">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I35768:32318;2033:1520" data-name="icons">
+              <div className="relative shrink-0 size-[24px]" data-node-id="I35768:32318;2033:1520;5565:16596" data-name="Ui базовый набор / Навигация стрелки /  BackText">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUiBackText} />
+              </div>
+            </div>
+            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-black text-left tracking-[-0.3384px] whitespace-nowrap" data-node-id="I35768:32318;2033:1511">
+              <p className="leading-[normal]">Информационные сообщения</p>
+            </div>
+            <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold'] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#656c87] text-[24px] text-left tracking-[-0.3384px] whitespace-nowrap" data-node-id="I35768:32318;2033:1519">
+              <p className="leading-[normal]">26.6100</p>
+            </div>
+          </a>
+        </div>
+        <Component255201 className="content-stretch flex gap-[20px] items-start relative shrink-0" />
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: ICONS/primary_icon-color: #F47843, TEXT/text-color: #000000, TEXT/Bold/font-size_5xl_bold: Font(family: "Inter", style: Semi Bold, size: 24, weight: 600, lineHeight: 100, letterSpacing: -1.409999966621399), TEXT/label_contrast_text-color: #656C87, shadow_b: Effect(type: DROP_SHADOW, color: color/shadow-color_b, offset: (0, 0), radius: blur/shadow-blur_b, spread: 0), TEXT/Regular/font-size_m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), TEXT/Regular/font-size_2xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_2xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), components/shadow_stack: Effect(type: DROP_SHADOW, color: Components/stack/box-shadow_stack_color_second, offset: (Components/stack/box-shadow_stack_offset_second, 0), radius: Components/stack/box-shadow_stack_blur_second, spread: 0); Effect(type: DROP_SHADOW, color: Components/stack/box-shadow_stack_color_first, offset: (Components/stack/box-shadow_stack_offset_first, 0), radius: Components/stack/box-shadow_stack_blur_first, spread: 0), TEXT/Regular/font-size_l: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_l, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), shadow_a: Effect(type: DROP_SHADOW, color: #0000001F, offset: (0, 0), radius: 18, spread: 0), EXTRA/navigation_logo: #0C94FF, ICONS/icon-size_m: Font(family: "icon/font-family/m_icon_font-family", style: Regular, size: icon/icon_size/icon-size_m, weight: 400, lineHeight: 100, letterSpacing: 0), BACKGROUND/navigation_logo_fill: #273748, BACKGROUND/background-color: #FFFFFF, ICONS/label_icon-color: #8991A9, EXTRA/item_selected_color: #05121E, ICONS/contrast_icon-color: #FFFFFF, TEXT/label_text-color: #8991A9, TEXT/Regular/font-size_xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), TEXT/Underline/font-size_m_underline: Font(family: "Inter", style: Regular, size: 14, weight: 400, lineHeight: 100, letterSpacing: -1.409999966621399).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## Button
+**Node ID:** 15491:24994
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-buttons/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-buttons/)
+
+## radioButton/RadioButton
+**Node ID:** 25665:26942
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-radio-group/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-radio-group/)
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

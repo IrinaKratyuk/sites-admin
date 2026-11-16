@@ -1,0 +1,186 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/049b9cc1-fac9-4f0b-8650-efb2bcf3499f";
+const imgCheckbox = `${assetPathPrefix}/11596.svg`;
+const imgCheckbox1 = `${assetPathPrefix}/c45b1.svg`;
+
+type CheckboxSizeProps = {
+  className?: string;
+  size?: "s";
+};
+
+function CheckboxSize({ className, size = "s" }: CheckboxSizeProps) {
+  return (
+    <div className={className || "content-stretch flex h-[var(--components\\/toggle\\/checkbox\\/height_checkbox,24px)] items-end min-w-[20px] pb-[6px] pl-[var(--offset\\/offset_2xs,4px)] pr-[var(--components\\/toggle\\/checkbox\\/padding-vertical_checkbox,3px)] relative"} data-node-id="39:22739">
+      <div className="relative shrink-0 size-[13px]" data-node-id="39:22742" data-name="_checkbox">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCheckbox} />
+      </div>
+    </div>
+  );
+}
+
+type CheckboxProps = {
+  className?: string;
+  hover?: boolean;
+  readOnly?: "false";
+  resetValue?: "false";
+  triState?: "false";
+  value?: "false";
+  viewMode?: "outlined";
+};
+
+function Checkbox({ className, hover = false, readOnly = "false", resetValue = "false", triState = "false", value = "false", viewMode = "outlined" }: CheckboxProps) {
+  const isHover = hover;
+  return (
+    <div className={className || "content-stretch flex items-start relative"} id={isHover ? "node-39_22781" : "node-39_22778"}>
+      {!hover && <CheckboxSize className="content-stretch flex h-[24px] items-end min-w-[20px] pb-[6px] pl-[var(--offset\/offset_2xs,4px)] pr-[var(--components\/toggle\/checkbox\/padding-vertical_checkbox,3px)] relative shrink-0" />}
+      {isHover && (
+        <div className="content-stretch flex h-[24px] items-end min-w-[20px] pb-[6px] pl-[var(--offset\/offset_2xs,4px)] pr-[var(--components\/toggle\/checkbox\/padding-vertical_checkbox,3px)] relative shrink-0" data-node-id="39:22808" data-name="_checkbox__size">
+          <div className="relative shrink-0 size-[13px]" data-node-id="I39:22808;14613:12405" data-name="_checkbox">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCheckbox1} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+type Checkbox1Props = {
+  className?: string;
+  caption?: string;
+  captionPosition?: "end";
+  captionTemplate?: "text";
+  captionVisible?: boolean;
+  hover?: boolean;
+  readOnly?: "false";
+  resetValue?: "false";
+  triState?: "false";
+  value?: "false";
+  viewMode?: "outlined";
+};
+
+function Checkbox1({ className, caption = "Содержание", captionPosition = "end", captionTemplate = "text", captionVisible = true, hover = false, readOnly = "false", resetValue = "false", triState = "false", value = "false", viewMode = "outlined" }: Checkbox1Props) {
+  return (
+    <div className={className || "content-stretch flex items-start relative"} data-node-id="39:22846">
+      <Checkbox className="content-stretch flex items-start relative shrink-0" />
+      {captionVisible && (
+        <div className="content-stretch flex items-start py-[var(--offset\/offset_3xs,2px)] relative shrink-0" data-node-id="39:22955" data-name="checkboxContent">
+          <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[14px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.1974px] whitespace-nowrap" data-node-id="39:22956">
+            {caption}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+type ComponentProps = {
+  className?: string;
+  property1?: "В покое" | "ховер" | "Для выбора";
+};
+
+export default function Component({ className, property1 = "В покое" }: ComponentProps) {
+  const is = property1 === "ховер";
+  const is1 = property1 === "Для выбора";
+  return (
+    <div className={className || `content-stretch flex gap-[12px] items-start overflow-clip pb-[3px] pr-[12px] relative w-[720px] ${is ? String.raw`bg-[var(--background\/hover_background-color,#f3f4f8)]` : String.raw`bg-[var(--background\/background-color,white)]`}`} id={is1 ? "node-329_12256" : is ? "node-39_23396" : "node-39_23348"}>
+      <div className="content-stretch flex items-start relative shrink-0 w-[350px]" id={is1 ? "node-329_12257" : is ? "node-39_23397" : "node-39_23329"}>
+        <Checkbox1 captionVisible={false} className={`content-stretch flex items-start relative shrink-0 ${["ховер", "Для выбора"].includes(property1) ? "" : "opacity-0"}`} />
+        <div className="[word-break:break-word] content-stretch flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] items-start leading-[normal] not-italic pt-[4px] relative shrink-0 w-[268px] whitespace-nowrap" id={is1 ? "node-329_12259" : is ? "node-39_23399" : "node-39_22642"}>
+          <div className="content-stretch flex gap-[8px] items-baseline relative shrink-0 w-full" id={is1 ? "node-329_12260" : is ? "node-39_23400" : "node-39_22641"}>
+            <p className="relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_l,15px)] tracking-[-0.2115px]" id={is1 ? "node-329_12261" : is ? "node-39_23401" : "node-39_22632"}>
+              Эстетика
+            </p>
+            <p className="flex-[1_0_0] min-w-px overflow-hidden relative text-[12px] text-[color:var(--text\/unaccented_text-color,#999)] text-ellipsis tracking-[-0.1692px]" id={is1 ? "node-329_12262" : is ? "node-39_23402" : "node-39_22640"}>
+              г. Ярославль, ул. Наумова, д. 63
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[8px] items-start relative shrink-0 text-[color:var(--text\/unaccented_text-color,#999)] tracking-[-0.1692px] w-full" id={is1 ? "node-329_12263" : is ? "node-39_23403" : "node-39_22639"}>
+            <p className="max-w-[300px] overflow-hidden relative shrink-0 text-[12px] text-ellipsis" id={is1 ? "node-329_12264" : is ? "node-39_23404" : "node-39_22635"}>
+              Салон Красоты “Эстетика”, ООО,
+            </p>
+            <p className="relative shrink-0 text-[length:var(--font\/font-size\/font-size_xs,12px)]" id={is1 ? "node-329_12265" : is ? "node-39_23405" : "node-39_22638"}>
+              7869940941
+            </p>
+          </div>
+        </div>
+        <div className="absolute content-stretch flex h-[var(--icon\/icon_size\/icon-size_m,24px)] items-center left-0 overflow-clip pb-[var(--offset\/offset_3xs,2px)] top-0" id={is1 ? "node-329_12266" : is ? "node-39_23406" : "node-39_23344"} data-name="marker/Marker">
+          <div className="bg-[var(--extra\/marker_color,#cc3d00)] h-[16px] relative rounded-[var(--border-radius\/border-radius_2xs,4px)] shrink-0 w-[3px]" id={is1 ? "node-I329_12266-18419_396" : is ? "node-I39_23406-18419_396" : "node-I39_23344-18419_396"} data-name="marker" />
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[12px] items-center pt-[4px] relative shrink-0 w-[72px]" id={is1 ? "node-329_12267" : is ? "node-39_23407" : "node-39_23383"}>
+        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 w-[16px]" id={is1 ? "node-329_12270" : is ? "node-39_23410" : "node-39_22732"} data-name="Проверено админом">
+          <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/secondary_icon-color,#656c87)] w-full" id={is1 ? "node-329_12271" : is ? "node-39_23411" : "node-39_22730"}>{`\uEB4D`}</p>
+        </div>
+      </div>
+      <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] gap-[12px] items-start justify-end leading-[normal] min-w-px not-italic pt-[6px] relative text-[12px] text-[color:var(--text\/unaccented_text-color,#999)] tracking-[-0.1692px] whitespace-nowrap" id={is1 ? "node-329_12276" : is ? "node-39_23416" : "node-39_23384"}>
+        <p className="flex-[1_0_0] min-w-px overflow-hidden relative text-ellipsis" id={is1 ? "node-329_12277" : is ? "node-39_23417" : "node-39_22725"}>
+          2 сен
+        </p>
+        <p className="flex-[1_0_0] min-w-px overflow-hidden relative text-ellipsis" id={is1 ? "node-329_12278" : is ? "node-39_23418" : "node-39_22727"}>
+          6 678
+        </p>
+        <p className="flex-[1_0_0] min-w-px overflow-hidden relative text-ellipsis" id={is1 ? "node-329_12279" : is ? "node-39_23419" : "node-39_22728"}>
+          2
+        </p>
+        <p className="flex-[1_0_0] min-w-px overflow-hidden relative text-ellipsis text-right" id={is1 ? "node-329_12280" : is ? "node-39_23420" : "node-39_22729"}>
+          Красота
+        </p>
+      </div>
+      <div className={`${String.raw`absolute bg-[var(--background\/hover_background-color,#f3f4f8)] bottom-0 content-stretch flex gap-[var(--offset\/offset_xs,6px)] items-end justify-end pb-[3px] pt-[4px] px-[var(--offset\/offset_xs,6px)] right-0 `}${is ? "" : "opacity-0"}`} id={is1 ? "node-329_12281" : is ? "node-40_27269" : "node-40_30221"} data-name="Command">
+        <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[24px]" id={is1 ? "node-329_12282" : is ? "node-40_27295" : "node-40_30222"} data-name="публикация">
+          <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" id={is1 ? "node-I329_12282-12337_7640" : is ? "node-I40_27295-12337_7640" : "node-I40_30222-12337_7640"} data-name="_button">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" id={is1 ? "node-I329_12282-12337_7640-12337_7243" : is ? "node-I40_27295-12337_7640-12337_7243" : "node-I40_30222-12337_7640-12337_7243"} data-name="icons">
+              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" id={is1 ? "node-I329_12282-12337_7640-12337_7243-5565_16629" : is ? "node-I40_27295-12337_7640-12337_7243-5565_16629" : "node-I40_30222-12337_7640-12337_7243-5565_16629"} data-name="Ui базовый набор / Font">
+                <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/secondary_icon-color,#656c87)] whitespace-nowrap" id={is1 ? "node-I329_12282-12337_7640-12337_7243-5565_16629-8306_1722" : is ? "node-I40_27295-12337_7640-12337_7243-5565_16629-8306_1722" : "node-I40_30222-12337_7640-12337_7243-5565_16629-8306_1722"}>{`\uE62F`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[24px]" id={is1 ? "node-329_12283" : is ? "node-40_27273" : "node-40_30226"} data-name="Удалить">
+          <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" id={is1 ? "node-I329_12283-13973_4084" : is ? "node-I40_27273-13973_4084" : "node-I40_30226-13973_4084"} data-name="_button">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" id={is1 ? "node-I329_12283-13973_4084-12337_7243" : is ? "node-I40_27273-13973_4084-12337_7243" : "node-I40_30226-13973_4084-12337_7243"} data-name="icons">
+              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[24px]" id={is1 ? "node-I329_12283-13973_4084-12337_7243-5565_16627" : is ? "node-I40_27273-13973_4084-12337_7243-5565_16627" : "node-I40_30226-13973_4084-12337_7243-5565_16627"} data-name="Ui базовый набор / Font">
+                <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/danger_icon-color,#c2140a)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" id={is1 ? "node-I329_12283-13973_4084-12337_7243-5565_16627-8306_1722" : is ? "node-I40_27273-13973_4084-12337_7243-5565_16627-8306_1722" : "node-I40_30226-13973_4084-12337_7243-5565_16627-8306_1722"}>{`\uE65C`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {["В покое", "Для выбора"].includes(property1) && (
+          <div className="content-stretch flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[24px]" id={is1 ? "node-329_12284" : "node-40_30227"} data-name="3 точки">
+            <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" id={is1 ? "node-I329_12284-12337_7640" : "node-I40_30227-12337_7640"} data-name="_button">
+              <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" id={is1 ? "node-I329_12284-12337_7640-12337_7243" : "node-I40_30227-12337_7640-12337_7243"} data-name="icons">
+                <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" id={is1 ? "node-I329_12284-12337_7640-12337_7243-5565_16629" : "node-I40_30227-12337_7640-12337_7243-5565_16629"} data-name="Ui базовый набор / Font">
+                  <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/secondary_icon-color,#656c87)] whitespace-nowrap" id={is1 ? "node-I329_12284-12337_7640-12337_7243-5565_16629-8306_1722" : "node-I40_30227-12337_7640-12337_7243-5565_16629-8306_1722"}>{`\uE9D9`}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: font-size/regular/l: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_l, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), ICONS/icon-size_s: Font(family: "cbuc-icons", style: Regular, size: 16, weight: 400, lineHeight: 100, letterSpacing: 0).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## marker/Marker
+**Node ID:** 39:23331
+
+У маркера можно изменять высоту. При необходимости можно сбросить изменения компонента, чтобы включить высоту по умолчанию
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/list/actions/marker/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/list/actions/marker/)
+
+## Button
+**Node ID:** 40:24634
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-buttons/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/input-elements/buttons-switches/new-buttons/)
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

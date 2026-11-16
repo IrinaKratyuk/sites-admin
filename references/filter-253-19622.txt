@@ -1,0 +1,270 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/53c3c056-49d4-47c1-ac42-d0bddfcb0f92";
+const imgCursorArrow = `${assetPathPrefix}/9dbec.svg`;
+const imgCheckbox = `${assetPathPrefix}/bb047.svg`;
+const img = `${assetPathPrefix}/7182c.png`;
+const img1 = `${assetPathPrefix}/60285.png`;
+const img2 = `${assetPathPrefix}/787d1.png`;
+const img3 = `${assetPathPrefix}/26999.png`;
+const imgCaretCursor = `${assetPathPrefix}/6d596.svg`;
+const imgUnion = `${assetPathPrefix}/34d7d.svg`;
+
+function CursorArrow({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[24px]"} data-node-id="300:16812" data-name="Cursor/Arrow">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCursorArrow} />
+    </div>
+  );
+}
+
+type CheckboxSizeProps = {
+  className?: string;
+  size?: "s";
+};
+
+function CheckboxSize({ className, size = "s" }: CheckboxSizeProps) {
+  return (
+    <div className={className || "content-stretch flex h-[var(--components\\/toggle\\/checkbox\\/height_checkbox,24px)] items-end min-w-[20px] pb-[6px] pl-[var(--offset\\/offset_2xs,4px)] pr-[var(--components\\/toggle\\/checkbox\\/padding-vertical_checkbox,3px)] relative"} data-node-id="253:19898">
+      <div className="relative shrink-0 size-[13px]" data-node-id="253:19901" data-name="_checkbox">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCheckbox} />
+      </div>
+    </div>
+  );
+}
+
+type CheckboxProps = {
+  className?: string;
+  hover?: boolean;
+  readOnly?: "false";
+  resetValue?: "false";
+  triState?: "false";
+  value?: boolean;
+  viewMode?: "outlined";
+};
+
+function Checkbox({ className, hover = false, readOnly = "false", resetValue = "false", triState = "false", value = false, viewMode = "outlined" }: CheckboxProps) {
+  return (
+    <div className={className || "content-stretch flex items-start relative"} data-node-id="253:19939">
+      <CheckboxSize className="content-stretch flex h-[24px] items-end min-w-[20px] pb-[6px] pl-[var(--offset\/offset_2xs,4px)] pr-[var(--components\/toggle\/checkbox\/padding-vertical_checkbox,3px)] relative shrink-0" />
+    </div>
+  );
+}
+
+type DoneDoneButtonProps = {
+  className?: string;
+  size?: "m (24)" | "xl (32)";
+  style?: "success";
+};
+
+function DoneDoneButton({ className, size = "m (24)", style = "success" }: DoneDoneButtonProps) {
+  const isM24 = size === "m (24)";
+  return (
+    <div className={className || `content-stretch flex flex-col items-start relative ${isM24 ? "size-[24px]" : "size-[32px]"}`} id={isM24 ? "node-3_12367" : "node-3_12363"}>
+      <div className={`${String.raw`bg-[var(--background\/contrast\/success_color,#12a12c)] content-stretch drop-shadow-[0px_0px_calc(var(--blur\/shadow-blur_d,6px)/2)_var(--color\/shadow-color_d,rgba(0,0,0,0.1))] flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 `}${isM24 ? "size-[24px]" : "size-[32px]"}`} id={isM24 ? "node-3_12368" : "node-3_12364"} data-name="filled">
+        <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" id={isM24 ? "node-I3_12368-17890_2850" : "node-I3_12364-17890_2832"} data-name="_buttonContent">
+          <div className="content-stretch flex items-center relative shrink-0" id={isM24 ? "node-I3_12368-17890_2850-17890_165" : "node-I3_12364-17890_2832-17890_165"} data-name="iconWrap">
+            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" id={isM24 ? "node-I3_12368-17890_2850-17890_166" : "node-I3_12364-17890_2832-17890_166"} data-name="icons/font">
+              <div className={`content-stretch flex flex-col items-center justify-center relative shrink-0 ${isM24 ? "pb-px size-[16px]" : "pb-[2px] size-[24px]"}`} id={isM24 ? "node-I3_12368-17890_2850-17890_166-17887_22647" : "node-I3_12364-17890_2832-17890_166-17887_22651"} data-name="iconWrap">
+                <p className={`${String.raw`[word-break:break-word] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/contrast_icon-color,white)] whitespace-nowrap `}${isM24 ? String.raw`font-[family-name:var(--icon\/font-family\/s_icon_font-family,"cbuc-icons:Regular")] text-[length:var(--icon\/icon_size\/icon-size_s,16px)]` : String.raw`font-[family-name:var(--icon\/font-family\/m_icon_font-family,"cbuc-icons24:Regular")] text-[length:var(--icon\/icon_size\/icon-size_m,24px)]`}`} id={isM24 ? "node-I3_12368-17890_2850-17890_166-17887_22661" : "node-I3_12364-17890_2832-17890_166-17887_22652"}>{`\uE75E`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Component() {
+  return (
+    <div className="bg-[var(--components\/list\/master_item_background-color_list,#f8f8f8)] content-stretch flex isolate items-start justify-end relative shadow-[var(--components\/stack\/box-shadow_stack_offset_first,-6px)_0px_var(--components\/stack\/box-shadow_stack_blur_first,22px)_0px_var(--components\/stack\/box-shadow_stack_color_first,rgba(0,0,0,0.11)),var(--components\/stack\/box-shadow_stack_offset_second,-2px)_0px_var(--components\/stack\/box-shadow_stack_blur_second,8px)_0px_var(--components\/stack\/box-shadow_stack_color_second,rgba(0,0,0,0.02))] size-full" data-node-id="253:19622" data-name="Стек-панель">
+      <div className="content-stretch flex flex-col h-[900px] items-end relative shrink-0 w-[700px] z-[2]" data-node-id="253:19624" data-name="leftPanel">
+        <div className="content-stretch flex gap-[var(--offset\/offset_m,12px)] h-[46px] items-center justify-end pl-[var(--offset\/offset_l,16px)] py-[var(--offset\/offset_s,8px)] relative shrink-0 w-full" data-node-id="253:19625" data-name="Шапка реестра">
+          <div className="content-stretch flex gap-[var(--offset\/offset_xs,6px)] isolate items-center pl-[var(--offset\/none,0px)] relative shrink-0" data-node-id="253:19626" data-name="Заголовок панели">
+            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] tracking-[-0.282px] whitespace-nowrap z-[2]" data-node-id="253:19627">
+              <p className="leading-[1.4]">Шаблон</p>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-[1_0_0] gap-[var(--offset\/offset_m,12px)] items-center justify-end min-w-px pt-[2px] relative" data-node-id="253:19629" data-name="Правая часть">
+            <div className="bg-[var(--background\/background-color,white)] border border-[var(--border\/border-color,#eaeaea)] border-solid content-stretch flex h-[26px] items-center justify-between pl-[var(--offset\/offset_m,12px)] relative rounded-[14px] shrink-0 w-[300px]" data-node-id="253:19630" data-name="search">
+              <div className="h-[18px] relative shrink-0 w-0" data-node-id="I253:19630;35564:274" data-name="caretCursor">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCaretCursor} />
+              </div>
+              <div className="content-stretch flex h-full items-center min-w-[110px] relative shrink-0" data-node-id="I253:19630;35564:275" data-name="Content">
+                <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Inter:Regular'] font-normal justify-end leading-[0] min-w-px not-italic relative text-[14px] text-[color:var(--components\/input\/placeholder-color_inputtext,rgba(137,145,169,0.6))] tracking-[-0.1974px]" data-node-id="I253:19630;35564:276">
+                  <p className="leading-[normal]">Найти</p>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] h-[26px] items-center justify-end min-w-px relative" data-node-id="I253:19630;35564:1373" data-name="rightContent" />
+            </div>
+          </div>
+          <DoneDoneButton className="content-stretch cursor-pointer flex flex-col items-start relative shrink-0 size-[32px]" size="xl (32)" />
+        </div>
+        <div className="content-stretch flex flex-[1_0_0] gap-[var(--offset\/offset_2xs,4px)] items-start min-h-px pt-[7px] relative w-full" data-node-id="253:19632" data-name="Контент">
+          <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start min-w-px pl-[var(--offset\/offset_l,16px)] pr-[var(--offset\/offset_2xs,4px)] relative" data-node-id="253:19634" data-name="Реестр">
+            <div className="bg-[var(--папки-и-документы\/color,rgba(255,255,255,0))] content-stretch flex flex-[1_0_0] flex-col gap-[var(--общие-значения-3-х-al\/гэп-между\/гэп,6px)] items-start min-h-px pt-[var(--папки-и-документы\/отступ-сверху,0px)] relative w-full" data-node-id="253:19636" data-name="Папки и документы">
+              <div className="content-start flex flex-wrap gap-[var(--общие-значения-3-х-al\/гэп-между\/гэп,6px)] items-start relative shrink-0 w-full" data-node-id="253:19637" data-name="Часть папок">
+                <button className="bg-[#d9dbc7] content-stretch cursor-pointer flex flex-[1_0_0] flex-col h-[320px] items-start min-w-px overflow-clip relative rounded-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_c,8px)_0px_var(--color\/shadow-color_c,rgba(0,0,0,0.06))]" data-node-id="253:19638" data-name="Доставка">
+                  <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative shrink-0 w-full" data-node-id="I253:19638;253:20443" data-name="Контент">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] text-ellipsis text-left tracking-[-0.282px] w-full" data-node-id="I253:19638;253:20444">
+                      <p className="leading-[normal] text-[20px]">Доставка из ресторана</p>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-b flex-[1_0_0] from-[83.75%] from-[rgba(217,219,199,0)] min-h-px overflow-clip relative rounded-tl-[8px] rounded-tr-[8px] to-[#d9dbc7] w-full" data-node-id="I253:19638;253:20449" data-name="Картинка">
+                    <div className="absolute inset-[0_-0.33px_0_0]" data-node-id="I253:19638;253:20450" data-name="изобр">
+                      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img} />
+                    </div>
+                    <div className="absolute flex inset-[0_-0.33px_0_0] items-center justify-center" data-node-id="I253:19638;253:20451" style={{ containerType: "size" }}>
+                      <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+                        <div className="bg-gradient-to-b from-[83.75%] from-[rgba(217,219,199,0)] overflow-clip relative size-full to-[#d9dbc7]" data-name="Градиент">
+                          <div className="absolute bg-[var(--background\/opacity\/translucent_hover_background-color,rgba(196,196,196,0.8))] content-stretch flex items-center justify-center opacity-0 px-[100px] right-0 rounded-bl-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_d,6px)_0px_var(--color\/shadow-color_d,rgba(0,0,0,0.1))] size-[28px] top-0" data-node-id="I253:19638;253:20452">
+                            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I253:19638;253:20453" data-name="icons">
+                              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[24px]" data-node-id="I253:19638;253:20453;5565:16627" data-name="iconsWrap">
+                                <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] text-left whitespace-nowrap" data-node-id="I253:19638;253:20453;5565:16627;8306:1722">{`\uE9D9`}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute content-stretch flex items-start left-0 top-0" data-node-id="I253:19638;253:20502" data-name="checkbox">
+                    <Checkbox className="content-stretch flex items-start relative shrink-0" />
+                  </div>
+                </button>
+                <div className="absolute left-[92px] size-[16px] top-[115px]" data-node-id="337:17259" data-name="clickCursor">
+                  <div className="absolute bg-[#6cc] inset-0 opacity-50 rounded-[32px]" data-node-id="I337:17259;3784:15252" data-name="dot" />
+                  <CursorArrow className="absolute left-px size-[24px] top-[5px]" />
+                </div>
+                <button className="bg-[#eae1d7] content-stretch cursor-pointer flex flex-[1_0_0] flex-col h-[320px] items-start min-w-px overflow-clip relative rounded-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_c,8px)_0px_var(--color\/shadow-color_c,rgba(0,0,0,0.06))]" data-node-id="253:19639" data-name="Отель">
+                  <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative shrink-0 w-full" data-node-id="I253:19639;253:20443" data-name="Контент">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] text-ellipsis text-left tracking-[-0.282px] w-full" data-node-id="I253:19639;253:20444">
+                      <p className="leading-[normal] text-[20px]">Отель</p>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-b flex-[1_0_0] from-[83.75%] from-[rgba(234,225,215,0)] min-h-px overflow-clip relative rounded-tl-[8px] rounded-tr-[8px] to-[#eae1d7] w-full" data-node-id="I253:19639;253:20449" data-name="Картинка">
+                    <div className="absolute inset-[0_-0.33px_0_0]" data-node-id="I253:19639;253:20450" data-name="изобр">
+                      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        <img alt="" className="absolute h-full left-[-7.49%] max-w-none top-0 w-[124.65%]" src={img1} />
+                      </div>
+                    </div>
+                    <div className="absolute flex inset-[0_-0.33px_0_0] items-center justify-center" data-node-id="I253:19639;253:20451" style={{ containerType: "size" }}>
+                      <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+                        <div className="bg-gradient-to-b from-[83.75%] from-[rgba(234,225,215,0)] overflow-clip relative size-full to-[#eae1d7]" data-name="Градиент">
+                          <div className="absolute bg-[var(--background\/opacity\/translucent_hover_background-color,rgba(196,196,196,0.8))] content-stretch flex items-center justify-center opacity-0 px-[100px] right-0 rounded-bl-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_d,6px)_0px_var(--color\/shadow-color_d,rgba(0,0,0,0.1))] size-[28px] top-0" data-node-id="I253:19639;253:20452">
+                            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I253:19639;253:20453" data-name="icons">
+                              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[24px]" data-node-id="I253:19639;253:20453;5565:16627" data-name="iconsWrap">
+                                <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] text-left whitespace-nowrap" data-node-id="I253:19639;253:20453;5565:16627;8306:1722">{`\uE9D9`}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute content-stretch flex items-start left-0 top-0" data-node-id="I253:19639;253:20502" data-name="checkbox">
+                    <Checkbox className="content-stretch flex items-start relative shrink-0" />
+                  </div>
+                </button>
+                <button className="bg-[#f7e2c5] content-stretch cursor-pointer flex flex-[1_0_0] flex-col h-[320px] items-start min-w-px overflow-clip relative rounded-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_c,8px)_0px_var(--color\/shadow-color_c,rgba(0,0,0,0.06))]" data-node-id="253:19640" data-name="Услуги">
+                  <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative shrink-0 w-full" data-node-id="I253:19640;253:20443" data-name="Контент">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] text-ellipsis text-left tracking-[-0.282px] w-full" data-node-id="I253:19640;253:20444">
+                      <p className="leading-[normal] text-[20px]">Услуги</p>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-b flex-[1_0_0] from-[83.75%] from-[rgba(247,226,197,0)] min-h-px overflow-clip relative rounded-tl-[8px] rounded-tr-[8px] to-[#f7e2c5] w-full" data-node-id="I253:19640;253:20449" data-name="Картинка">
+                    <div className="absolute inset-[0_-0.33px_0_0]" data-node-id="I253:19640;253:20450" data-name="изобр">
+                      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img2} />
+                    </div>
+                    <div className="absolute flex inset-[0_-0.33px_0_0] items-center justify-center" data-node-id="I253:19640;253:20451" style={{ containerType: "size" }}>
+                      <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+                        <div className="bg-gradient-to-b from-[83.75%] from-[rgba(247,226,197,0)] overflow-clip relative size-full to-[#f7e2c5]" data-name="Градиент">
+                          <div className="absolute bg-[var(--background\/opacity\/translucent_hover_background-color,rgba(196,196,196,0.8))] content-stretch flex items-center justify-center opacity-0 px-[100px] right-0 rounded-bl-[8px] shadow-[0px_0px_var(--blur\/shadow-blur_d,6px)_0px_var(--color\/shadow-color_d,rgba(0,0,0,0.1))] size-[28px] top-0" data-node-id="I253:19640;253:20452">
+                            <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I253:19640;253:20453" data-name="icons">
+                              <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[24px]" data-node-id="I253:19640;253:20453;5565:16627" data-name="iconsWrap">
+                                <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] text-left whitespace-nowrap" data-node-id="I253:19640;253:20453;5565:16627;8306:1722">{`\uE9D9`}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute content-stretch flex items-start left-0 top-0" data-node-id="I253:19640;253:20502" data-name="checkbox">
+                    <Checkbox className="content-stretch flex items-start relative shrink-0" />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[var(--фон-реестра-2,#f8f8f8)] content-stretch flex flex-col gap-[7px] h-[900px] isolate items-center pt-[7px] relative shrink-0 w-[52px] z-[1]" data-node-id="253:19793" data-name="Тулбар">
+        <button className="content-stretch cursor-pointer flex flex-col items-start relative shrink-0 z-[7]" data-node-id="253:19794" data-name="_systemButton">
+          <div className="content-stretch flex flex-col items-start relative shrink-0 size-[32px]" data-node-id="I253:19794;7735:24674" data-name="closeButton">
+            <div className="bg-[var(--background\/contrast\/pale_color,rgba(51,51,51,0.05))] content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I253:19794;7735:24674;6283:17181" data-name="_closeButton">
+              <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I253:19794;7735:24674;6283:17181;6283:17162" data-name="_button">
+                <div className="relative shrink-0 size-[12px]" data-node-id="I253:19794;7735:24674;6283:17181;6283:17163" data-name="Union">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+        <div className="absolute left-[16px] size-[16px] top-[21px] z-[6]" data-node-id="300:16877" data-name="clickCursor">
+          <div className="absolute bg-[#6cc] inset-0 opacity-50 rounded-[32px]" data-node-id="I300:16877;3784:15252" data-name="dot" />
+          <CursorArrow className="absolute left-px size-[24px] top-[5px]" />
+        </div>
+        <button className="content-stretch cursor-pointer flex flex-col items-center justify-center relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px] z-[5]" data-node-id="253:19886" data-name="Настроить">
+          <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I253:19886;17890:9799" data-name="_buttonContent">
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="I253:19886;17890:9799;17890:165" data-name="iconWrap">
+              <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I253:19886;17890:9799;17890:166" data-name="icons/font">
+                <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I253:19886;17890:9799;17890:166;17887:22651" data-name="iconWrap">
+                  <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] text-left whitespace-nowrap" data-node-id="I253:19886;17890:9799;17890:166;17887:22652">{`\uE644`}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+        <div className="content-stretch flex flex-[1_0_0] flex-col gap-[var(--offset\/offset_xs,6px)] items-center min-h-px relative w-[32px] z-[3]" data-node-id="253:19796" data-name="Базовые настройки" />
+        <div className="content-stretch flex flex-col items-center pb-[var(--offset\/offset_s,8px)] relative shrink-0 w-full z-[2]" data-node-id="253:19804" data-name="Информеры">
+          <div className="h-[185px] relative shrink-0 w-[32px]" data-node-id="I253:19804;7044:692326" data-name="Клик" />
+          <div className="content-stretch flex flex-col gap-[var(--offset\/offset_l,16px)] items-start relative shrink-0" data-node-id="I253:19804;8777:335948" data-name="Информеры">
+            <div className="relative rounded-[16px] shrink-0 size-[32px]" data-node-id="I253:19804;8777:336621" data-name="Звонки">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[16px]">
+                <img alt="" className="absolute h-[2762.5%] left-[-3187.5%] max-w-none top-[-2231.25%] w-[4684.37%]" src={img3} />
+              </div>
+            </div>
+            <div className="relative rounded-[16px] shrink-0 size-[32px]" data-node-id="I253:19804;8777:337053" data-name="Сообщения">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[16px]">
+                <img alt="" className="absolute h-[2762.5%] left-[-3187.5%] max-w-none top-[-2381.25%] w-[4684.37%]" src={img3} />
+              </div>
+            </div>
+            <div className="bg-[var(--background\/same\/info_same_background-color,#eeebff)] border border-[var(--background\/same\/info_hover_same_background-color,#e1dbff)] border-solid content-stretch flex h-[32px] items-center justify-center p-[4px] relative rounded-[32px] shrink-0" data-node-id="I253:19804;10620:65170" data-name="Кнопка помощи">
+              <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I253:19804;10620:65170;749:4337" data-name="_Иконка">
+                <div className="content-stretch flex flex-col h-[24px] items-center justify-center pb-[2px] relative shrink-0" data-node-id="I253:19804;10620:65170;749:4337;4433:15723">
+                  <div className="[word-break:break-word] flex flex-col font-['cbuc-icons24:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-[color:var(--icon\/info_icon-color,#5a49ab)] whitespace-nowrap" data-node-id="I253:19804;10620:65170;749:4337;646:2359">
+                    <p className="leading-[normal]">{`\uE9C9`}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: font-size/bold/4xl: Font(family: "font/font-family/default", style: Semi Bold, size: font/font-size/font-size_4xl, weight: font/font-weight/bold, lineHeight: 1.399999976158142, letterSpacing: -1.409999966621399), TEXT/Regular/font-size_m: Font(family: "Inter", style: Regular, size: 14, weight: 400, lineHeight: 100, letterSpacing: -1.409999966621399), shadow_d: Effect(type: DROP_SHADOW, color: color/shadow-color_d, offset: (0, 0), radius: blur/shadow-blur_d, spread: 0), TEXT/Bold/font-size_4xl_bold: Font(family: "font/font-family/default", style: Semi Bold, size: font/font-size/font-size_4xl, weight: font/font-weight/bold, lineHeight: 100, letterSpacing: -1.409999966621399), icon-size/m: Font(family: "icon/font-family/m_icon_font-family", style: Regular, size: icon/icon_size/icon-size_m, weight: 400, lineHeight: 100, letterSpacing: 0), shadow_c: Effect(type: DROP_SHADOW, color: color/shadow-color_c, offset: (0, 0), radius: blur/shadow-blur_c, spread: 0), ICONS/icon-size_m: Font(family: "cbuc-icons24", style: Regular, size: 24, weight: 400, lineHeight: 100, letterSpacing: 0), Sidebar_color: , components/shadow_stack: Effect(type: DROP_SHADOW, color: Components/stack/box-shadow_stack_color_second, offset: (Components/stack/box-shadow_stack_offset_second, 0), radius: Components/stack/box-shadow_stack_blur_second, spread: 0); Effect(type: DROP_SHADOW, color: Components/stack/box-shadow_stack_color_first, offset: (Components/stack/box-shadow_stack_offset_first, 0), radius: Components/stack/box-shadow_stack_blur_first, spread: 0).
+
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

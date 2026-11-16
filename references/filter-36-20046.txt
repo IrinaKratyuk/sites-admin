@@ -1,0 +1,52 @@
+type ComponentProps = {
+  className?: string;
+  hover?: boolean;
+  right?: string;
+};
+
+function Component({ className, hover = false, right = "Вся наша компания" }: ComponentProps) {
+  return (
+    <div className={className || "content-stretch flex items-start relative"} data-node-id="36:20056">
+      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="36:20057">
+        {right}
+      </p>
+    </div>
+  );
+}
+
+type FilterProps = {
+  className?: string;
+  hover?: boolean;
+  third?: boolean;
+};
+
+export default function Filter({ className, hover = false, third = false }: FilterProps) {
+  const isHover = hover;
+  return (
+    <div className={className || `content-stretch flex gap-[6px] h-[24px] items-center justify-center px-[10px] relative rounded-[100px] ${isHover ? "bg-white" : ""}`} id={isHover ? "node-36_20051" : "node-36_20047"}>
+      <Component className="content-stretch flex items-start relative shrink-0" right="Слева" />
+      <div className="bg-[#656c87] relative rounded-[4px] shrink-0 size-[3px]" id={isHover ? "node-36_20053" : "node-36_20049"} />
+      <Component className="content-stretch flex items-start relative shrink-0" right="Справа" />
+      {third && (
+        <>
+          <div className="bg-[#656c87] relative rounded-[4px] shrink-0 size-[3px]" data-node-id="100:39982" />
+          <div className="content-stretch flex items-start relative shrink-0" data-node-id="100:39983" data-name="Текст в двойном">
+            <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I100:39983;36:20057">
+              Справа
+            </p>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: TEXT/label_contrast_text-color: #656C87, TEXT/Regular/font-size_m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), ICONS/secondary_icon-color: #656C87, BACKGROUND/background-color: #FFFFFF.
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

@@ -1,0 +1,50 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/b2363090-748c-4312-8d40-28728ba96e6f";
+const imgImage = `${assetPathPrefix}/bf295.svg`;
+
+export default function Detail() {
+  return (
+    <div className="bg-white content-stretch drop-shadow-[0px_0px_calc(var(--blur\/shadow-blur_c,8px)/2)_var(--color\/shadow-color_c,rgba(0,0,0,0.06))] flex flex-col items-center justify-center relative rounded-tl-[8px] rounded-tr-[8px] size-full" data-node-id="18:20416" data-name="Detail">
+      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 w-[740px]" data-node-id="18:20417" data-name="hint">
+        <div className="content-stretch flex flex-col gap-[12px] items-center justify-center relative shrink-0 w-full" data-node-id="18:20418" data-name="content">
+          <div className="content-stretch flex flex-col gap-[20px] items-center relative shrink-0 w-full" data-node-id="18:20419" data-name="text">
+            <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-node-id="18:20420" data-name="header">
+              <div className="content-stretch flex items-start justify-center relative shrink-0 w-full" data-node-id="18:20421" data-name="title">
+                <div className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[0] min-w-px not-italic relative text-[color:var(--components\/list\/placeholder_text-color_list,#aab0c1)] text-[length:var(--font\/font-size\/font-size_5xl,24px)] text-center tracking-[-0.3384px] whitespace-pre-wrap" data-node-id="18:20422">
+                  <p className="leading-[1.4] mb-0">{`Выберите сайт или страницу, `}</p>
+                  <p className="leading-[1.4]">чтобы увидеть доступные параметры</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center relative shrink-0" data-node-id="18:20429">
+            <div className="-scale-y-100 flex-none rotate-180">
+              <div className="content-stretch flex items-start relative" data-name="img">
+                <div className="flex items-center justify-center relative shrink-0" data-node-id="18:20430">
+                  <div className="-scale-y-100 flex-none rotate-180">
+                    <div className="relative size-[200px]" data-name="image">
+                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgImage} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: font-size/regular/5xl: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_5xl, weight: font/font-weight/regular, lineHeight: 1.399999976158142, letterSpacing: -1.409999966621399), shadow_c: Effect(type: DROP_SHADOW, color: color/shadow-color_c, offset: (0, 0), radius: blur/shadow-blur_c, spread: 0).
+
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

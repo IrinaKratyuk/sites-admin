@@ -1,0 +1,211 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/79083de7-c699-480b-b695-460a1d35340f";
+const imgCursorArrow = `${assetPathPrefix}/9dbec.svg`;
+const imgTrueFalse = `${assetPathPrefix}/6d0b9.svg`;
+const imgUnion = `${assetPathPrefix}/cf100.svg`;
+const img = `${assetPathPrefix}/e1112.svg`;
+
+function CursorArrow({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[24px]"} data-node-id="300:16812" data-name="Cursor/Arrow">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCursorArrow} />
+    </div>
+  );
+}
+
+export default function TrueFalse() {
+  return (
+    <div className="bg-[var(--background\/unaccented_background-color,#f8f8f8)] content-stretch flex flex-col items-start overflow-clip relative rounded-[var(--border-radius\/border-radius_m,12px)] shadow-[0px_0px_18px_0px_rgba(0,0,0,0.12)] size-full" data-node-id="306:17270" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+      <div className="bg-[var(--background\/background-color,white)] content-stretch flex items-center justify-between px-[8px] relative rounded-tl-[8px] rounded-tr-[8px] shrink-0 w-full" data-node-id="306:17271" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+        <div className="content-stretch flex gap-[6px] items-start relative shrink-0" data-node-id="I306:17271;26485:42811" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+          <div className="content-stretch flex items-center relative self-stretch shrink-0" data-node-id="I306:17271;26485:42812" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+            <div className="relative shrink-0 size-[14px]" data-node-id="I306:17271;26485:42813" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTrueFalse} />
+            </div>
+          </div>
+          <div className="content-stretch flex h-[44px] items-end pb-[12px] relative shrink-0" data-node-id="I306:17271;26485:42815" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+            <div className="[word-break:break-word] flex flex-col font-['Inter:Regular'] font-normal justify-end leading-[0] not-italic relative shrink-0 text-[#cc3d00] text-[16px] tracking-[1.6px] uppercase whitespace-nowrap" data-node-id="I306:17271;26485:42816">
+              <p className="leading-[normal]">ФИЛЬТР</p>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex gap-[12px] h-[44px] items-center justify-end relative shrink-0" data-node-id="I306:17271;26485:42817" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+          <div className="content-stretch flex gap-[8px] h-full items-center justify-end relative shrink-0" data-node-id="I306:17271;26485:42818" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+            <div className="content-stretch flex flex-col h-full items-end justify-center pt-[3px] relative shrink-0" data-node-id="I306:17271;26485:42819" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+              <button className="content-stretch cursor-pointer flex flex-col h-[24px] items-start relative shrink-0 w-[56px]" data-node-id="I306:17271;26485:42820" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                <div className="content-stretch flex flex-col h-[24px] items-center justify-center relative rounded-[100px] shrink-0" data-node-id="I306:17271;26485:42820;26485:42848" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                  <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px]" data-node-id="I306:17271;26485:42820;26485:42848;3979:16885" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] text-left tracking-[-0.1692px] whitespace-nowrap" data-node-id="I306:17271;26485:42820;26485:42848;3979:16885;3970:14605">
+                      Сбросить
+                    </p>
+                  </div>
+                </div>
+              </button>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I306:17271;26485:42821" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 size-[28px]" data-node-id="I306:17271;26485:42821;26485:42825" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                <div className="bg-[var(--background\/contrast\/success_color,#12a12c)] content-stretch drop-shadow-[0px_0px_calc(var(--blur\/shadow-blur_d,6px)/2)_var(--color\/shadow-color_d,rgba(0,0,0,0.1))] flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[var(--components\/button\/border-radius_button,100px)] w-full" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585" data-name="filled">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585;17890:2850" data-name="_buttonContent">
+                    <div className="content-stretch flex items-center relative shrink-0" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585;17890:2850;17890:165" data-name="iconWrap">
+                      <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585;17890:2850;17890:166" data-name="icons/font">
+                        <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585;17890:2850;17890:166;17887:22647" data-name="iconWrap">
+                          <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/contrast_icon-color,white)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] whitespace-nowrap" data-node-id="I306:17271;26485:42821;26485:42825;22488:25585;17890:2850;17890:166;17887:22661">{`\uE75E`}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button className="content-stretch cursor-pointer flex flex-col items-start relative shrink-0 size-[28px]" data-node-id="I306:17271;26485:42822" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+            <div className="content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I306:17271;26485:42822;6283:17251" data-name="_closeButton">
+              <div className="content-stretch flex flex-[1_0_0] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I306:17271;26485:42822;6283:17251;6283:17221" data-name="_button">
+                <div className="relative shrink-0 size-[12px]" data-node-id="I306:17271;26485:42822;6283:17251;6283:17222" data-name="Union">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div className="absolute left-[370px] size-[16px] top-[16px]" data-node-id="306:17272" data-name="clickCursor">
+        <div className="absolute bg-[#6cc] inset-0 opacity-50 rounded-[32px]" data-node-id="I306:17272;3784:15252" data-name="dot" />
+        <CursorArrow className="absolute left-px size-[24px] top-[5px]" />
+      </div>
+      <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="306:17273" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+        <div className="bg-[var(--background\/background-color,white)] content-stretch flex flex-col items-start pb-[12px] pl-[18px] pr-[16px] relative rounded-bl-[12px] rounded-br-[12px] shrink-0 w-full" data-node-id="306:17274" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="306:17275" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+            <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="306:17276" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[6px] items-start min-w-px relative" data-node-id="306:17277" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                <div className="content-stretch flex flex-col items-start justify-center pt-[2px] relative shrink-0 w-full" data-node-id="306:17278" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                  <div className="content-stretch flex items-center pl-[10px] relative shrink-0" data-node-id="I306:17278;26485:42804" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] tracking-[-0.1692px] whitespace-nowrap" data-node-id="I306:17278;26485:42805">
+                      Шаблон
+                    </p>
+                  </div>
+                  <div className="content-stretch flex flex-col items-start pb-[2px] pl-[10px] relative shrink-0 w-full" data-node-id="I306:17278;26485:42806" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                    <div className="border-[#d2d6da] border-b border-solid content-stretch flex flex-col h-[24px] items-start justify-center relative shrink-0 w-full" data-node-id="I306:17278;26485:42807" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative w-full" data-node-id="I306:17278;26485:42807;26485:42902" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                        <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="I306:17278;26485:42807;26485:42903" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17278;26485:42807;26485:42904">
+                            <p className="leading-[normal]">Доставка из ресторана</p>
+                          </div>
+                        </div>
+                        <button className="content-stretch cursor-pointer flex flex-col items-center justify-center relative shrink-0" data-node-id="I306:17278;26485:42807;26485:42905" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                          <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="I306:17278;26485:42807;26485:42905;4008:18186" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                            <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I306:17278;26485:42807;26485:42905;4008:18186;5565:16629" data-name="Ui базовый набор / Font">
+                              <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] text-left whitespace-nowrap" data-node-id="I306:17278;26485:42807;26485:42905;4008:18186;5565:16629;8306:1722">{`\uE66C`}</p>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                      <button className="absolute content-stretch cursor-pointer flex flex-col items-center justify-center right-0 rounded-[100px] size-[16px] top-[3px]" data-node-id="I306:17278;26485:42807;26485:42906" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I306:17278;26485:42807;26485:42906;3971:14994" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                          <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[16px]" data-node-id="I306:17278;26485:42807;26485:42906;3971:14994;4008:17638" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                            <div className="flex-[1_0_0] min-h-px relative w-full" data-node-id="I306:17278;26485:42807;26485:42906;3971:14994;4008:17639" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={img} />
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="content-stretch flex flex-col items-start justify-center pt-[2px] relative shrink-0 w-full" data-node-id="306:17279" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                  <div className="content-stretch flex items-center pl-[10px] pt-px relative shrink-0" data-node-id="I306:17279;26485:42804" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] tracking-[-0.1692px] whitespace-nowrap" data-node-id="I306:17279;26485:42805">
+                      Организация
+                    </p>
+                  </div>
+                  <div className="content-stretch flex flex-col items-start pb-[2px] pl-[10px] relative shrink-0 w-full" data-node-id="I306:17279;26485:42806" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                    <div className="border-[#d2d6da] border-b border-solid content-stretch flex flex-col h-[24px] items-start justify-center relative shrink-0 w-full" data-node-id="I306:17279;26485:42807" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-h-px relative w-full" data-node-id="I306:17279;26485:42807;26485:42902" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                        <div className="content-stretch flex h-full items-end pb-[4px] relative shrink-0" data-node-id="I306:17279;26485:42807;26485:42903" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--components\/input\/placeholder-color_inputtext,rgba(137,145,169,0.6))] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17279;26485:42807;26485:42904">
+                            <p className="leading-[normal]">Выберите организацию</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute content-stretch flex flex-col items-center justify-center right-0 rounded-[100px] size-[16px] top-[3px]" data-node-id="I306:17279;26485:42807;26485:42906" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                        <div className="content-stretch flex flex-[1_0_0] gap-[4px] items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I306:17279;26485:42807;26485:42906;3971:14994" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                          <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 size-[16px]" data-node-id="I306:17279;26485:42807;26485:42906;3971:14994;4008:17638" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                            <div className="flex-[1_0_0] min-h-px relative w-full" data-node-id="I306:17279;26485:42807;26485:42906;3971:14994;4008:17639" data-name="Состояние заполненности=Поля ввода между, Ориентация=Вертикальная">
+                              <img alt="" className="absolute block inset-0 max-w-none size-full" src={img} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute left-[350px] size-[16px] top-[20px]" data-node-id="306:17280" data-name="clickCursor">
+                <div className="absolute bg-[#6cc] inset-0 opacity-50 rounded-[32px]" data-node-id="I306:17280;3784:15252" data-name="dot" />
+                <CursorArrow className="absolute left-px size-[24px] top-[5px]" />
+              </div>
+              <div className="absolute left-[172px] size-[16px] top-[21px]" data-node-id="337:17361" data-name="clickCursor">
+                <div className="absolute bg-[#6cc] inset-0 opacity-50 rounded-[32px]" data-node-id="I337:17361;3784:15252" data-name="dot" />
+                <CursorArrow className="absolute left-px size-[24px] top-[5px]" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-[#f8f8f8] content-stretch flex flex-col gap-[12px] items-start pl-[20px] pr-[16px] py-[16px] relative rounded-bl-[8px] rounded-br-[8px] shrink-0 w-full" data-node-id="306:17281" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+          <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-node-id="306:17282" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+            <div className="content-stretch flex items-start pl-[8px] relative shrink-0" data-node-id="306:17283" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="306:17284">
+                МОЖНО ОТОБРАТЬ
+              </p>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="306:17285" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-w-px relative" data-node-id="306:17286" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                <div className="content-stretch flex gap-[6px] h-[24px] items-center justify-center px-[10px] relative rounded-[100px] shrink-0" data-node-id="306:17289" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                  <div className="content-stretch flex items-start relative shrink-0" data-node-id="I306:17289;36:20048" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17289;36:20048;36:20057">
+                      Проверенные
+                    </p>
+                  </div>
+                  <div className="bg-[#656c87] relative rounded-[4px] shrink-0 size-[3px]" data-node-id="I306:17289;36:20049" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false" />
+                  <div className="content-stretch flex items-start relative shrink-0" data-node-id="I306:17289;36:20050" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17289;36:20050;36:20057">
+                      Нет
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-w-px relative" data-node-id="306:17290" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                <div className="content-stretch flex gap-[6px] h-[24px] items-center justify-center px-[10px] relative rounded-[100px] shrink-0" data-node-id="306:17293" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                  <div className="content-stretch flex items-start relative shrink-0" data-node-id="I306:17293;36:20048" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17293;36:20048;36:20057">
+                      Опубликованные
+                    </p>
+                  </div>
+                  <div className="bg-[#656c87] relative rounded-[4px] shrink-0 size-[3px]" data-node-id="I306:17293;36:20049" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false" />
+                  <div className="content-stretch flex items-start relative shrink-0" data-node-id="I306:17293;36:20050" data-name="Состояние=Без набранных, Окно=true, Документы=Все, Непрочитанные=false">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[#656c87] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I306:17293;36:20050;36:20057">
+                      Нет
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: TEXT/primary_text-color: #CC3D00, TEXT/label_text-color: #8991A9, TEXT/Regular/font-size_xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), shadow_d: Effect(type: DROP_SHADOW, color: color/shadow-color_d, offset: (0, 0), radius: blur/shadow-blur_d, spread: 0), COMPONENTS/POPUP/icon-color_closeButton_link: #656C87, TEXT/Regular/font-size_m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), ICONS/icon-size_s: Font(family: "icon/font-family/s_icon_font-family", style: Regular, size: icon/icon_size/icon-size_s, weight: 400, lineHeight: 100, letterSpacing: 0), ICONS/unaccented_icon-color: #CCCCCC, BORDER/unaccented_border-color: #D2D6DA, TEXT/label_contrast_text-color: #656C87, ICONS/secondary_icon-color: #656C87, BACKGROUND/unaccented_background-color: #F8F8F8, shadow_a: Effect(type: DROP_SHADOW, color: #0000001F, offset: (0, 0), radius: 18, spread: 0).
+
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.
