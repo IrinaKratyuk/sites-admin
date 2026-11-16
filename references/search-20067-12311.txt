@@ -1,0 +1,99 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/d3e6ebaf-d851-4890-9a93-9f6d0d497cb8";
+const imgVisibleFalse = `${assetPathPrefix}/dee5c.svg`;
+
+type CaretCursorProps = {
+  className?: string;
+  visible?: boolean;
+};
+
+function CaretCursor({ className, visible = false }: CaretCursorProps) {
+  return (
+    <div className={className || "h-[18px] relative w-0"} data-node-id="11704:5939">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVisibleFalse} />
+    </div>
+  );
+}
+
+type WebDemoProps = {
+  className?: string;
+  contrast?: boolean;
+  state?: "стерт" | "покой" | "фокус" | "набран" | "набран без фокуса";
+};
+
+export default function WebDemo({ className, contrast = false, state = "покой" }: WebDemoProps) {
+  const is = state === "набран без фокуса";
+  const is1 = state === "набран";
+  const isAndContrast = state === "покой" && contrast;
+  const isAndContrast1 = state === "фокус" && contrast;
+  const isAndContrast2 = state === "набран" && contrast;
+  const isAndContrast3 = state === "набран без фокуса" && contrast;
+  const isAndContrast4 = state === "стерт" && contrast;
+  const isAndNotContrast = state === "фокус" && !contrast;
+  const isAndNotContrast1 = state === "набран" && !contrast;
+  const isAndNotContrast2 = state === "набран без фокуса" && !contrast;
+  const isAndNotContrast3 = state === "стерт" && !contrast;
+  const isContrast = contrast;
+  const isOr = ["фокус", "стерт"].includes(state);
+  return (
+    <div className={className || "content-stretch flex items-start relative w-[300px]"} id={isAndContrast4 ? "node-20067_12330" : isAndNotContrast3 ? "node-20067_12328" : isAndContrast3 ? "node-20067_12326" : isAndNotContrast2 ? "node-20067_12324" : isAndContrast2 ? "node-20067_12322" : isAndNotContrast1 ? "node-20067_12320" : isAndContrast1 ? "node-20067_12318" : isAndNotContrast ? "node-20067_12316" : isAndContrast ? "node-20067_12314" : "node-20067_12312"}>
+      <div className={`${String.raw`border border-[var(--border\/pale_border-color,#e5e7eb)] border-solid content-stretch flex flex-[1_0_0] gap-[var(--offset\/offset_2xs,4px)] h-[26px] items-center min-w-px overflow-clip pl-[var(--offset\/offset_m,12px)] pr-[var(--offset\/offset_2xs,4px)] relative rounded-[var(--components\/button\/border-radius_button,100px)] `}${isContrast ? String.raw`bg-[var(--background\/background-color,white)]` : String.raw`bg-[var(--background\/unaccented_background-color,#f8f8f8)]`}`} id={isAndContrast4 ? "node-20067_12331" : isAndNotContrast3 ? "node-20067_12329" : isAndContrast3 ? "node-20067_12327" : isAndNotContrast2 ? "node-20067_12325" : isAndContrast2 ? "node-20067_12323" : isAndNotContrast1 ? "node-20067_12321" : isAndContrast1 ? "node-20067_12319" : isAndNotContrast ? "node-20067_12317" : isAndContrast ? "node-20067_12315" : "node-20067_12313"} data-name="Web/searchInput">
+        {["покой", "фокус", "набран без фокуса", "стерт"].includes(state) && (
+          <button className="content-stretch cursor-pointer flex flex-[1_0_0] items-center min-w-px relative" id={isAndContrast4 ? "node-I20067_12331-20067_11848" : isAndNotContrast3 ? "node-I20067_12329-20067_11842" : isAndContrast3 ? "node-I20067_12327-20067_11866" : isAndNotContrast2 ? "node-I20067_12325-20067_11860" : isAndContrast1 ? "node-I20067_12319-20067_11848" : isAndNotContrast ? "node-I20067_12317-20067_11842" : isAndContrast ? "node-I20067_12315-20067_11848" : "node-I20067_12313-20067_11842"} data-name="wrap">
+            {["покой", "набран без фокуса"].includes(state) && (
+              <p className={`${String.raw`[word-break:break-word] font-[family-name:var(--font\/font-family\/default,"Inter:Regular")] font-[var(--font\/font-weight\/regular,400)] leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap `}${is ? String.raw`text-[color:var(--text\/text-color,black)]` : String.raw`text-[color:var(--components\/input\/placeholder-color_inputtext,rgba(137,145,169,0.6))]`}`} id={isAndContrast3 ? "node-I20067_12327-20067_11867" : isAndNotContrast2 ? "node-I20067_12325-20067_11861" : isAndContrast ? "node-I20067_12315-20067_11850" : "node-I20067_12313-20067_11844"}>
+                {is ? "Текст" : isAndContrast ? "Найти" : "Найти"}
+              </p>
+            )}
+            {isOr && (
+              <>
+                <CaretCursor className="h-[18px] relative shrink-0 w-0" />
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--components\/input\/placeholder-color_inputtext,rgba(137,145,169,0.6))] text-[length:var(--font\/font-size\/font-size_m,14px)] text-left tracking-[-0.1974px] whitespace-nowrap" id={isAndContrast4 ? "node-I20067_12331-20067_11850" : isAndNotContrast3 ? "node-I20067_12329-20067_11844" : isAndContrast1 ? "node-I20067_12319-20067_11850" : "node-I20067_12317-20067_11844"}>
+                  Найти
+                </p>
+              </>
+            )}
+          </button>
+        )}
+        {is1 && (
+          <div className="content-stretch flex flex-[1_0_0] items-center min-w-px relative" id={isContrast ? "node-I20067_12323-20067_11866" : "node-I20067_12321-20067_11860"} data-name="wrap">
+            <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" id={isContrast ? "node-I20067_12323-20067_11867" : "node-I20067_12321-20067_11861"}>
+              Текст
+            </p>
+            <CaretCursor className="h-[18px] relative shrink-0 w-0" />
+          </div>
+        )}
+        {["набран", "набран без фокуса"].includes(state) && (
+          <button className="content-stretch cursor-pointer flex flex-col items-center justify-center relative shrink-0" id={isAndContrast3 ? "node-I20067_12327-20067_11869" : isAndNotContrast2 ? "node-I20067_12325-20067_11863" : isAndContrast2 ? "node-I20067_12323-20067_11869" : "node-I20067_12321-20067_11863"} data-name="clearButton">
+            <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" id={isAndContrast3 ? "node-I20067_12327-20067_11869-5565_16629" : isAndNotContrast2 ? "node-I20067_12325-20067_11863-5565_16629" : isAndContrast2 ? "node-I20067_12323-20067_11869-5565_16629" : "node-I20067_12321-20067_11863-5565_16629"} data-name="Ui базовый набор / Font">
+              <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/s_icon_font-family,'cbuc-icons:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/label_icon-color,#8991a9)] text-[length:var(--icon\/icon_size\/icon-size_s,16px)] text-left whitespace-nowrap" id={isAndContrast3 ? "node-I20067_12327-20067_11869-5565_16629-8306_1722" : isAndNotContrast2 ? "node-I20067_12325-20067_11863-5565_16629-8306_1722" : isAndContrast2 ? "node-I20067_12323-20067_11869-5565_16629-8306_1722" : "node-I20067_12321-20067_11863-5565_16629-8306_1722"}>{`\uE66C`}</p>
+            </div>
+          </button>
+        )}
+        {is1 && (
+          <button className="content-stretch cursor-pointer flex flex-col items-center justify-center pr-[var(--offset\/offset_2xs,4px)] relative shrink-0" id={isContrast ? "node-I20067_12323-20067_11870" : "node-I20067_12321-20067_11864"} data-name="searchButton">
+            <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" id={isContrast ? "node-I20067_12323-20067_11870-5565_16629" : "node-I20067_12321-20067_11864-5565_16629"} data-name="Ui базовый набор / Font">
+              <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/secondary_icon-color,#656c87)] text-left whitespace-nowrap" id={isContrast ? "node-I20067_12323-20067_11870-5565_16629-8306_1722" : "node-I20067_12321-20067_11864-5565_16629-8306_1722"}>{`\uE662`}</p>
+            </div>
+          </button>
+        )}
+        {is && (
+          <div className="content-stretch flex flex-col items-center justify-center pr-[var(--offset\/offset_2xs,4px)] relative shrink-0" id={isContrast ? "node-I20067_12327-20067_11870" : "node-I20067_12325-20067_11864"} data-name="searchButton">
+            <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" id={isContrast ? "node-I20067_12327-20067_11870-5565_16629" : "node-I20067_12325-20067_11864-5565_16629"} data-name="Ui базовый набор / Font">
+              <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/secondary_icon-color,#656c87)] whitespace-nowrap" id={isContrast ? "node-I20067_12327-20067_11870-5565_16629-8306_1722" : "node-I20067_12325-20067_11864-5565_16629-8306_1722"}>{`\uE662`}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: ICONS/icon-size_s: Font(family: "cbuc-icons", style: Regular, size: 16, weight: 400, lineHeight: 100, letterSpacing: 0).
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

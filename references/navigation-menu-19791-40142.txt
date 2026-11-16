@@ -1,0 +1,710 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/69ec594f-78dc-477c-985b-d9464d0e7664";
+const imgUnion = `${assetPathPrefix}/f9721.svg`;
+
+type ComponentProps = {
+  className?: string;
+  close?: boolean;
+  prop2Column?: boolean;
+  propValue?: boolean;
+  propValue1?: "On hover" | "On click";
+};
+
+export default function Component({ className, close = false, prop2Column = false, propValue = true, propValue1 = "On hover" }: ComponentProps) {
+  const isOnClickAndFalse = propValue1 === "On click" && !prop2Column;
+  const isOnClickAndIsFalseOrTrue = propValue1 === "On click" && [false, true].includes(prop2Column);
+  const isOnClickAndTrue = propValue1 === "On click" && prop2Column;
+  const isOnHoverAndFalse = propValue1 === "On hover" && !prop2Column;
+  const isOnHoverAndTrue = propValue1 === "On hover" && prop2Column;
+  return (
+    <div className={className || `content-stretch flex flex-col items-start relative ${isOnClickAndIsFalseOrTrue ? "rounded-[8px]" : ""}`} id={isOnClickAndTrue ? "node-19791_40208" : isOnClickAndFalse ? "node-19791_40186" : isOnHoverAndTrue ? "node-19791_40165" : "node-19791_40144"}>
+      {(isOnHoverAndFalse || isOnClickAndFalse || isOnClickAndTrue) && (
+        <div className={`${String.raw`bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex flex-col items-start pb-[24px] relative rounded-[8px] shrink-0 `}${isOnClickAndIsFalseOrTrue ? String.raw`gap-[2px] overflow-clip shadow-[0px_0px_var(--blur\/shadow-blur_a2,46px)_0px_var(--color\/shadow-color_a,rgba(0,0,0,0.12)),0px_0px_var(--blur\/shadow-blur_a,15px)_0px_var(--color\/shadow-color_a,rgba(0,0,0,0.12))]` : String.raw`drop-shadow-[0px_0px_calc(var(--blur\/shadow-blur_a2,46px)/2)_var(--color\/shadow-color_a,rgba(0,0,0,0.12)),0px_0px_calc(var(--blur\/shadow-blur_a,15px)/2)_var(--color\/shadow-color_a,rgba(0,0,0,0.12))] gap-[4px] pt-[4px] px-[6px]`}`} id={isOnClickAndTrue ? "node-19791_40209" : isOnClickAndFalse ? "node-19791_40187" : "node-19791_40145"} data-name="Список разделов">
+          {isOnClickAndIsFalseOrTrue && (
+            <>
+              <div className={`content-stretch flex flex-col items-start pb-[2px] pl-[4px] pr-[6px] pt-[5px] relative shrink-0 ${isOnClickAndTrue ? "w-[230px]" : "w-[240px]"}`} id={isOnClickAndTrue ? "node-19791_40210" : "node-19791_40188"}>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40211" : "node-19791_40189"} data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-col items-center justify-center pl-[10px] pr-[2px] relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40211-19791_40105" : "node-I19791_40189-19791_40105"} data-name="icon">
+                    <p className="[word-break:break-word] font-['Accordion-Font-20:Regular'] leading-[normal] not-italic relative shrink-0 text-[20px] text-[color:var(--icon\/navigation_icon-color,#9cb1c7)] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40211-19791_40106" : "node-I19791_40189-19791_40106"}>{`\uE93E`}</p>
+                  </div>
+                  <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px relative rounded-[15px]" id={isOnClickAndTrue ? "node-I19791_40211-19791_40107" : "node-I19791_40189-19791_40107"} data-name="content">
+                    <div className="content-stretch flex flex-[1_0_0] h-full items-center min-w-px pl-[12px] pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40211-19791_40108" : "node-I19791_40189-19791_40108"} data-name="backText">
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40211-19791_40109" : "node-I19791_40189-19791_40109"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40211-19791_40110" : "node-I19791_40189-19791_40110"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40211-19791_40110-19791_40612" : "node-I19791_40189-19791_40110-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40211-19791_40110-19791_40612-19791_40647" : "node-I19791_40189-19791_40110-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40211-19791_40110-19791_40612-19791_40647-19791_40052" : "node-I19791_40189-19791_40110-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[12px] items-start pl-[36px] pr-[6px] relative shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40212" : "node-19791_40190"} data-name="Для двух колонок">
+                <div className={`content-stretch flex flex-col gap-[2px] items-start relative ${isOnClickAndTrue ? "shrink-0 w-[188px]" : "flex-[1_0_0] min-w-px"}`} id={isOnClickAndTrue ? "node-19791_40213" : "node-19791_40191"} data-name="1 колонка">
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40214" : "node-19791_40192"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40214-19791_40101" : "node-I19791_40192-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40214-19791_40102" : "node-I19791_40192-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40214-19791_40103" : "node-I19791_40192-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40214-19791_40103-19791_40612" : "node-I19791_40192-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40214-19791_40103-19791_40612-19791_40647" : "node-I19791_40192-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40214-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40192-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40215" : "node-19791_40193"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40215-19791_40101" : "node-I19791_40193-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40215-19791_40102" : "node-I19791_40193-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40215-19791_40103" : "node-I19791_40193-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40215-19791_40103-19791_40612" : "node-I19791_40193-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40215-19791_40103-19791_40612-19791_40647" : "node-I19791_40193-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40215-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40193-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40216" : "node-19791_40194"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40216-19791_40101" : "node-I19791_40194-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40216-19791_40102" : "node-I19791_40194-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40216-19791_40103" : "node-I19791_40194-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40216-19791_40103-19791_40612" : "node-I19791_40194-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40216-19791_40103-19791_40612-19791_40647" : "node-I19791_40194-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40216-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40194-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40217" : "node-19791_40195"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40217-19791_40101" : "node-I19791_40195-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40217-19791_40102" : "node-I19791_40195-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40217-19791_40103" : "node-I19791_40195-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40217-19791_40103-19791_40612" : "node-I19791_40195-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40217-19791_40103-19791_40612-19791_40647" : "node-I19791_40195-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40217-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40195-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40218" : "node-19791_40196"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40218-19791_40101" : "node-I19791_40196-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40218-19791_40102" : "node-I19791_40196-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40218-19791_40103" : "node-I19791_40196-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40218-19791_40103-19791_40612" : "node-I19791_40196-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40218-19791_40103-19791_40612-19791_40647" : "node-I19791_40196-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40218-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40196-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40219" : "node-19791_40197"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40219-19791_40101" : "node-I19791_40197-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40219-19791_40102" : "node-I19791_40197-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40219-19791_40103" : "node-I19791_40197-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40219-19791_40103-19791_40612" : "node-I19791_40197-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40219-19791_40103-19791_40612-19791_40647" : "node-I19791_40197-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40219-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40197-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[12px] relative rounded-[15px] shrink-0 w-full" id={isOnClickAndTrue ? "node-19791_40220" : "node-19791_40198"} data-name="Меню/itemMenu">
+                    <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" id={isOnClickAndTrue ? "node-I19791_40220-19791_40101" : "node-I19791_40198-19791_40101"}>
+                      <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40220-19791_40102" : "node-I19791_40198-19791_40102"}>
+                        Пункт
+                      </p>
+                    </div>
+                    <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40220-19791_40103" : "node-I19791_40198-19791_40103"} data-name="Меню/menuTemplateRight">
+                      <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" id={isOnClickAndTrue ? "node-I19791_40220-19791_40103-19791_40612" : "node-I19791_40198-19791_40103-19791_40612"} data-name="Меню/CounterMenu">
+                        <div className="content-stretch flex flex-col items-start relative shrink-0" id={isOnClickAndTrue ? "node-I19791_40220-19791_40103-19791_40612-19791_40647" : "node-I19791_40198-19791_40103-19791_40612-19791_40647"} data-name="viewCounter">
+                          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" id={isOnClickAndTrue ? "node-I19791_40220-19791_40103-19791_40612-19791_40647-19791_40052" : "node-I19791_40198-19791_40103-19791_40612-19791_40647-19791_40052"}>
+                            <p className="leading-[normal]">13</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {isOnClickAndTrue && (
+                  <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-[188px]" data-node-id="19791:40221" data-name="2 колонка">
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40222" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40222;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40222;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40222;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40222;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40222;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40222;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40223" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40223;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40223;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40223;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40223;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40223;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40223;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40224" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40224;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40224;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40224;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40224;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40224;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40224;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40225" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40225;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40225;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40225;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40225;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40225;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40225;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40226" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40226;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40226;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40226;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40226;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40226;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40226;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40227" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40227;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40227;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40227;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40227;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40227;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40227;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40228" data-name="Меню/itemMenu">
+                      <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40228;19791:40097">
+                        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40228;19791:40098">
+                          Пункт
+                        </p>
+                      </div>
+                      <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40228;19791:40099" data-name="Меню/menuTemplateRight">
+                        <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40228;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40228;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                            <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40228;19791:40099;19791:40612;19791:40647;19791:40052">
+                              <p className="leading-[normal]">13</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+          {isOnHoverAndFalse && propValue && (
+            <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[36px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-[188px]" data-node-id="19791:40146" data-name="Меню/itemMenu">
+              <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40146;19791:40089">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] tracking-[-0.282px] whitespace-nowrap" data-node-id="I19791:40146;19791:40090">
+                  Пункт
+                </p>
+              </div>
+              <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40146;19791:40091" data-name="Меню/menuTemplateRight">
+                <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40146;19791:40091;19791:40612" data-name="Меню/CounterMenu">
+                  <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40146;19791:40091;19791:40612;19791:40647" data-name="viewCounter">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40146;19791:40091;19791:40612;19791:40647;19791:40052">
+                      <p className="leading-[normal]">13</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {isOnHoverAndFalse && (
+            <div className="content-stretch flex gap-[12px] items-start relative shrink-0 w-full" data-node-id="19791:40147" data-name="Для двух колонок">
+              <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-[188px]" data-node-id="19791:40148" data-name="1 колонка">
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40149" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40149;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40149;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40149;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40149;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40149;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40149;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40150" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40150;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40150;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40150;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40150;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40150;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40150;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40151" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40151;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40151;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40151;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40151;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40151;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40151;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40152" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40152;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40152;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40152;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40152;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40152;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40152;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40153" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40153;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40153;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40153;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40153;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40153;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40153;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40154" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40154;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40154;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40154;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40154;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40154;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40154;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40155" data-name="Меню/itemMenu">
+                  <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40155;19791:40097">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40155;19791:40098">
+                      Пункт
+                    </p>
+                  </div>
+                  <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40155;19791:40099" data-name="Меню/menuTemplateRight">
+                    <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40155;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                      <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40155;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40155;19791:40099;19791:40612;19791:40647;19791:40052">
+                          <p className="leading-[normal]">13</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {isOnClickAndIsFalseOrTrue && (
+        <div className="absolute content-stretch drop-shadow-[1px_1px_3px_rgba(0,0,0,0.1)] flex flex-col items-start right-[-32px] size-[28px] top-[4px]" id={isOnClickAndTrue ? "node-19791_40229" : "node-19791_40207"} data-name="closeButton">
+          <div className="bg-[var(--background\/closebutton_background-color_navigationpanels-accordion,rgba(202,202,202,0.7))] content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[100px] w-full" id={isOnClickAndTrue ? "node-I19791_40229-19791_40723" : "node-I19791_40207-19791_40723"} data-name="_closeButton">
+            <div className="relative shrink-0 size-[12px]" id={isOnClickAndTrue ? "node-I19791_40229-19791_40724" : "node-I19791_40207-19791_40724"} data-name="Union">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+            </div>
+          </div>
+        </div>
+      )}
+      {isOnHoverAndFalse && close && (
+        <div className="absolute content-stretch drop-shadow-[1px_1px_3px_rgba(0,0,0,0.1)] flex flex-col items-start right-[-32px] size-[28px] top-[4px]" data-node-id="19791:40164" data-name="closeButton">
+          <div className="bg-[var(--background\/closebutton_background-color_navigationpanels-accordion,rgba(202,202,202,0.7))] content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I19791:40164;19791:40723" data-name="_closeButton">
+            <div className="relative shrink-0 size-[12px]" data-node-id="I19791:40164;19791:40724" data-name="Union">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+            </div>
+          </div>
+        </div>
+      )}
+      {isOnHoverAndTrue && (
+        <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch drop-shadow-[0px_0px_calc(var(--blur\/shadow-blur_a2,46px)/2)_var(--color\/shadow-color_a,rgba(0,0,0,0.12)),0px_0px_calc(var(--blur\/shadow-blur_a,15px)/2)_var(--color\/shadow-color_a,rgba(0,0,0,0.12))] flex flex-col gap-[4px] items-start pb-[24px] pt-[4px] px-[6px] relative rounded-[8px] shrink-0" data-node-id="19791:40166">
+          {propValue && (
+            <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[36px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-[188px]" data-node-id="19791:40167" data-name="Меню/itemMenu">
+              <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40167;19791:40089">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_4xl,20px)] tracking-[-0.282px] whitespace-nowrap" data-node-id="I19791:40167;19791:40090">
+                  Пункт
+                </p>
+              </div>
+              <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40167;19791:40091" data-name="Меню/menuTemplateRight">
+                <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40167;19791:40091;19791:40612" data-name="Меню/CounterMenu">
+                  <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40167;19791:40091;19791:40612;19791:40647" data-name="viewCounter">
+                    <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40167;19791:40091;19791:40612;19791:40647;19791:40052">
+                      <p className="leading-[normal]">13</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div className="content-stretch flex gap-[12px] items-start relative shrink-0" data-node-id="19791:40168" data-name="Для двух колонок">
+            <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-[188px]" data-node-id="19791:40169" data-name="1 колонка">
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40170" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40170;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40170;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40170;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40170;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40170;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40170;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40171" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40171;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40171;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40171;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40171;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40171;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40171;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40172" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40172;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40172;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40172;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40172;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40172;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40172;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40173" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40173;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40173;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40173;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40173;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40173;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40173;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40174" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40174;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40174;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40174;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40174;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40174;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40174;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40175" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40175;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40175;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40175;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40175;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40175;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40175;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40176" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40176;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40176;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40176;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40176;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40176;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40176;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-[188px]" data-node-id="19791:40177" data-name="2 колонка">
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40178" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40178;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40178;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40178;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40178;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40178;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40178;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40179" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40179;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40179;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40179;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40179;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40179;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40179;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40180" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40180;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40180;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40180;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40180;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40180;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40180;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40181" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40181;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40181;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40181;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40181;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40181;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40181;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40182" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40182;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40182;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40182;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40182;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40182;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40182;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40183" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40183;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40183;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40183;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40183;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40183;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40183;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--background\/navigation_menu_fill,#3e5266)] content-stretch flex h-[30px] items-center overflow-clip pl-[10px] relative rounded-[15px] shrink-0 w-full" data-node-id="19791:40184" data-name="Меню/itemMenu">
+                <div className="content-stretch flex flex-[1_0_0] items-center min-w-px pr-[10px] relative" data-node-id="I19791:40184;19791:40097">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/navigation_text-color,#e9ebec)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-nowrap" data-node-id="I19791:40184;19791:40098">
+                    Пункт
+                  </p>
+                </div>
+                <div className="border-[var(--background\/navigation_menu_fill,#3e5266)] border-l border-solid content-stretch flex flex-col h-full items-end justify-center relative shrink-0" data-node-id="I19791:40184;19791:40099" data-name="Меню/menuTemplateRight">
+                  <div className="content-stretch flex items-center justify-center px-[9px] py-[4.5px] relative rounded-[14px] shrink-0" data-node-id="I19791:40184;19791:40099;19791:40612" data-name="Меню/CounterMenu">
+                    <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I19791:40184;19791:40099;19791:40612;19791:40647" data-name="viewCounter">
+                      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/navigation_primary_text-color,#ff9c6c)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-center tracking-[-0.1974px] whitespace-nowrap" data-node-id="I19791:40184;19791:40099;19791:40612;19791:40647;19791:40052">
+                        <p className="leading-[normal]">13</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isOnHoverAndTrue && close && (
+        <div className="absolute content-stretch drop-shadow-[1px_1px_3px_rgba(0,0,0,0.1)] flex flex-col items-start right-[-32px] size-[28px] top-[4px]" data-node-id="19791:40185" data-name="closeButton">
+          <div className="bg-[var(--background\/closebutton_background-color_navigationpanels-accordion,rgba(202,202,202,0.7))] content-stretch flex flex-[1_0_0] flex-col items-center justify-center min-h-px relative rounded-[100px] w-full" data-node-id="I19791:40185;19791:40723" data-name="_closeButton">
+            <div className="relative shrink-0 size-[12px]" data-node-id="I19791:40185;19791:40724" data-name="Union">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgUnion} />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: font-size/bold/4xl: Font(family: "font/font-family/default", style: Semi Bold, size: font/font-size/font-size_4xl, weight: font/font-weight/bold, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/xl: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xl, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), shadow_a: Effect(type: DROP_SHADOW, color: color/shadow-color_a, offset: (0, 0), radius: blur/shadow-blur_a, spread: 0); Effect(type: DROP_SHADOW, color: color/shadow-color_a, offset: (0, 0), radius: blur/shadow-blur_a2, spread: 0).
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.
