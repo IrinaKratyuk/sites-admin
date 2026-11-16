@@ -2,8 +2,41 @@
 const esc=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 const icon=hex=>String.fromCodePoint(parseInt(hex,16));
 const nav=document.getElementById("navigation");
-nav.innerHTML=navigation.map(item=>'<button type="button" class="nav-item '+(item.name==="Конструктор"?"group":item.name==="Сайты"?"current":"")+'" '+(item.name==="Сайты"?'aria-current="page"':'')+'><i aria-hidden="true" class="icon">'+icon(item.icon)+'</i><span class="caption">'+esc(item.name)+'</span></button>').join("");
-// Для остальных разделов макеты пока не заданы; они остаются без переходов.
+let registrySection='constructor';
+const sectionMenus={constructor:['Сайты','Виджеты','Секции','Палитры','Шрифты','Шаблоны'],showcase:['Сайты','Заказы','Сертификаты','Бонусы']};
+function drawNavigation(){
+nav.innerHTML=navigation.map(item=>{
+const section=item.name==='Конструктор'?'constructor':item.name==='Витрина'?'showcase':null,active=section===registrySection;
+return '<button type="button" class="nav-item '+(active?'group':'')+'" '+(section?'data-section-menu="'+section+'" aria-haspopup="menu" aria-expanded="false"':'')+'><i aria-hidden="true" class="icon">'+icon(item.icon)+'</i><span class="caption">'+esc(item.name)+'</span></button>'+(active?'<button type="button" class="nav-item current" data-section-sites="'+section+'" aria-current="page"><span class="caption">Сайты</span></button>':'');
+}).join('');
+requestAnimationFrame(updateNavigationFade);
+}
+function updateNavigationFade(){
+nav.querySelectorAll('.caption').forEach(caption=>caption.classList.toggle('is-overflowing',caption.scrollWidth>caption.clientWidth));
+}
+new ResizeObserver(updateNavigationFade).observe(nav);
+function closeNavigationMenu(){document.getElementById('section-menu')?.remove();nav.querySelectorAll('[aria-expanded]').forEach(button=>button.setAttribute('aria-expanded','false'))}
+function openNavigationMenu(section,origin){
+const same=document.getElementById('section-menu')?.dataset.section===section;closeNavigationMenu();if(same)return;
+const title=section==='constructor'?'Конструктор':'Витрина',item=navigation.find(item=>item.name===title);
+const menu=createNavigationMenu({title,icon:item.icon,items:sectionMenus[section].map(label=>({id:label,label,disabled:label!=='Сайты'})),activeItem:section===registrySection?'Сайты':null,onSelect:()=>switchRegistry(section),onClose:()=>{closeNavigationMenu();origin.focus()}});
+menu.id='section-menu';menu.dataset.section=section;
+stage.append(menu);const rect=origin.getBoundingClientRect(),bounds=stage.getBoundingClientRect();menu.style.top=Math.max(0,Math.min(rect.top-bounds.top-5,stage.clientHeight-menu.offsetHeight))+'px';origin.setAttribute('aria-expanded','true');
+}
+function switchRegistry(section){
+closeNavigationMenu();if(section===registrySection)return;
+closeFilter();closeSort();closeCard();registrySection=section;stage.classList.toggle('showcase-mode',section==='showcase');
+document.querySelectorAll('main>header .add, main>header .tool, .toolbar .top-tools>.tool').forEach(button=>button.disabled=section==='showcase');
+const input=document.getElementById('search');input.readOnly=section==='showcase';input.closest('.search-control').hidden=section==='showcase';
+drawNavigation();registryDetail.scrollTop=0;render();
+}
+document.addEventListener('click',event=>{
+const link=event.target.closest('[data-section-sites]');if(link){switchRegistry(link.dataset.sectionSites);return}
+const origin=event.target.closest('[data-section-menu]');if(origin){openNavigationMenu(origin.dataset.sectionMenu,origin);return}
+if(event.target.closest('.section-menu-close')||!event.target.closest('#section-menu'))closeNavigationMenu();
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('section-menu')){event.stopImmediatePropagation();closeNavigationMenu()}});
+drawNavigation();
 document.getElementById("regions").innerHTML=regions.map((region,i)=>'<button type="button" class="region '+(i===0?"all selected":"")+'" data-region="'+i+'" aria-pressed="'+(i===0)+'">'+(i===0?'':'<span class="arrow" aria-hidden="true">'+icon("E96E")+'</span>')+'<span class="region-name">'+esc(region.name)+'</span><span class="count">'+esc(region.count)+'</span></button>').join("");
 
 let selected=0, region=0, multi=false, selectedSites=new Set(), currentSite=null, cardTab="Страницы", cardPage=0;
@@ -40,10 +73,15 @@ const [day,month]=String(site.date||"").trim().split(/\s+/);
 return site.date?(months.indexOf(month)+1)*32+Number(day):0;
 }
 function render(){
+if(registrySection==='showcase'){renderShowcase();return}
+document.querySelector('.columns').innerHTML='<span>Последний визит</span><span>Посетители</span><span>Отклики</span><span>Шаблон</span>';
+document.getElementById('showcase-search-placeholder')?.remove();
+document.querySelectorAll('[data-region]').forEach(button=>{button.disabled=false;const active=Number(button.dataset.region)===region;button.classList.toggle('selected',active);button.setAttribute('aria-pressed',String(active))});
 closeMarksMenu();
 syncRegistryScroll();
-document.getElementById("search-clear").hidden=!document.getElementById("search").value;
+syncSearchField(document.getElementById("search"));
 // Folder counters describe the full dataset, independently of search and filters.
+rows.setAttribute("aria-label","Список сайтов");
 const counts=sites.reduce((totals,site)=>{totals[site.regionId]=(totals[site.regionId]||0)+1;return totals},{});
 document.querySelectorAll('[data-region]').forEach(button=>{const id=Number(button.dataset.region);button.querySelector('.count').textContent=String(id===0?sites.length:counts[id]||0)});
 const visible=visibleSites();rows.setAttribute("aria-multiselectable",String(multi));stage.classList.toggle("multi-mode",multi);
@@ -57,6 +95,15 @@ let empty=document.getElementById('empty-result');if(!empty){empty=document.crea
 filterButton.classList.toggle("has-filters",(filters.templates.length||filters.companies.length||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
 }
 
+function renderShowcase(){
+closeMarksMenu();stage.classList.remove('multi-mode');document.getElementById('operations')?.setAttribute('hidden','');document.getElementById('empty-result')?.setAttribute('hidden','');registryDetail.classList.remove('empty-registry');
+document.querySelector('.columns').innerHTML='<span>Посетители</span><span>Заказы</span>';
+const counts=showcaseSites.reduce((all,site)=>(all[site.regionId]=(all[site.regionId]||0)+1,all),{});
+document.querySelectorAll('[data-region]').forEach(button=>{const id=Number(button.dataset.region);button.disabled=true;button.classList.toggle('selected',id===0);button.setAttribute('aria-pressed',String(id===0));button.querySelector('.count').textContent=String(id===0?showcaseSites.length:counts[id]||0)});
+rows.setAttribute('aria-label','Сайты витрины');rows.setAttribute('aria-multiselectable','false');
+rows.innerHTML=showcaseSites.map(site=>'<div class="showcase-row"><div class="showcase-site"><div class="site-line"><span class="site-name '+(site.kind.startsWith('muted')||site.kind.startsWith('verified')?'muted':'')+'">'+esc(site.name)+'</span><span class="address">'+esc(site.address)+'</span></div>'+(site.company?'<div class="company-line"><span class="company">'+esc(site.company)+'</span><span class="inn">'+esc(site.inn)+'</span></div>':'')+'</div><span class="showcase-type">'+iconHtml(site.kind.includes('shop')?'E9C1':'E984','showcase-accordion-icon')+'</span><span class="showcase-status '+(site.kind.startsWith('muted')?'is-muted':'')+'">'+(site.kind.startsWith('verified')?iconHtml('EB4D'):iconHtml('E9BC','icon24'))+'</span><span class="showcase-date">'+esc(site.date)+'</span><span class="showcase-visitors">'+esc(site.visitors)+'</span><span class="showcase-orders">'+esc(site.orders)+'</span><span class="showcase-category">'+esc(site.category)+'</span></div>').join('');
+let search=document.getElementById('showcase-search-placeholder');if(!search){search=document.createElement('div');search.id='showcase-search-placeholder';search.className='search-control';search.setAttribute('aria-label','Поиск по сайтам витрины пока недоступен');search.innerHTML='<span>Найти</span>';document.querySelector('.header-right').prepend(search)}
+}
 let pendingRegistryAction=null, confirmationOrigin=null, toastTimer;
 function closeRegistryConfirmation(){document.getElementById("registry-confirmation")?.remove();pendingRegistryAction=null;confirmationOrigin?.focus();confirmationOrigin=null}
 function confirmRegistryAction(action,ids,bulk=false){
@@ -125,8 +172,8 @@ const operation=event.target.closest("[data-operation]");if(operation&&selectedS
 });
 multiButton.addEventListener("click",()=>{multi=!multi;if(!multi){selectedOnly=false;selectedSites.clear()}render()});
 document.getElementById("search").addEventListener("input",()=>{registryDetail.scrollTop=0;render()});
-document.getElementById("search-clear").addEventListener("click",()=>{const input=document.getElementById("search");input.value="";registryDetail.scrollTop=0;render();input.focus()});
-document.getElementById("search-submit").addEventListener("click",()=>{render();document.getElementById("search").focus()});
+
+
 document.getElementById("regions").addEventListener("click",event=>{const button=event.target.closest("[data-region]");if(!button)return;region=Number(button.dataset.region);document.querySelectorAll("[data-region]").forEach(node=>{const active=Number(node.dataset.region)===region;node.classList.toggle("selected",active);node.setAttribute("aria-pressed",String(active))});render()});
 
 const sortButton=document.querySelector('.toolbar [aria-label="Настроить"]');
@@ -155,8 +202,10 @@ return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+f
 }
 function drawFilter(){
 let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
+const flagLabels=[['verified','Проверенные','Непроверенные'],['published','Опубликованные','Неопубликованные']];
+const selectedFlags=flagLabels.filter(([field])=>draft[field]!==null).map(([field,yes,no])=>'<div class="filter-selected-condition"><button class="filter-condition-label">'+(draft[field]?yes:no)+'</button><button class="filter-condition-remove" data-remove-flag="'+field+'" aria-label="Убрать условие '+(draft[field]?yes:no)+'">'+iconHtml('E66C')+'</button></div>').join('');
 const dirty=JSON.stringify(draft)!==JSON.stringify(emptyFilters())||JSON.stringify(draft)!==JSON.stringify(filters);
-panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div><button id="filter-close" aria-label="Закрыть фильтр"><img src="assets/cf100.svg" width="12" height="12" alt=""></button></div><div class="filter-fields">'+filterField('templates','Шаблон','Выберите шаблон')+filterField('companies','Организация','Выберите организацию')+'</div><div class="filter-extra"><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+[["verified","Проверенные"],["published","Опубликованные"]].map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
+panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div><button id="filter-close" aria-label="Закрыть фильтр"><img src="assets/cf100.svg" width="12" height="12" alt=""></button></div><div class="filter-fields">'+filterField('templates','Шаблон','Выберите шаблон')+filterField('companies','Организация','Выберите организацию')+selectedFlags+'</div><div class="filter-extra" '+(flagLabels.every(([field])=>draft[field]!==null)?'hidden':'')+'><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+flagLabels.filter(([field])=>draft[field]===null).map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
 }
 function lookupValues(field){return field==='templates'?templateCatalog.map(t=>t.name):[...new Set(sites.map(s=>s.company).filter(Boolean))]}
 function hideSuggestions(){document.querySelectorAll('.lookup-suggestions').forEach(list=>list.hidden=true);document.querySelectorAll('[data-lookup-input]').forEach(input=>input.setAttribute('aria-expanded','false'))}
@@ -192,6 +241,7 @@ if(!event.target.closest('.lookup-field'))hideSuggestions();
 if(event.target.closest("#filter-close"))closeFilter();
 if(event.target.closest("#filter-reset")){draft=emptyFilters();drawFilter()}
 if(event.target.closest("#filter-apply")){filters=copyFilters(draft);render();closeFilter()}
+const removeFlag=event.target.closest("[data-remove-flag]");if(removeFlag){draft[removeFlag.dataset.removeFlag]=null;drawFilter();return}
 const flag=event.target.closest("[data-flag]");if(flag){const field=flag.dataset.flag,value=flag.dataset.value==="true";draft[field]=draft[field]===value?null:value;drawFilter()}
 if(filterOpen&&!wasInsideFilter&&!event.target.closest('[aria-label="Фильтр"]'))closeFilter();
 });
@@ -200,7 +250,7 @@ function openCompanies(){
 companyDraft=[...draft.companies];document.getElementById('filter-panel').hidden=true;
 const panel=document.createElement('section');panel.id='company-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Выбор организаций');
 panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Организация</h2><input id="company-search" type="search" placeholder="Найти" aria-label="Найти организацию"><button id="company-save" aria-label="Сохранить выбор организаций">'+iconHtml('E75E','icon24')+'</button></div><div class="company-list">'+lookupValues('companies').map(company=>'<label class="company-option"><input type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span>'+esc(company)+'</span></label>').join('')+'</div></div><aside class="template-tools"><button id="company-close" aria-label="Закрыть выбор организаций"><img src="assets/cf100.svg" width="12" height="12" alt=""></button><div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
-stage.append(panel);
+stage.append(panel);enhanceSearchFields(panel);
 panel.querySelector('#company-search').addEventListener('input',event=>{const query=event.target.value.trim().toLocaleLowerCase('ru');panel.querySelectorAll('.company-option').forEach(row=>row.hidden=!row.textContent.toLocaleLowerCase('ru').includes(query))});
 panel.addEventListener('change',event=>{if(event.target.type==='checkbox'){const value=event.target.value;companyDraft=event.target.checked?[...new Set([...companyDraft,value])]:companyDraft.filter(company=>company!==value)}});
 panel.addEventListener('click',event=>{event.stopPropagation();if(event.target.closest('#company-save')){draft.companies=[...companyDraft];closeCompanies();drawFilter()}else if(event.target.closest('#company-close'))closeCompanies()});
@@ -211,7 +261,7 @@ function openTemplates(){
 templateDraft=[...draft.templates];document.getElementById('filter-panel').hidden=true;
 const panel=document.createElement('section');panel.id='template-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Выбор шаблонов');
 panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Шаблон</h2><input id="template-search" type="search" placeholder="Найти" aria-label="Найти шаблон"><button id="template-save" aria-label="Сохранить выбор шаблонов">'+iconHtml('E75E','icon24')+'</button></div><div id="template-selection" hidden><input id="template-all" type="checkbox" aria-label="Выбрать все шаблоны"><span></span><button id="template-clear" aria-label="Снять выделение шаблонов">'+iconHtml('E66C')+'</button></div><div class="template-grid">'+templateCatalog.map(t=>'<label class="template-tile" style="background:'+t.color+';--template-bg:'+t.color+'" data-template-name="'+esc(t.name)+'"><strong>'+esc(t.name)+'</strong><div class="template-image"><img src="assets/'+t.image+'" alt=""></div><input type="checkbox" data-template="'+esc(t.name)+'" aria-label="'+esc(t.name)+'"></label>').join('')+'</div></div><aside class="template-tools"><button id="template-close" aria-label="Закрыть выбор шаблонов"><img src="assets/cf100.svg" width="12" height="12" alt=""></button><button id="template-multi" aria-label="Множественный выбор шаблонов">'+iconHtml('E644','icon24')+'</button><div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
-stage.append(panel);syncTemplates();
+stage.append(panel);enhanceSearchFields(panel);syncTemplates();
 panel.querySelector('#template-search').addEventListener('input',event=>{const query=event.target.value.trim().toLocaleLowerCase('ru');panel.querySelectorAll('[data-template-name]').forEach(tile=>tile.hidden=!tile.dataset.templateName.toLocaleLowerCase('ru').includes(query))});
 panel.addEventListener('change',event=>{if(event.target.matches('[data-template]')){const value=event.target.dataset.template;templateDraft=event.target.checked?[...new Set([...templateDraft,value])]:templateDraft.filter(t=>t!==value)}if(event.target.id==='template-all')templateDraft=event.target.checked?templateCatalog.map(t=>t.name):[];syncTemplates()});
 panel.addEventListener('click',event=>{event.stopPropagation();if(event.target.closest('#template-save')){draft.templates=[...templateDraft];closeTemplates();drawFilter()}else if(event.target.closest('#template-close'))closeTemplates();else if(event.target.closest('#template-clear')){templateDraft=[];syncTemplates()}else if(event.target.closest('#template-multi')){panel.querySelector('#template-selection').hidden=false}});
@@ -266,5 +316,33 @@ const device=event.target.closest("[data-device]");if(device){document.querySele
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
 document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
+// Shared contrast search: Figma fLpLW1vBm7H88TenFl0GCv, 20067:12311.
+function syncSearchField(input){
+const wrapper=input?.closest('.search-control');if(!wrapper)return;
+const filled=input.value.length>0;wrapper.classList.toggle('is-filled',filled);
+wrapper.querySelectorAll('[data-search-action]').forEach(button=>button.hidden=!filled);
+}
+function enhanceSearchFields(root=document){
+root.querySelectorAll('input[type="search"]').forEach(input=>{
+if(input.closest('.search-control'))return;
+let wrapper=input.closest('.registry-search');
+if(!wrapper){wrapper=document.createElement('div');input.before(wrapper);wrapper.append(input)}
+wrapper.classList.add('search-control');
+// Reuse the registry controls; dynamic selectors receive the same controls.
+wrapper.querySelectorAll('button').forEach(button=>button.remove());
+wrapper.insertAdjacentHTML('beforeend','<button type="button" data-search-action="clear" aria-label="Очистить поиск"'+(input.id==='search'?' id="search-clear"':'')+' hidden>'+iconHtml('E66C')+'</button><button type="button" data-search-action="submit" aria-label="Поиск"'+(input.id==='search'?' id="search-submit"':'')+' hidden>'+iconHtml('E662')+'</button>');
+input.autocomplete='off';input.spellcheck=false;
+input.addEventListener('input',()=>syncSearchField(input));
+input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();input.dispatchEvent(new Event('input',{bubbles:true}))}});
+wrapper.addEventListener('mousedown',event=>{if(event.target.closest('[data-search-action]'))event.preventDefault()});
+wrapper.addEventListener('click',event=>{
+const button=event.target.closest('[data-search-action]');if(!button)return;
+if(button.dataset.searchAction==='clear')input.value='';
+input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();
+});
+syncSearchField(input);
+});
+}
+enhanceSearchFields();
 function fit(){closeMarksMenu();const graph=document.querySelector(".graph-slot");if(graph)graph.style.setProperty("--graph-scale",String(graph.clientWidth/515.828))}addEventListener("resize",fit);fit();render();
 
