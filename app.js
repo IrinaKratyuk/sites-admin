@@ -7,8 +7,8 @@ nav.innerHTML=navigation.map(item=>'<button type="button" class="nav-item '+(ite
 document.getElementById("regions").innerHTML=regions.map((region,i)=>'<button type="button" class="region '+(i===0?"all selected":"")+'" data-region="'+i+'" aria-pressed="'+(i===0)+'">'+(i===0?'':'<span class="arrow" aria-hidden="true">'+icon("E96E")+'</span>')+'<span class="region-name">'+esc(region.name)+'</span><span class="count">'+esc(region.count)+'</span></button>').join("");
 
 let selected=0, region=0, multi=false, selectedSites=new Set(), currentSite=null, cardTab="Страницы", cardPage=0;
-const emptyFilters=()=>({templates:[],company:"",verified:null,published:null});
-const copyFilters=value=>({...value,templates:[...value.templates]});
+const emptyFilters=()=>({templates:[],companies:[],verified:null,published:null});
+const copyFilters=value=>({...value,templates:[...value.templates],companies:[...value.companies]});
 let filters=emptyFilters(), draft=copyFilters(filters), filterOpen=false, templateDraft=null;
 let sortField="order", sortDirection=1, selectedOnly=false;
 const rows=document.getElementById("rows"), stage=document.getElementById("stage");
@@ -29,7 +29,7 @@ return result+esc(text.slice(start));
 }
 function visibleSites(){
 const query=document.getElementById("search").value.trim().toLocaleLowerCase("ru");
-const result=sites.filter(site=>(region===0||site.regionId===region)&&(!selectedOnly||selectedSites.has(site.id))&&[site.name,site.address,site.company,site.inn].join(" ").toLocaleLowerCase("ru").includes(query)&&(!filters.templates.length||filters.templates.includes(site.template))&&(!filters.company||(site.company||"")===filters.company)&&(filters.verified===null||Boolean(site.verified)===filters.verified)&&(filters.published===null||site.published===filters.published));
+const result=sites.filter(site=>(region===0||site.regionId===region)&&(!selectedOnly||selectedSites.has(site.id))&&[site.name,site.address,site.company,site.inn].join(" ").toLocaleLowerCase("ru").includes(query)&&(!filters.templates.length||filters.templates.includes(site.template))&&(!filters.companies.length||filters.companies.includes(site.company||""))&&(filters.verified===null||Boolean(site.verified)===filters.verified)&&(filters.published===null||site.published===filters.published));
 if(sortField!=="order")result.sort((a,b)=>sortValue(a,sortField)-sortValue(b,sortField)||a.id-b.id);
 return sortField!=="order"&&sortDirection===-1?result.reverse():result;
 }
@@ -54,7 +54,7 @@ const all=document.getElementById("mark-all");all.indeterminate=visible.some(s=>
 rows.innerHTML=visible.map(site=>'<div class="site-row" role="option" tabindex="0" aria-selected="'+(multi?selectedSites.has(site.id):site.id===selected)+'" data-current="'+(site.id===selected)+'" data-site="'+site.id+'"><span class="site-main"><label class="check"><input class="row-check" type="checkbox" aria-label="Выбрать '+esc(site.name)+'" '+(selectedSites.has(site.id)?'checked':'')+'></label><span class="site-text"><span class="site-line"><span title="'+esc(site.name)+'" class="site-name '+(!site.published?'muted':'')+'">'+highlightMatch(site.name)+'</span>'+(site.address?'<span class="address">'+highlightMatch(site.address)+'</span>':'')+'</span>'+(site.company?'<span class="company-line"><span class="company">'+highlightMatch(site.company)+'</span><span class="inn">'+highlightMatch(site.inn)+'</span></span>':'')+'</span></span><span class="site-status"><i class="icon" aria-label="'+(site.verified?'Проверено дизайнером':'')+'">'+(site.verified?icon("EB4D"):'')+'</i></span><span class="metrics"><span>'+esc(site.date)+'</span><span>'+esc(site.visitors)+'</span><span>'+esc(site.responses)+'</span><span>'+esc(site.template)+'</span></span><span class="row-commands"><button data-row-action="publication" aria-label="'+(site.published?'Снять с публикации':'Опубликовать')+'" title="'+(site.published?'Снять с публикации':'Опубликовать')+'">'+iconHtml(site.published?'E62F':'E631')+'</button><button data-row-action="delete" aria-label="Удалить сайт" title="Удалить">'+iconHtml('E65C')+'</button></span></div>').join("");
 document.querySelector('.detail').classList.toggle('empty-registry',!visible.length);
 let empty=document.getElementById('empty-result');if(!empty){empty=document.createElement('div');empty.id='empty-result';empty.setAttribute('role','status');empty.innerHTML='<div>Не найдено ни одной записи</div><img src="assets/bf295.svg" width="200" height="200" alt="">';rows.after(empty)}empty.hidden=!!visible.length;
-filterButton.classList.toggle("has-filters",(filters.templates.length||filters.company||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
+filterButton.classList.toggle("has-filters",(filters.templates.length||filters.companies.length||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
 }
 
 let pendingRegistryAction=null, confirmationOrigin=null, toastTimer;
@@ -85,7 +85,7 @@ function openMarksMenu(){
 if(document.getElementById("marks-menu")){closeMarksMenu();return}
 closeSort();const menu=document.createElement("section");menu.id="marks-menu";menu.setAttribute("role","menu");menu.setAttribute("aria-label","Отметки сайтов");
 menu.innerHTML='<div class="marks-title">ОТМЕЧЕНО '+selectedSites.size+'<button id="marks-close" aria-label="Закрыть меню отметок">'+iconHtml("E66C","icon24")+'</button></div>'+[["all","Отметить все"],["clear","Снять"],["invert","Инвертировать"],["only","Отобрать отмеченные"]].map(([value,label])=>'<button role="menuitem" data-marks="'+value+'">'+label+'</button>').join('');
-const bounds=document.getElementById('operations').getBoundingClientRect(), origin=stage.getBoundingClientRect(), scale=origin.width/1600;
+const bounds=document.getElementById('operations').getBoundingClientRect(), origin=stage.getBoundingClientRect(), scale=origin.width/stage.offsetWidth;
 menu.style.left=(bounds.left-origin.left)/scale+'px';menu.style.top=(bounds.top-origin.top)/scale-4+'px';stage.append(menu);document.getElementById("marks-toggle").setAttribute("aria-expanded","true");
 }
 document.addEventListener("click",event=>{
@@ -147,25 +147,64 @@ if(!event.target.closest('#sort-menu, [aria-label="Сортировать"]'))cl
 });
 document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSort()});
 
-function closeFilter(){closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false")}
+let companyDraft=null;
+function closeFilter(){closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false")}
+function filterField(field,title,placeholder){
+const values=draft[field];
+return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line">'+(values.length?'<span class="lookup-value" title="'+esc(values[0])+'">'+esc(values[0])+'</span><button class="lookup-remove" data-remove-first="'+field+'" aria-label="Убрать '+esc(values[0])+'">'+iconHtml('E66C')+'</button>':'')+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" role="listbox" aria-label="'+title+'" hidden></div></div>';
+}
 function drawFilter(){
 let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
 const dirty=JSON.stringify(draft)!==JSON.stringify(emptyFilters())||JSON.stringify(draft)!==JSON.stringify(filters);
-const options=(values,selected,placeholder)=>'<option value="">'+placeholder+'</option>'+values.map(value=>'<option '+(value===selected?'selected':'')+' value="'+esc(value)+'">'+esc(value)+'</option>').join("");
-panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div><button id="filter-close" aria-label="Закрыть фильтр"><img src="assets/cf100.svg" width="12" height="12" alt=""></button></div><div class="filter-fields"><label>Шаблон<span><button id="filter-template" aria-label="Выбрать шаблоны" class="'+(draft.templates.length?'filled':'')+'">'+esc(draft.templates.join(', ')||'Выберите шаблон')+'</button>'+(draft.templates.length?'<button id="filter-template-clear" aria-label="Очистить шаблоны">'+iconHtml('E66C')+'</button>':'')+'<img src="assets/filter-picker.svg" width="16" height="16" alt=""></span></label><label>Организация<span><select id="filter-company" aria-label="Организация">'+options([...new Set(sites.map(s=>s.company).filter(Boolean))],draft.company,"Выберите организацию")+'</select><img src="assets/filter-picker.svg" width="16" height="16" alt=""></span></label></div><div class="filter-extra"><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+[["verified","Проверенные"],["published","Опубликованные"]].map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b>•</b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
+panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div><button id="filter-close" aria-label="Закрыть фильтр"><img src="assets/cf100.svg" width="12" height="12" alt=""></button></div><div class="filter-fields">'+filterField('templates','Шаблон','Выберите шаблон')+filterField('companies','Организация','Выберите организацию')+'</div><div class="filter-extra"><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+[["verified","Проверенные"],["published","Опубликованные"]].map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
 }
+function lookupValues(field){return field==='templates'?templateCatalog.map(t=>t.name):[...new Set(sites.map(s=>s.company).filter(Boolean))]}
+function hideSuggestions(){document.querySelectorAll('.lookup-suggestions').forEach(list=>list.hidden=true);document.querySelectorAll('[data-lookup-input]').forEach(input=>input.setAttribute('aria-expanded','false'))}
+function searchLookup(input,showAll=false){
+const field=input.dataset.lookupInput,query=input.value.trim().toLocaleLowerCase('ru');hideSuggestions();
+const list=document.getElementById('suggestions-'+field);
+if(!query&&!showAll)return;
+const values=lookupValues(field).filter(value=>!draft[field].includes(value)&&value.toLocaleLowerCase('ru').includes(query));
+list.innerHTML=values.map(value=>'<button type="button" role="option" aria-selected="false" data-lookup-option="'+field+'" data-value="'+esc(value)+'">'+esc(value)+'</button>').join('');
+list.hidden=!values.length;input.setAttribute('aria-expanded',String(values.length>0));
+}
+function selectLookup(field,value){if(!draft[field].includes(value))draft[field].push(value);drawFilter();document.getElementById('filter-'+field).focus()}
 filterButton.setAttribute("aria-haspopup","dialog");filterButton.addEventListener("click",()=>{if(filterOpen){closeFilter();return}draft=copyFilters(filters);filterOpen=true;filterButton.setAttribute("aria-expanded","true");drawFilter()});
-document.addEventListener("change",event=>{if(event.target.id==="filter-company"){draft.company=event.target.value;drawFilter()}});
+document.addEventListener('input',event=>{if(event.target.matches('[data-lookup-input]'))searchLookup(event.target)});
+document.addEventListener('keydown',event=>{
+const input=event.target.closest('[data-lookup-input]');if(!input)return;
+const list=document.getElementById('suggestions-'+input.dataset.lookupInput),options=[...list.querySelectorAll('[role="option"]')];
+if(event.key==='Escape'&&!list.hidden){event.preventDefault();event.stopImmediatePropagation();hideSuggestions();return}
+if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+event.preventDefault();if(list.hidden){searchLookup(input,true);return}const current=options.findIndex(option=>option.getAttribute('aria-selected')==='true'),next=(current+(event.key==='ArrowDown'?1:-1)+options.length)%options.length;options.forEach((option,index)=>option.setAttribute('aria-selected',String(index===next)));options[next]?.scrollIntoView({block:'nearest'});
+}else if(event.key==='Enter'){
+event.preventDefault();const selected=options.find(option=>option.getAttribute('aria-selected')==='true')||options[0];if(!list.hidden&&selected)selectLookup(input.dataset.lookupInput,selected.dataset.value);
+}else if(event.key==='Backspace'&&!input.value&&draft[input.dataset.lookupInput].length){draft[input.dataset.lookupInput].pop();drawFilter();document.getElementById(input.id).focus()}
+});
 document.addEventListener("click",event=>{
-const wasInsideFilter=Boolean(event.target.closest("#filter-panel, #template-panel"));
-if(event.target.closest("#filter-template-clear")){draft.templates=[];drawFilter();return}
-if(event.target.closest("#filter-template")){openTemplates();return}
+const wasInsideFilter=Boolean(event.target.closest("#filter-panel, #template-panel, #company-panel"));
+const option=event.target.closest('[data-lookup-option]');if(option){selectLookup(option.dataset.lookupOption,option.dataset.value);return}
+const remove=event.target.closest('[data-remove-first]');if(remove){draft[remove.dataset.removeFirst].shift();drawFilter();return}
+const clear=event.target.closest('[data-clear-lookup]');if(clear){draft[clear.dataset.clearLookup]=[];drawFilter();return}
+const picker=event.target.closest('[data-open-picker]');if(picker){hideSuggestions();if(picker.dataset.openPicker==='templates')openTemplates();else openCompanies();return}
+const line=event.target.closest('.lookup-line');if(line&&!event.target.closest('button,input'))line.querySelector('input').focus();
+if(!event.target.closest('.lookup-field'))hideSuggestions();
 if(event.target.closest("#filter-close"))closeFilter();
 if(event.target.closest("#filter-reset")){draft=emptyFilters();drawFilter()}
 if(event.target.closest("#filter-apply")){filters=copyFilters(draft);render();closeFilter()}
 const flag=event.target.closest("[data-flag]");if(flag){const field=flag.dataset.flag,value=flag.dataset.value==="true";draft[field]=draft[field]===value?null:value;drawFilter()}
 if(filterOpen&&!wasInsideFilter&&!event.target.closest('[aria-label="Фильтр"]'))closeFilter();
 });
+function closeCompanies(){document.getElementById('company-panel')?.remove();companyDraft=null;document.getElementById('filter-panel')?.removeAttribute('hidden')}
+function openCompanies(){
+companyDraft=[...draft.companies];document.getElementById('filter-panel').hidden=true;
+const panel=document.createElement('section');panel.id='company-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Выбор организаций');
+panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Организация</h2><input id="company-search" type="search" placeholder="Найти" aria-label="Найти организацию"><button id="company-save" aria-label="Сохранить выбор организаций">'+iconHtml('E75E','icon24')+'</button></div><div class="company-list">'+lookupValues('companies').map(company=>'<label class="company-option"><input type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span>'+esc(company)+'</span></label>').join('')+'</div></div><aside class="template-tools"><button id="company-close" aria-label="Закрыть выбор организаций"><img src="assets/cf100.svg" width="12" height="12" alt=""></button><div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
+stage.append(panel);
+panel.querySelector('#company-search').addEventListener('input',event=>{const query=event.target.value.trim().toLocaleLowerCase('ru');panel.querySelectorAll('.company-option').forEach(row=>row.hidden=!row.textContent.toLocaleLowerCase('ru').includes(query))});
+panel.addEventListener('change',event=>{if(event.target.type==='checkbox'){const value=event.target.value;companyDraft=event.target.checked?[...new Set([...companyDraft,value])]:companyDraft.filter(company=>company!==value)}});
+panel.addEventListener('click',event=>{event.stopPropagation();if(event.target.closest('#company-save')){draft.companies=[...companyDraft];closeCompanies();drawFilter()}else if(event.target.closest('#company-close'))closeCompanies()});
+}
 const templateCatalog=[{name:"Доставка из ресторана",image:"7182c.png",color:"#d9dbc7"},{name:"Отель",image:"60285.png",color:"#eae1d7"},{name:"Услуги",image:"787d1.png",color:"#f7e2c5"}];
 function closeTemplates(){document.getElementById('template-panel')?.remove();templateDraft=null;document.getElementById('filter-panel')?.removeAttribute('hidden')}
 function openTemplates(){
@@ -226,6 +265,6 @@ if(event.target.closest("#indexing-switch")){currentSite.settings.indexing=!curr
 const device=event.target.closest("[data-device]");if(device){document.querySelectorAll("[data-device]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===device)));document.getElementById("site-preview").classList.toggle("mobile",device.dataset.device==="mobile")}
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
-function fit(){const scale=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform="none";stage.style.zoom=String(scale)}addEventListener("resize",fit);fit();render();
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
+function fit(){closeMarksMenu();const graph=document.querySelector(".graph-slot");if(graph)graph.style.setProperty("--graph-scale",String(graph.clientWidth/515.828))}addEventListener("resize",fit);fit();render();
 
