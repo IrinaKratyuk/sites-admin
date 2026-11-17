@@ -11,7 +11,11 @@ done
 fonts_source='https://raw.githubusercontent.com/IrinaKratyuk/popups/d935e6a587f1c557820149fdd7066879f3628df6/assets/fonts'
 for font in cbuc-icons.ttf cbuc-icons24.ttf Accordion-Font.ttf; do
   if [ ! -s "assets/fonts/$font" ]; then
-    curl --fail --location --retry 2 --silent --show-error "$fonts_source/$font" --output "assets/fonts/$font"
+    font_url="$fonts_source/$font"
+    if [ "$font" != Accordion-Font.ttf ]; then
+      font_url="https://raw.githubusercontent.com/mariesmi/ui-kit/main/fonts/$font"
+    fi
+    curl --fail --location --retry 2 --silent --show-error "$font_url" --output "assets/fonts/$font"
   fi
 done
 if [ ! -s assets/fonts/Inter.woff2 ]; then

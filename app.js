@@ -92,8 +92,18 @@ const all=document.getElementById("mark-all");all.indeterminate=visible.some(s=>
 rows.innerHTML=visible.map(site=>'<div class="site-row" role="option" tabindex="0" aria-selected="'+(multi?selectedSites.has(site.id):site.id===selected)+'" data-current="'+(site.id===selected)+'" data-site="'+site.id+'"><span class="site-main"><label class="check"><input class="row-check" type="checkbox" aria-label="Выбрать '+esc(site.name)+'" '+(selectedSites.has(site.id)?'checked':'')+'></label><span class="site-text"><span class="site-line"><span title="'+esc(site.name)+'" class="site-name '+(!site.published?'muted':'')+'">'+highlightMatch(site.name)+'</span>'+(site.address?'<span class="address">'+highlightMatch(site.address)+'</span>':'')+'</span>'+(site.company?'<span class="company-line"><span class="company">'+highlightMatch(site.company)+'</span><span class="inn">'+highlightMatch(site.inn)+'</span></span>':'')+'</span></span><span class="site-status"><i class="icon" aria-label="'+(site.verified?'Проверено дизайнером':'')+'">'+(site.verified?icon("EB4D"):'')+'</i></span><span class="metrics"><span>'+esc(site.date)+'</span><span>'+esc(site.visitors)+'</span><span>'+esc(site.responses)+'</span><span>'+esc(site.template)+'</span></span><span class="row-commands"><button data-row-action="publication" aria-label="'+(site.published?'Снять с публикации':'Опубликовать')+'" title="'+(site.published?'Снять с публикации':'Опубликовать')+'">'+iconHtml(site.published?'E62F':'E631')+'</button><button data-row-action="delete" aria-label="Удалить сайт" title="Удалить">'+iconHtml('E65C')+'</button></span></div>').join("");
 document.querySelector('.detail').classList.toggle('empty-registry',!visible.length);
 let empty=document.getElementById('empty-result');if(!empty){empty=document.createElement('div');empty.id='empty-result';empty.setAttribute('role','status');empty.innerHTML='<div>Не найдено ни одной записи</div><img src="assets/bf295.svg" width="200" height="200" alt="">';rows.after(empty)}empty.hidden=!!visible.length;
-filterButton.classList.toggle("has-filters",(filters.templates.length||filters.companies.length||filters.verified!==null||filters.published!==null));multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
+drawFilterChips();multiButton.setAttribute("aria-pressed",String(multi));multiButton.innerHTML=iconHtml("E644","icon24");
 }
+
+function drawFilterChips(){
+let chips=document.getElementById('filter-chips');if(!chips){chips=document.createElement('div');chips.id='filter-chips';chips.setAttribute('aria-label','Применённые фильтры');filterButton.before(chips)}
+const entries=[...filters.templates.map(value=>({field:'templates',value,label:value})),...filters.companies.map(value=>({field:'companies',value,label:value})),...['verified','published'].filter(field=>filters[field]!==null).map(field=>({field,label:field==='verified'?(filters[field]?'Проверенные':'Непроверенные'):(filters[field]?'Опубликованные':'Неопубликованные')}))];
+chips.innerHTML=entries.map(({field,value,label})=>'<div class="filter-chip"><button class="filter-chip-label" data-edit-filter title="'+esc(label)+'">'+esc(label)+'</button><button class="filter-chip-clear" data-remove-filter="'+field+'" '+(value!==undefined?'data-value="'+esc(value)+'"':'')+' aria-label="Убрать фильтр '+esc(label)+'">'+iconHtml('E66C')+'</button></div>').join('');
+}
+document.addEventListener('click',event=>{
+const remove=event.target.closest('[data-remove-filter]');if(remove){const field=remove.dataset.removeFilter;if(Array.isArray(filters[field]))filters[field]=filters[field].filter(value=>value!==remove.dataset.value);else filters[field]=null;render();if(filterOpen){draft=copyFilters(filters);drawFilter()}return}
+if(event.target.closest('[data-edit-filter]')&&!filterOpen)filterButton.click();
+});
 
 function renderShowcase(){
 closeMarksMenu();stage.classList.remove('multi-mode');document.getElementById('operations')?.setAttribute('hidden','');document.getElementById('empty-result')?.setAttribute('hidden','');registryDetail.classList.remove('empty-registry');
@@ -178,18 +188,27 @@ document.getElementById("regions").addEventListener("click",event=>{const button
 
 const sortButton=document.querySelector('.toolbar [aria-label="Настроить"]');
 sortButton.setAttribute("aria-label","Сортировать");sortButton.title="Сортировать";sortButton.setAttribute("aria-haspopup","menu");sortButton.setAttribute("aria-expanded","false");
+const sortChoices=[["order","По порядку","EB66"],["visitors","По посещаемости","E632"],["responses","По количеству откликов","EA66"],["date","По дате посещения","E6C4"]];
+function sortArrow(direction){return '<span class="sort-arrow ' +(direction===-1?'is-descending':'')+'" aria-hidden="true">'+iconHtml("EA66","icon24")+'</span>'}
+function syncSortButton(){
+const [,label,glyph]=sortChoices.find(([field])=>field===sortField);
+sortButton.classList.remove("icon24");sortButton.classList.add("sort-trigger");sortButton.dataset.sortField=sortField;sortButton.dataset.sortDirection=String(sortDirection);
+sortButton.innerHTML='<span class="sort-trigger-symbol" aria-hidden="true">'+iconHtml(glyph,"icon24")+'</span>'+(sortField!=="order"?sortArrow(sortDirection):'');
+sortButton.title="Сортировать: "+label+(sortField!=="order"?(sortDirection===-1?", по убыванию":", по возрастанию"):"");
+}
+syncSortButton();
 function closeSort(){document.getElementById("sort-menu")?.remove();sortButton.setAttribute("aria-expanded","false")}
 function drawSort(){
 let menu=document.getElementById("sort-menu");if(!menu){menu=document.createElement("section");menu.id="sort-menu";menu.setAttribute("role","menu");menu.setAttribute("aria-label","Сортировать");stage.append(menu)}
-menu.innerHTML='<div class="sort-title">СОРТИРОВАТЬ<button aria-label="Закрыть сортировку" id="sort-close">'+iconHtml("E66C","icon24")+'</button></div>'+[["order","По порядку","EB66"],["visitors","По посещаемости","E632"],["responses","По количеству откликов","EA66"],["date","По дате посещения","E6C4"]].map(([field,label,glyph])=>'<div class="sort-option"><button role="menuitemradio" aria-checked="'+(sortField===field)+'" data-sort="'+field+'"><span class="sort-dot" aria-hidden="true"></span>'+iconHtml(glyph)+'<span>'+label+'</span></button>'+(field!=="order"?'<button class="sort-direction" data-direction="'+field+'" aria-label="'+label+': '+(sortField===field&&sortDirection===-1?'по убыванию':'по возрастанию')+'">'+(sortField===field&&sortDirection===-1?'↓':'↑')+'</button>':'')+'</div>').join('');
+menu.innerHTML='<div class="sort-title">СОРТИРОВАТЬ<button aria-label="Закрыть сортировку" id="sort-close">'+iconHtml("E66C","icon24")+'</button></div>'+sortChoices.map(([field,label,glyph])=>'<div class="sort-option"><button role="menuitemradio" aria-checked="'+(sortField===field)+'" data-sort="'+field+'"><span class="sort-dot" aria-hidden="true"></span>'+'<span class="sort-menu-symbol" data-sort-symbol="'+field+'">'+iconHtml(glyph,'icon24')+'</span><span>'+label+'</span></button>'+(field!=="order"?'<button class="sort-direction" data-direction="'+field+'" aria-label="'+label+': '+(sortField===field&&sortDirection===-1?'по убыванию':'по возрастанию')+'">'+sortArrow(sortField===field?sortDirection:1)+'</button>':'')+'</div>').join('');
 sortButton.setAttribute("aria-expanded","true");
 }
 sortButton.addEventListener("click",()=>{if(document.getElementById("sort-menu"))closeSort();else{closeFilter();drawSort()}});
 document.addEventListener("click",event=>{
 if(event.target.closest("#sort-close")){closeSort();return}
 const direction=event.target.closest("[data-direction]");const option=event.target.closest("[data-sort]");
-if(direction){const field=direction.dataset.direction;sortDirection=sortField===field?-sortDirection:-1;sortField=field;render();drawSort();return}
-if(option){sortField=option.dataset.sort;sortDirection=1;render();closeSort();return}
+if(direction){const field=direction.dataset.direction;sortDirection=sortField===field?-sortDirection:-1;sortField=field;syncSortButton();render();drawSort();return}
+if(option){sortField=option.dataset.sort;sortDirection=1;syncSortButton();render();closeSort();return}
 if(!event.target.closest('#sort-menu, [aria-label="Сортировать"]'))closeSort();
 });
 document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSort()});
@@ -198,7 +217,7 @@ let companyDraft=null;
 function closeFilter(){closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false")}
 function filterField(field,title,placeholder){
 const values=draft[field];
-return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line">'+(values.length?'<span class="lookup-value" title="'+esc(values[0])+'">'+esc(values[0])+'</span><button class="lookup-remove" data-remove-first="'+field+'" aria-label="Убрать '+esc(values[0])+'">'+iconHtml('E66C')+'</button>':'')+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" role="listbox" aria-label="'+title+'" hidden></div></div>';
+return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line">'+(values.length?'<span class="lookup-value" title="'+esc(values[0])+'">'+esc(values[0])+'</span><button class="lookup-remove" data-remove-first="'+field+'" aria-label="Убрать '+esc(values[0])+'">'+iconHtml('E66C')+'</button>':'')+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" aria-label="Подсказки: '+title+'" hidden></div></div>';
 }
 function drawFilter(){
 let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
@@ -214,7 +233,7 @@ const field=input.dataset.lookupInput,query=input.value.trim().toLocaleLowerCase
 const list=document.getElementById('suggestions-'+field);
 if(!query&&!showAll)return;
 const values=lookupValues(field).filter(value=>!draft[field].includes(value)&&value.toLocaleLowerCase('ru').includes(query));
-list.innerHTML=values.map(value=>'<button type="button" role="option" aria-selected="false" data-lookup-option="'+field+'" data-value="'+esc(value)+'">'+esc(value)+'</button>').join('');
+list.innerHTML='<button type="button" class="lookup-suggestions-close" data-close-suggestions aria-label="Закрыть подсказки"><img src="assets/navigation-menu-close.svg" width="12" height="12" alt=""></button><div class="lookup-suggestions-options" role="listbox">'+values.slice(0,4).map(value=>'<button type="button" role="option" aria-selected="false" data-lookup-option="'+field+'" data-value="'+esc(value)+'">'+esc(value)+'</button>').join('')+'</div><div class="lookup-suggestions-footer"><button type="button" data-open-picker="'+field+'">Показать все</button></div>';
 list.hidden=!values.length;input.setAttribute('aria-expanded',String(values.length>0));
 }
 function selectLookup(field,value){if(!draft[field].includes(value))draft[field].push(value);drawFilter();document.getElementById('filter-'+field).focus()}
@@ -232,6 +251,7 @@ event.preventDefault();const selected=options.find(option=>option.getAttribute('
 });
 document.addEventListener("click",event=>{
 const wasInsideFilter=Boolean(event.target.closest("#filter-panel, #template-panel, #company-panel"));
+if(event.target.closest('[data-close-suggestions]')){hideSuggestions();return}
 const option=event.target.closest('[data-lookup-option]');if(option){selectLookup(option.dataset.lookupOption,option.dataset.value);return}
 const remove=event.target.closest('[data-remove-first]');if(remove){draft[remove.dataset.removeFirst].shift();drawFilter();return}
 const clear=event.target.closest('[data-clear-lookup]');if(clear){draft[clear.dataset.clearLookup]=[];drawFilter();return}
