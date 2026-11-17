@@ -34,7 +34,7 @@ jobs:
           node --check app.js
           node --check demo-data.js
           mkdir -p dist
-          cp index.html styles.css app.js demo-data.js dist/
+          cp index.html site-preview.html styles.css app.js demo-data.js dist/
           cp -R assets components dist/
           touch dist/.nojekyll
       - uses: actions/configure-pages@v5
