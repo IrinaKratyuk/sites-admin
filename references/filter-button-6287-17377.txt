@@ -1,0 +1,112 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/de2febc1-1954-4e19-a351-0c2d789696a3";
+const imgImage26 = `${assetPathPrefix}/4ee65.png`;
+
+type ClearButtonProps = {
+  className?: string;
+  hover?: boolean;
+};
+
+function ClearButton({ className, hover = false }: ClearButtonProps) {
+  return (
+    <div className={className || "overflow-clip relative rounded-[50px] size-[24px]"} data-node-id="30460:1060">
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col items-center justify-center left-1/2 top-1/2" data-node-id="30460:1061" data-name="clearButton">
+        <div className="content-stretch flex flex-col items-center justify-center relative shrink-0" data-node-id="30460:1062" data-name="icons">
+          <div className="content-stretch flex flex-col items-center justify-center pb-px relative shrink-0 size-[16px]" data-node-id="I30460:1062;5565:16629" data-name="Ui базовый набор / Font">
+            <p className="[word-break:break-word] font-['cbuc-icons:Regular'] leading-[normal] not-italic relative shrink-0 text-[16px] text-[color:var(--icon\/unaccented_icon-color,#ccc)] whitespace-nowrap" data-node-id="I30460:1062;5565:16629;8306:1722">{`\uE66C`}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type ComponentProps = {
+  className?: string;
+  clearButton?: boolean;
+  hover?: boolean;
+  imageVisible?: boolean;
+  textTemplate?: string;
+  type?: "default";
+};
+
+function Component({ className, clearButton = true, hover = false, imageVisible = false, textTemplate = "Фильтр", type = "default" }: ComponentProps) {
+  return (
+    <div className={className || "bg-[var(--background\\/same\\/secondary_same_background-color,#ebf4ff)] content-stretch flex h-[var(--inline_height\\/inline_height_mt,26px)] items-center justify-center pl-[var(--offset\\/offset_s,8px)] pr-px relative rounded-[var(--components\\/button\\/border-radius_button,100px)]"} data-node-id="30460:1068">
+      <div className="content-stretch flex gap-[var(--offset\/offset_xs,6px)] items-center mr-[-11px] pb-px pr-[7px] relative shrink-0" data-node-id="30460:1069" data-name="contentWrap">
+        {imageVisible && (
+          <div className="bg-white overflow-clip relative rounded-[4px] shrink-0 size-[16px]" data-node-id="30460:1070" data-name="image">
+            <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[16px] top-1/2" data-node-id="30460:1071" data-name="image 26">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage26} />
+            </div>
+          </div>
+        )}
+        <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="30460:1072">
+          {textTemplate}
+        </p>
+      </div>
+      {clearButton && <ClearButton className="overflow-clip relative rounded-[50px] shrink-0 size-[24px]" />}
+    </div>
+  );
+}
+
+type FilterButtonProps = {
+  className?: string;
+  filterIconVisible?: boolean;
+  propValue?: "0 Параметров" | "1 параметр" | "2 параметра" | "3 параметра";
+  propValue1?: "По правому" | "По левому";
+};
+
+export default function FilterButton({ className, filterIconVisible = true, propValue = "0 Параметров", propValue1 = "По левому" }: FilterButtonProps) {
+  const is0And = propValue === "0 Параметров" && propValue1 === "По левому";
+  const is1And = propValue === "1 параметр" && propValue1 === "По правому";
+  const is1And1 = propValue === "1 параметр" && propValue1 === "По левому";
+  const is2And = propValue === "2 параметра" && propValue1 === "По правому";
+  const is2And1 = propValue === "2 параметра" && propValue1 === "По левому";
+  const is3And = propValue === "3 параметра" && propValue1 === "По правому";
+  const is3And1 = propValue === "3 параметра" && propValue1 === "По левому";
+  return (
+    <div className={className || "content-stretch flex gap-[var(--offset\\/offset_3xs,2px)] items-center justify-end relative"} id={is3And1 ? "node-8258_25379" : is2And1 ? "node-6287_17395" : is1And1 ? "node-6287_17391" : is0And ? "node-6287_17389" : is3And ? "node-8258_25324" : is2And ? "node-6287_17384" : is1And ? "node-6287_17380" : "node-6287_17378"}>
+      {((propValue === "0 Параметров" && propValue1 === "По правому") || is1And1 || is2And1 || is3And1) && filterIconVisible && (
+        <div className="content-stretch flex flex-col items-center justify-center pt-[2px] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="20088:12848" data-name="_filterButton">
+          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I20088:12848;26019:504" data-name="iconWrap">
+            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I20088:12848;26019:505">{`\uE94C`}</p>
+          </div>
+        </div>
+      )}
+      {(is1And || is2And || is3And || is1And1 || is2And1 || is3And1) && <Component className="bg-[var(--background\/same\/secondary_same_background-color,#ebf4ff)] content-stretch flex h-[26px] items-center justify-center pl-[var(--offset\/offset_s,8px)] pr-px relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0" />}
+      {(is2And || is3And || is2And1 || is3And1) && <Component className="bg-[var(--background\/same\/secondary_same_background-color,#ebf4ff)] content-stretch flex h-[26px] items-center justify-center pl-[var(--offset\/offset_s,8px)] pr-px relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0" clearButton={is2And ? false : undefined} />}
+      {propValue1 === "По правому" && ["1 параметр", "2 параметра"].includes(propValue) && filterIconVisible && (
+        <div className="content-stretch flex flex-col items-center justify-center pt-[2px] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="20088:12854" data-name="_filterButton">
+          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I20088:12854;26019:504" data-name="iconWrap">
+            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I20088:12854;26019:505">{`\uE94C`}</p>
+          </div>
+        </div>
+      )}
+      {propValue === "3 параметра" && ["По правому", "По левому"].includes(propValue1) && <Component className="bg-[var(--background\/same\/secondary_same_background-color,#ebf4ff)] content-stretch flex h-[26px] items-center justify-center pl-[var(--offset\/offset_s,8px)] pr-px relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0" clearButton={is3And ? false : undefined} />}
+      {is3And && filterIconVisible && (
+        <div className="content-stretch flex flex-col items-center justify-center pt-[2px] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="20088:12836" data-name="_filterButton">
+          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I20088:12836;26019:504" data-name="iconWrap">
+            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I20088:12836;26019:505">{`\uE94C`}</p>
+          </div>
+        </div>
+      )}
+      {is0And && (
+        <div className="content-stretch flex flex-col items-center justify-center pt-[2px] relative rounded-[var(--components\/button\/border-radius_button,100px)] shrink-0 size-[32px]" data-node-id="20088:12701" data-name="_filterButton">
+          <div className="content-stretch flex flex-col items-center justify-center pb-[2px] relative shrink-0 size-[24px]" data-node-id="I20088:12701;26019:504" data-name="iconWrap">
+            <p className="[word-break:break-word] font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] leading-[normal] not-italic relative shrink-0 text-[color:var(--icon\/secondary_icon-color,#656c87)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)] whitespace-nowrap" data-node-id="I20088:12701;26019:505">{`\uE94C`}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: font-size/regular/m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), ICONS/icon-size_s: Font(family: "cbuc-icons", style: Regular, size: 16, weight: 400, lineHeight: 100, letterSpacing: 0).
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.
