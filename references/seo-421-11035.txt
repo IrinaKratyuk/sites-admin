@@ -1,0 +1,91 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/5c8e5e31-ce01-4f11-8db9-3db879608431";
+const imgImage = `${assetPathPrefix}/ddf6c.svg`;
+
+type ComponentProps = {
+  className?: string;
+  text?: string;
+};
+
+function Component({ className, text = "Технический анализ" }: ComponentProps) {
+  return (
+    <div className={className || "content-stretch flex h-[32px] items-center relative w-[464px]"} data-node-id="421:10509" data-name="Пункт">
+      <div className="content-stretch flex h-[21px] items-center justify-center px-[16px] relative shrink-0 w-[48px]" data-node-id="421:10510">
+        <div className="border border-[var(--icon\/readonly_icon-color,#ccc)] border-solid relative rounded-[8px] shrink-0 size-[8px]" data-node-id="421:10511" />
+      </div>
+      <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-start justify-center min-w-px relative" data-node-id="421:10512">
+        <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] min-h-px not-italic relative text-[color:var(--text\/readonly_text-color,#ccc)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] w-full" data-node-id="421:10513">
+          <p className="leading-[normal]">{text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type MasterProps = {
+  className?: string;
+  propValue?: "false";
+  variant?: "1";
+};
+
+function Master({ className, propValue = "false", variant = "1" }: MasterProps) {
+  return (
+    <div className={className || "content-stretch flex flex-col h-[738px] items-start relative w-[600px]"} data-node-id="421:10602">
+      <div className="bg-white content-stretch flex flex-[1_0_0] flex-col items-start justify-between min-h-px pb-[32px] pt-[12px] relative w-full" data-node-id="421:10603" data-name="Шаги/Сайт">
+        <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-node-id="I421:10603;7704:164280">
+          <div className="content-stretch flex gap-[8px] h-[16px] items-center pl-[var(--offset\/offset_l,16px)] pr-[12px] relative shrink-0 w-full" data-node-id="I421:10603;7704:159681">
+            <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] h-full leading-[normal] not-italic relative shrink-0 text-[color:var(--text\/label_contrast_text-color,#656c87)] text-[length:var(--font\/font-size\/font-size_xs,12px)] tracking-[-0.1692px] w-[75px]" data-node-id="I421:10603;7704:159682">
+              5 шагов
+            </p>
+            <div className="bg-[rgba(51,51,51,0.05)] content-stretch flex flex-[1_0_0] h-[8px] items-start min-w-px overflow-clip relative rounded-[4px]" data-node-id="I421:10603;7704:159683" data-name="Шкала/Сайт" />
+          </div>
+          <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-full" data-node-id="I421:10603;7695:154143">
+            <Component className="content-stretch flex h-[32px] items-center relative shrink-0 w-full" text="Безопасность сайта" />
+            <Component className="content-stretch flex h-[32px] items-center relative shrink-0 w-full" text="Индексация" />
+            <Component className="content-stretch flex h-[32px] items-center relative shrink-0 w-full" text="Мета-теги" />
+            <Component className="content-stretch flex h-[32px] items-center relative shrink-0 w-full" text="Анализ юзабилити и поведения пользователей" />
+            <Component className="content-stretch flex h-[32px] items-center relative shrink-0 w-full" text="Локальные факторы ранжирования" />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[24px] items-center justify-center relative shrink-0 w-full" data-node-id="I421:10603;7695:155600" data-name="hint">
+          <div className="content-stretch flex gap-[12px] items-center justify-center px-[20px] relative shrink-0 w-full" data-node-id="I421:10603;7695:155600;5662:16700" data-name="content">
+            <div className="content-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px relative" data-node-id="I421:10603;7695:155600;5637:16772" data-name="text">
+              <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="I421:10603;7695:155600;5637:16778" data-name="content">
+                <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I421:10603;7695:155600;5637:16779" data-name="content">
+                  <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] min-w-px not-italic relative text-[color:var(--components\/list\/placeholder_text-color_list,#aab0c1)] text-[length:var(--font\/font-size\/font-size_xl,16px)] tracking-[-0.2256px] whitespace-pre-wrap" data-node-id="I421:10603;7695:155600;5637:16780">{`Saby поможет определить  соответствие сайта и его страниц требованиям поисковых систем и покажет проблемы, влияющие на позиции в выдаче, быстродействии, полноты наполнения и адаптивности сайта.`}</p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex items-start relative shrink-0" data-node-id="I421:10603;7695:155600;5637:16783" data-name="img">
+              <div className="relative shrink-0 size-[200px]" data-node-id="I421:10603;7695:155600;5637:16784" data-name="image">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgImage} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Master1() {
+  return <Master className="content-stretch flex flex-col items-start relative size-full" />;
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: TEXT/Regular/font-size_xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), TEXT/Regular/font-size_xl: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xl, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## hint
+**Node ID:** 3:51410
+
+Выравнивание по левому краю нужно настраивать самим с помощью AL Фото перевыбирается из доступных с библиотеки картинок пустых представлений
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/extends/help-system/pages/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/extends/help-system/pages/)
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

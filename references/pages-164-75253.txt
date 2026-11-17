@@ -1,0 +1,344 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/3801ffbd-a02d-4f9e-8961-b901502a028d";
+const imgImage1492 = `${assetPathPrefix}/f4f54.png`;
+const imgImage1493 = `${assetPathPrefix}/a2cf9.png`;
+const imgImage1494 = `${assetPathPrefix}/e36d3.png`;
+const imgVector = `${assetPathPrefix}/aa25c.svg`;
+
+export default function Frame1968459211() {
+  return (
+    <div className="content-stretch flex items-start pl-[var(--offset\/offset_2xs,4px)] relative size-full" data-node-id="164:75253">
+      <div className="bg-[var(--background\/unaccented_background-color,#f8f8f8)] content-stretch flex flex-col h-[690px] items-start relative shrink-0 w-[270px]" data-node-id="164:75254" data-name="Master в Страницах">
+        <div className="content-stretch flex gap-[6px] items-center justify-end pb-[15px] pr-[12px] pt-[10px] relative shrink-0 w-full" data-node-id="I164:75254;88:133201" data-name="посетители">
+          <div className="flex items-center justify-center relative shrink-0" data-node-id="I164:75254;88:133202">
+            <div className="flex-none rotate-180">
+              <div className="h-[16px] relative w-[7px]" data-name="Vector">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+              </div>
+            </div>
+          </div>
+          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[length:var(--font\/font-size\/font-size_xs,12px)] text-right tracking-[-0.1692px] whitespace-nowrap" data-node-id="I164:75254;88:133203">
+            <p className="leading-[normal]">Посетители</p>
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 w-full" data-node-id="I164:75254;88:133204" data-name="Разделы">
+          <div className="bg-[var(--components\/list\/master_item_selected_background-color_list,#ebf4ff)] content-stretch flex items-start min-h-[31px] overflow-clip pb-[var(--components\/list\/master\/master_item_padding-bottom_list,3px)] pl-[var(--offset\/offset_l,16px)] pr-[var(--offset\/offset_s,8px)] pt-[var(--components\/list\/master\/master_item_padding-top_list,4px)] relative rounded-[var(--border-radius\/border-radius_xs,6px)] shrink-0 w-full" data-node-id="I164:75254;88:133205" data-name="Список">
+            <div className="content-stretch flex flex-[1_0_0] items-start min-w-px relative" data-node-id="I164:75254;88:133205;88:133213" data-name="contentWrap">
+              <div className="content-stretch flex flex-[1_0_0] flex-col h-[24px] items-start min-w-px py-[3px] relative" data-node-id="I164:75254;88:133205;88:133216" data-name="text">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[15px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2115px] w-full whitespace-nowrap" data-node-id="I164:75254;88:133205;88:133217">
+                  Все
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col items-end justify-center min-h-[24px] pr-[2px] relative shrink-0" data-node-id="I164:75254;88:133205;88:133218" data-name="wrapTemplate">
+              <div className="content-stretch flex gap-[var(--offset\/offset_m,12px)] items-center pl-[var(--offset\/offset_xs,6px)] pr-[var(--offset\/offset_2xs,4px)] py-px relative rounded-[100px] shrink-0 w-full" data-node-id="I164:75254;88:133205;88:133219" data-name="_bricks/counter">
+                <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I164:75254;88:133205;88:133222" data-name="secondaryCounter">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-normal leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75254;88:133205;88:133223">
+                    4869
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="absolute content-stretch flex h-[var(--icon\/icon_size\/icon-size_m,24px)] items-center left-0 overflow-clip pb-[var(--offset\/offset_3xs,2px)] top-[4px]" data-node-id="I164:75254;88:133205;88:133225" data-name="marker/Marker">
+              <div className="bg-[var(--extra\/marker_color,#cc3d00)] h-[16px] relative rounded-[var(--border-radius\/border-radius_2xs,4px)] shrink-0 w-[3px]" data-node-id="I164:75254;88:133205;88:133225;18419:396" data-name="marker" />
+            </div>
+          </div>
+          <div className="content-stretch flex items-start min-h-[31px] overflow-clip pb-[var(--components\/list\/master\/master_item_padding-bottom_list,3px)] pl-[var(--offset\/offset_l,16px)] pr-[var(--offset\/offset_s,8px)] pt-[var(--components\/list\/master\/master_item_padding-top_list,4px)] relative rounded-[var(--border-radius\/border-radius_xs,6px)] shrink-0 w-full" data-node-id="I164:75254;88:133206" data-name="Список">
+            <div className="-translate-y-1/2 absolute bg-[var(--components\/list\/master_item_hover_background-color_list,#ebf4ff)] content-stretch flex gap-[var(--offset\/offset_m,12px)] h-[31px] items-center justify-center opacity-0 right-0 rounded-br-[var(--border-radius\/border-radius_xs,6px)] rounded-tr-[var(--border-radius\/border-radius_xs,6px)] top-1/2 w-[60px]" data-node-id="I164:75254;88:133206;88:133227" data-name="опции записи" />
+            <div className="content-stretch flex flex-[1_0_0] items-start min-w-px relative" data-node-id="I164:75254;88:133206;88:133229" data-name="contentWrap">
+              <div className="content-stretch flex flex-col h-[24px] items-start py-[3px] relative shrink-0" data-node-id="I164:75254;88:133206;88:133232" data-name="text">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[15px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2115px] whitespace-nowrap" data-node-id="I164:75254;88:133206;88:133233">
+                  Главная s-billing.saby.ws
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col items-end justify-center min-h-[24px] pr-[2px] relative shrink-0" data-node-id="I164:75254;88:133206;88:133234" data-name="wrapTemplate">
+              <div className="content-stretch flex gap-[var(--offset\/offset_m,12px)] items-center pl-[var(--offset\/offset_xs,6px)] pr-[var(--offset\/offset_2xs,4px)] py-px relative rounded-[100px] shrink-0 w-full" data-node-id="I164:75254;88:133206;88:133235" data-name="_bricks/counter">
+                <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I164:75254;88:133206;88:133238" data-name="secondaryCounter">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-normal leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75254;88:133206;88:133239">
+                    1516
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex items-start relative shrink-0 w-full" data-node-id="I164:75254;88:133207" data-name="Посты">
+            <div className="content-stretch flex flex-[1_0_0] items-start min-h-[31px] min-w-px overflow-clip pb-[var(--components\/list\/master\/master_item_padding-bottom_list,3px)] pl-[var(--offset\/offset_l,16px)] pr-[var(--offset\/offset_s,8px)] pt-[var(--components\/list\/master\/master_item_padding-top_list,4px)] relative rounded-[var(--border-radius\/border-radius_xs,6px)]" data-node-id="I164:75254;88:133207;1236:31587" data-name="Список">
+              <div className="content-stretch flex flex-[1_0_0] items-start min-w-px relative" data-node-id="I164:75254;88:133207;1236:31587;25576:1200" data-name="contentWrap">
+                <div className="content-stretch flex flex-col items-start py-[3px] relative self-stretch shrink-0" data-node-id="I164:75254;88:133207;1236:31587;25571:567" data-name="_bricks/textContent">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[15px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2115px] whitespace-nowrap" data-node-id="I164:75254;88:133207;1236:31587;25571:567;25571:489">{`Цена `}</p>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-end justify-center min-h-[24px] relative shrink-0" data-node-id="I164:75254;88:133207;1236:31587;34270:1930" data-name="wrapTemplate">
+                <div className="content-stretch flex gap-[var(--offset\/offset_m,12px)] items-center px-[var(--offset\/offset_xs,6px)] py-px relative rounded-[100px] shrink-0 w-full" data-node-id="I164:75254;88:133207;1236:31587;25571:645" data-name="_bricks/counter">
+                  <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I164:75254;88:133207;1236:31587;25571:645;25571:459" data-name="secondaryCounter">
+                    <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75254;88:133207;1236:31587;25571:645;25571:460">
+                      1076
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex items-start min-h-[31px] overflow-clip pb-[var(--components\/list\/master\/master_item_padding-bottom_list,3px)] pl-[var(--offset\/offset_l,16px)] pr-[var(--offset\/offset_s,8px)] pt-[var(--components\/list\/master\/master_item_padding-top_list,4px)] relative rounded-[var(--border-radius\/border-radius_xs,6px)] shrink-0 w-full" data-node-id="I164:75254;88:133565" data-name="Список">
+            <div className="-translate-y-1/2 absolute bg-[var(--components\/list\/master_item_hover_background-color_list,#ebf4ff)] content-stretch flex gap-[var(--offset\/offset_m,12px)] h-[31px] items-center justify-center opacity-0 right-0 rounded-br-[var(--border-radius\/border-radius_xs,6px)] rounded-tr-[var(--border-radius\/border-radius_xs,6px)] top-1/2 w-[60px]" data-node-id="I164:75254;88:133565;88:133227" data-name="опции записи" />
+            <div className="content-stretch flex flex-[1_0_0] items-start min-w-px relative" data-node-id="I164:75254;88:133565;88:133229" data-name="contentWrap">
+              <div className="content-stretch flex flex-col h-[24px] items-start py-[3px] relative shrink-0" data-node-id="I164:75254;88:133565;88:133232" data-name="text">
+                <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] leading-[normal] not-italic overflow-hidden relative shrink-0 text-[15px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2115px] whitespace-nowrap" data-node-id="I164:75254;88:133565;88:133233">
+                  Контакты
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col items-end justify-center min-h-[24px] pr-[2px] relative shrink-0" data-node-id="I164:75254;88:133565;88:133234" data-name="wrapTemplate">
+              <div className="content-stretch flex gap-[var(--offset\/offset_m,12px)] items-center pl-[var(--offset\/offset_xs,6px)] pr-[var(--offset\/offset_2xs,4px)] py-px relative rounded-[100px] shrink-0 w-full" data-node-id="I164:75254;88:133565;88:133235" data-name="_bricks/counter">
+                <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="I164:75254;88:133565;88:133238" data-name="secondaryCounter">
+                  <p className="[word-break:break-word] font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-normal leading-[var(--font\/line-height\/line-height_m,18px)] not-italic relative shrink-0 text-[color:var(--text\/text-color,black)] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75254;88:133565;88:133239">
+                    1516
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[10px] h-full items-start min-w-px overflow-x-clip overflow-y-auto pt-[var(--offset\/offset_2xs,4px)] px-[var(--offset\/offset_xs,6px)] relative" data-node-id="164:75255">
+        <div className="[word-break:break-word] bg-[var(--background\/background-color,white)] content-stretch flex items-center leading-[normal] not-italic relative rounded-[var(--border-radius\/border-radius_s,8px)] shrink-0 w-full" data-node-id="164:75256" data-name="Счетчики">
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col gap-[6px] h-[79px] items-start max-w-[210px] min-w-px px-[12px] py-[10px] relative rounded-[8px]" data-node-id="164:75257" data-name="Счетчик">
+            <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_l,15px)] tracking-[-0.2115px] w-full" data-node-id="I164:75257;88:133144">
+              Новые
+            </p>
+            <div className="content-stretch flex gap-[9px] items-center relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75257;88:133145" data-name="Цифра">
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_5xl,24px)] text-black tracking-[-0.3384px]" data-node-id="I164:75257;88:133146">
+                1 512
+              </p>
+              <p className="font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)]" data-node-id="I164:75257;88:133147">{`\uEB6B`}</p>
+            </div>
+          </div>
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col gap-[6px] h-[79px] items-start max-w-[210px] min-w-px px-[12px] py-[10px] relative rounded-[8px]" data-node-id="164:75258" data-name="Счетчик">
+            <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_l,15px)] tracking-[-0.2115px] w-full" data-node-id="I164:75258;88:133144">
+              Больше 1 визита
+            </p>
+            <div className="content-stretch flex gap-[9px] items-center relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75258;88:133145" data-name="Цифра">
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_5xl,24px)] text-black tracking-[-0.3384px]" data-node-id="I164:75258;88:133146">
+                256
+              </p>
+              <p className="font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)]" data-node-id="I164:75258;88:133147">{`\uE755`}</p>
+            </div>
+          </div>
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col gap-[6px] h-[79px] items-start max-w-[210px] min-w-px px-[12px] py-[10px] relative rounded-[8px]" data-node-id="164:75259" data-name="Счетчик">
+            <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_l,15px)] tracking-[-0.2115px] w-full" data-node-id="I164:75259;88:133144">
+              Среднее время
+            </p>
+            <div className="content-stretch flex gap-[9px] items-center relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75259;88:133145" data-name="Цифра">
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_5xl,24px)] text-black tracking-[-0.3384px]" data-node-id="I164:75259;88:133146">
+                13:35
+              </p>
+              <p className="font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)]" data-node-id="I164:75259;88:133147">{`\uE68D`}</p>
+            </div>
+          </div>
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col gap-[6px] h-[79px] items-start max-w-[210px] min-w-px px-[12px] py-[10px] relative rounded-[8px]" data-node-id="164:75260" data-name="Счетчик">
+            <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[color:var(--text\/label_text-color,#8991a9)] text-[length:var(--font\/font-size\/font-size_l,15px)] tracking-[-0.2115px] w-full" data-node-id="I164:75260;88:133144">
+              Заявки
+            </p>
+            <div className="content-stretch flex gap-[9px] items-center relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75260;88:133145" data-name="Цифра">
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Semi_Bold')] font-[var(--font\/font-weight\/bold,600)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_5xl,24px)] text-black tracking-[-0.3384px]" data-node-id="I164:75260;88:133146">
+                21 023
+              </p>
+              <p className="font-[family-name:var(--icon\/font-family\/m_icon_font-family,'cbuc-icons24:Regular')] relative shrink-0 text-[color:var(--icon\/unaccented_icon-color,#ccc)] text-[length:var(--icon\/icon_size\/icon-size_m,24px)]" data-node-id="I164:75260;88:133147">{`\uE661`}</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white content-stretch flex flex-col gap-[6px] items-start pt-[12px] relative rounded-[var(--border-radius\/border-radius_s,8px)] shrink-0 w-full" data-node-id="164:75261" data-name="Страница сайта">
+          <div className="[word-break:break-word] content-stretch flex font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] items-baseline justify-between leading-[normal] not-italic px-[12px] relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75261;125:21326" data-name="1я строка">
+            <p className="overflow-hidden relative shrink-0 text-[16px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2256px]" data-node-id="I164:75261;125:21327">
+              Главная s-billing.saby.ws
+            </p>
+            <p className="overflow-hidden relative shrink-0 text-[14px] text-[color:var(--text\/link_text-color,#2562aa)] text-ellipsis text-right tracking-[-0.1974px]" data-node-id="I164:75261;125:21328">
+              s-billing.saby.ws
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[12px] items-center justify-end px-[12px] relative shrink-0 w-full" data-node-id="I164:75261;125:21329" data-name="2я строка">
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75261;125:21390">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[17px]" data-node-id="I164:75261;125:21391" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-start py-[0.5px] relative shrink-0 w-full" data-node-id="I164:75261;125:21392" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-['cbuc-icons:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[16px] tracking-[-0.226px] w-full" data-node-id="I164:75261;125:21393">
+                    <p className="leading-[normal]">{`\uE732`}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[43px]" data-node-id="I164:75261;125:21394" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75261;125:21395" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75261;125:21396">
+                    <p className="leading-[normal]">6 449</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I164:75261;125:26182" data-name="Unnamed (Rectangle)">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#999] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] w-[32.152px]" data-node-id="I164:75261;125:26184">
+                  <p className="leading-[normal]">1,6%</p>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-start justify-end leading-[normal] not-italic relative shrink-0 whitespace-nowrap" data-node-id="I164:75261;125:21330" data-name="посетители">
+              <p className="font-['cbuc-icons:Regular'] relative shrink-0 text-[16px] text-[color:var(--icon\/label_icon-color,#8991a9)]" data-node-id="I164:75261;125:21330;1192:28249">{`\uEB6B`}</p>
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px]" data-node-id="I164:75261;125:21330;1192:28250">
+                2 034
+              </p>
+            </div>
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75261;125:21385">
+              <div className="bg-[#f47843] relative rounded-[100px] shrink-0 size-[6px]" data-node-id="I164:75261;125:21386" data-name="Unnamed (Rectangle)" />
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[20px]" data-node-id="I164:75261;125:21387" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75261;125:21388" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#f47843] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75261;125:21389">
+                    <p className="leading-[normal]">55</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#f7faff] content-stretch flex flex-col gap-[16px] h-[700px] items-center overflow-clip pb-[80px] relative rounded-[8px] shrink-0 w-full" data-node-id="I164:75261;125:21331" data-name="Превью">
+            <div className="aspect-[2084/1440] relative shrink-0 w-full" data-node-id="I164:75261;125:26203" data-name="image 1492">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage1492} />
+            </div>
+          </div>
+        </div>
+        <div className="bg-white content-stretch flex flex-col gap-[6px] items-start pt-[12px] relative rounded-[var(--border-radius\/border-radius_s,8px)] shrink-0 w-full" data-node-id="164:75262" data-name="Страница сайта">
+          <div className="[word-break:break-word] content-stretch flex font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] items-baseline justify-between leading-[normal] not-italic px-[12px] relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75262;125:21326" data-name="1я строка">
+            <p className="overflow-hidden relative shrink-0 text-[16px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2256px]" data-node-id="I164:75262;125:21327">
+              Главная s-billing.saby.ws
+            </p>
+            <p className="overflow-hidden relative shrink-0 text-[14px] text-[color:var(--text\/link_text-color,#2562aa)] text-ellipsis text-right tracking-[-0.1974px]" data-node-id="I164:75262;125:21328">
+              s-billing.saby.ws/price
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[12px] items-center justify-end px-[12px] relative shrink-0 w-full" data-node-id="I164:75262;125:21329" data-name="2я строка">
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75262;125:21390">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[17px]" data-node-id="I164:75262;125:21391" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-start py-[0.5px] relative shrink-0 w-full" data-node-id="I164:75262;125:21392" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-['cbuc-icons:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[16px] tracking-[-0.226px] w-full" data-node-id="I164:75262;125:21393">
+                    <p className="leading-[normal]">{`\uE732`}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[43px]" data-node-id="I164:75262;125:21394" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75262;125:21395" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75262;125:21396">
+                    <p className="leading-[normal]">6 449</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I164:75262;125:26182" data-name="Unnamed (Rectangle)">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#999] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] w-[32.152px]" data-node-id="I164:75262;125:26184">
+                  <p className="leading-[normal]">1,6%</p>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-start justify-end leading-[normal] not-italic relative shrink-0 whitespace-nowrap" data-node-id="I164:75262;125:21330" data-name="посетители">
+              <p className="font-['cbuc-icons:Regular'] relative shrink-0 text-[16px] text-[color:var(--icon\/label_icon-color,#8991a9)]" data-node-id="I164:75262;125:21330;1192:28249">{`\uEB6B`}</p>
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px]" data-node-id="I164:75262;125:21330;1192:28250">
+                2 034
+              </p>
+            </div>
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75262;125:21385">
+              <div className="bg-[#f47843] relative rounded-[100px] shrink-0 size-[6px]" data-node-id="I164:75262;125:21386" data-name="Unnamed (Rectangle)" />
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[20px]" data-node-id="I164:75262;125:21387" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75262;125:21388" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#f47843] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75262;125:21389">
+                    <p className="leading-[normal]">55</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#f7faff] content-stretch flex flex-col gap-[16px] h-[700px] items-center overflow-clip pb-[80px] relative rounded-[8px] shrink-0 w-full" data-node-id="I164:75262;125:21331" data-name="Превью">
+            <div className="aspect-[2084/1440] relative shrink-0 w-full" data-node-id="I164:75262;125:26203" data-name="image 1492">
+              <div aria-hidden className="absolute inset-0 pointer-events-none">
+                <img alt="" className="absolute max-w-none object-cover size-full" src={imgImage1492} />
+                <div className="absolute inset-0 overflow-hidden">
+                  <img alt="" className="absolute h-[117.15%] left-[-14.64%] max-w-none top-[0.01%] w-[119.26%]" src={imgImage1493} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white content-stretch flex flex-col gap-[6px] items-start pt-[12px] relative rounded-[var(--border-radius\/border-radius_s,8px)] shrink-0 w-full" data-node-id="164:75263" data-name="Страница сайта">
+          <div className="[word-break:break-word] content-stretch flex font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] items-baseline justify-between leading-[normal] not-italic px-[12px] relative shrink-0 w-full whitespace-nowrap" data-node-id="I164:75263;125:21326" data-name="1я строка">
+            <p className="overflow-hidden relative shrink-0 text-[16px] text-[color:var(--text\/text-color,black)] text-ellipsis tracking-[-0.2256px]" data-node-id="I164:75263;125:21327">
+              Главная s-billing.saby.ws
+            </p>
+            <p className="overflow-hidden relative shrink-0 text-[14px] text-[color:var(--text\/link_text-color,#2562aa)] text-ellipsis text-right tracking-[-0.1974px]" data-node-id="I164:75263;125:21328">
+              s-billing.saby.ws/contacts
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[12px] items-center justify-end px-[12px] relative shrink-0 w-full" data-node-id="I164:75263;125:21329" data-name="2я строка">
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75263;125:21390">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[17px]" data-node-id="I164:75263;125:21391" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-start py-[0.5px] relative shrink-0 w-full" data-node-id="I164:75263;125:21392" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-['cbuc-icons:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#8991a9] text-[16px] tracking-[-0.226px] w-full" data-node-id="I164:75263;125:21393">
+                    <p className="leading-[normal]">{`\uE732`}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[43px]" data-node-id="I164:75263;125:21394" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75263;125:21395" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75263;125:21396">
+                    <p className="leading-[normal]">6 449</p>
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="I164:75263;125:26182" data-name="Unnamed (Rectangle)">
+                <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#999] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] w-[32.152px]" data-node-id="I164:75263;125:26184">
+                  <p className="leading-[normal]">1,6%</p>
+                </div>
+              </div>
+            </div>
+            <div className="[word-break:break-word] content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-start justify-end leading-[normal] not-italic relative shrink-0 whitespace-nowrap" data-node-id="I164:75263;125:21330" data-name="посетители">
+              <p className="font-['cbuc-icons:Regular'] relative shrink-0 text-[16px] text-[color:var(--icon\/label_icon-color,#8991a9)]" data-node-id="I164:75263;125:21330;1192:28249">{`\uEB6B`}</p>
+              <p className="font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] relative shrink-0 text-[length:var(--font\/font-size\/font-size_m,14px)] text-black text-right tracking-[-0.1974px]" data-node-id="I164:75263;125:21330;1192:28250">
+                2 034
+              </p>
+            </div>
+            <div className="content-stretch flex gap-[var(--offset\/offset_2xs,4px)] items-center relative shrink-0" data-node-id="I164:75263;125:21385">
+              <div className="bg-[#f47843] relative rounded-[100px] shrink-0 size-[6px]" data-node-id="I164:75263;125:21386" data-name="Unnamed (Rectangle)" />
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-[20px]" data-node-id="I164:75263;125:21387" data-name="Unnamed (Rectangle)">
+                <div className="content-stretch flex flex-col items-end relative shrink-0 w-full" data-node-id="I164:75263;125:21388" data-name="Container">
+                  <div className="[word-break:break-word] flex flex-col font-[family-name:var(--font\/font-family\/default,'Inter:Regular')] font-[var(--font\/font-weight\/regular,400)] justify-center leading-[0] not-italic relative shrink-0 text-[#f47843] text-[length:var(--font\/font-size\/font-size_m,14px)] text-right tracking-[-0.1974px] whitespace-nowrap" data-node-id="I164:75263;125:21389">
+                    <p className="leading-[normal]">55</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#f7faff] content-stretch flex flex-col gap-[16px] h-[700px] items-center overflow-clip pb-[80px] relative rounded-[8px] shrink-0 w-full" data-node-id="I164:75263;125:21331" data-name="Превью">
+            <div className="aspect-[2084/1440] relative shrink-0 w-full" data-node-id="I164:75263;125:26203" data-name="image 1492">
+              <div aria-hidden className="absolute inset-0 pointer-events-none">
+                <div className="absolute bg-white inset-0" />
+                <div className="absolute inset-0 overflow-hidden">
+                  <img alt="" className="absolute h-[113.41%] left-[-15.37%] max-w-none top-[-2.03%] w-[125.38%]" src={imgImage1494} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: ICONS/label_icon-color: #8991A9, TEXT/label_text-color: #8991A9, font-size/regular/xs: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xs, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/l: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_l, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), icon-size/m: Font(family: "icon/font-family/m_icon_font-family", style: Regular, size: icon/icon_size/icon-size_m, weight: 400, lineHeight: 100, letterSpacing: 0), font-size/regular/5xl: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_5xl, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/xl: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_xl, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), font-size/regular/m: Font(family: "font/font-family/default", style: Regular, size: font/font-size/font-size_m, weight: font/font-weight/regular, lineHeight: 100, letterSpacing: -1.409999966621399), TEXT/text-color: #000000.
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## marker/Marker
+**Node ID:** 3:81721
+
+У маркера можно изменять высоту. При необходимости можно сбросить изменения компонента, чтобы включить высоту по умолчанию
+
+**Documentation:**
+- [https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/list/actions/marker/](https://wi.sbis.ru/doc/platform/developmentapl/interface-development/controls/list/actions/marker/)
+The generated code contains image and SVG URL constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.
