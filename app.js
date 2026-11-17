@@ -131,6 +131,7 @@ const {action,ids,bulk}=pendingRegistryAction;closeRegistryConfirmation();
 if(action==="delete"){for(let i=sites.length-1;i>=0;i--)if(ids.includes(sites[i].id)){selectedSites.delete(sites[i].id);sites.splice(i,1)}}
 else for(const site of sites)if(ids.includes(site.id))site.published=action==="publish";
 if(bulk){selectedSites.clear();selectedOnly=false}render();
+if(currentSite&&ids.includes(currentSite.id)){drawCard();document.querySelector('.card-top-tools [aria-label="'+(currentSite.published?"Снять с публикации":"Опубликовать")+'"]')?.focus()}
 });
 document.addEventListener("keydown",event=>{
 if(!pendingRegistryAction)return;
@@ -298,7 +299,7 @@ const points=values.map((value,index)=>(index*600/(values.length-1)).toFixed(2)+
 return '<div class="visit-chart"><strong>ПОСЕТИТЕЛИ</strong><div class="chart-body"><div class="y-axis">'+[top,top*2/3,top/3,0].map(value=>'<span>'+value+'</span>').join('')+'</div><div class="chart-grid"><div class="graph-slot"><svg class="visitor-graph" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="Посетители за месяц: '+esc(currentSite.visitors)+'"><polygon points="0,160 '+points+' 600,160" fill="#dceafa"/><polyline points="'+points+'" fill="none" stroke="#8ab6e3" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div><div class="x-axis">'+Array.from({length:16},(_,i)=>'<span>'+ (1+i*2)+'</span>').join('')+'</div></div></div></div>';
 }
 function openCard(id){closeFilter();currentSite=sites.find(s=>s.id===id);cardTab="Страницы";cardPage=0;drawCard();document.getElementById("card-close").focus()}
-function closeCard(){document.getElementById("site-card")?.remove();currentSite=null;rows.querySelector('[data-site="'+selected+'"]')?.focus()}
+function closeCard(){document.getElementById("card-command-panel")?.remove();document.getElementById("site-card")?.remove();currentSite=null;rows.querySelector('[data-site="'+selected+'"]')?.focus()}
 function cardParameters(){
 const settings=currentSite.settings;
 if(cardPage)return '<div class="parameter-sheet"><h3>'+esc(cardPages()[cardPage][0])+'</h3><label class="access">Доступ <select data-setting="access" aria-label="Доступ"><option '+(settings.access==="Без авторизации"?"selected":"")+'>Без авторизации</option><option '+(settings.access==="Только авторизованным"?"selected":"")+'>Только авторизованным</option></select></label>'+indexingSwitch(settings)+'<h3>SEO</h3><label class="stacked-field">Заголовок<input data-setting="title" value="'+esc(settings.title)+'"></label><label class="stacked-field">Описание<textarea data-setting="description">'+esc(settings.description)+'</textarea></label></div>';
@@ -320,15 +321,24 @@ document.getElementById("site-card").append(menu);document.getElementById("desig
 }
 function drawCard(){
 let panel=document.getElementById("site-card");if(!panel){panel=document.createElement("section");panel.id="site-card";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label","Карточка сайта");stage.append(panel)}
-panel.innerHTML='<div class="card-main"><div class="card-header"><div class="card-heading"><h2>'+esc(currentSite.name)+'</h2><button aria-label="Название сайта" class="rename">'+iconHtml("E660","icon24")+'</button><button class="appearance">Оформление'+iconHtml("E747","icon24")+'</button><span class="heading-spacer"></span></div><nav class="card-tabs" aria-label="Вкладки карточки">'+["Страницы","Параметры","Статистика","Источники","Посетители","Отклики"].map(name=>'<button '+(!["Страницы","Параметры"].includes(name)?'disabled':'')+' data-card-tab="'+name+'" aria-selected="'+(cardTab===name)+'">'+name+'</button>').join("")+'</nav></div><div class="card-body"><aside class="card-pages"><div class="visitor-summary"><label><input type="checkbox">Новые за период<span>'+esc(currentSite.analytics?.newVisitors??886)+'</span></label><label><input type="checkbox">Больше 1 визита<span>'+esc(currentSite.analytics?.repeatVisitors??656)+'</span></label></div><div class="page-count-label">Посетители</div>'+cardPages().map(([name,count],i)=>'<button class="card-page '+(cardPage===i?'selected':'')+'" data-card-page="'+i+'"><span>'+name+'</span><span>'+count+'</span></button>').join("")+'</aside><div class="card-content">'+(cardTab==="Параметры"?cardParameters():cardPreview())+'</div></div></div><aside class="card-tools"><div class="card-top-tools"><button id="card-close" aria-label="Закрыть карточку"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>'+designerVerification()+[["E61B","Параметры"],["EB5E","Заказы"],["E6A7","Ссылка"],["EAB9","Просмотр"],[currentSite.published?"E62F":"E631",currentSite.published?"Снять с публикации":"Опубликовать"]].map(([hex,label])=>'<button aria-label="'+label+'" '+(label==="Параметры"?'data-card-tab="Параметры"':'')+'>'+iconHtml(hex,"icon24")+'</button>').join("")+'</div><div class="informers"><button class="date"><span>16</span><small>чт</small></button><button class="round icon"></button><button class="round icon"></button><button class="help"><img src="assets/56b4e.svg" width="12" height="16" alt="Помощь"></button></div></aside>';
+panel.innerHTML='<div class="card-main"><div class="card-header"><div class="card-heading"><h2>'+esc(currentSite.name)+'</h2><button aria-label="Название сайта" class="rename">'+iconHtml("E660","icon24")+'</button><button class="appearance">Оформление'+iconHtml("E747","icon24")+'</button><span class="heading-spacer"></span></div><nav class="card-tabs" aria-label="Вкладки карточки">'+["Страницы","Параметры","Статистика","Источники","Посетители","Отклики"].map(name=>'<button '+(!["Страницы","Параметры"].includes(name)?'disabled':'')+' data-card-tab="'+name+'" aria-selected="'+(cardTab===name)+'">'+name+'</button>').join("")+'</nav></div><div class="card-body"><aside class="card-pages"><div class="visitor-summary"><label><input type="checkbox">Новые за период<span>'+esc(currentSite.analytics?.newVisitors??886)+'</span></label><label><input type="checkbox">Больше 1 визита<span>'+esc(currentSite.analytics?.repeatVisitors??656)+'</span></label></div><div class="page-count-label">Посетители</div>'+cardPages().map(([name,count],i)=>'<button class="card-page '+(cardPage===i?'selected':'')+'" data-card-page="'+i+'"><span>'+name+'</span><span>'+count+'</span></button>').join("")+'</aside><div class="card-content">'+(cardTab==="Параметры"?cardParameters():cardPreview())+'</div></div></div><aside class="card-tools"><div class="card-top-tools"><button id="card-close" aria-label="Закрыть карточку"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>'+designerVerification()+[["EAA9","Настройки"],["EB5E","SEO-аналитика"],["E6A7","Ссылка"],["EAB9","Просмотр"],[currentSite.published?"E62F":"E631",currentSite.published?"Снять с публикации":"Опубликовать"]].map(([hex,label])=>'<button aria-label="'+label+'" '+(label==="Параметры"?'data-card-tab="Параметры"':'')+'>'+iconHtml(hex,"icon24")+'</button>').join("")+'</div><div class="informers"><button class="date"><span>16</span><small>чт</small></button><button class="round icon"></button><button class="round icon"></button><button class="help"><img src="assets/56b4e.svg" width="12" height="16" alt="Помощь"></button></div></aside>';
 const graph=panel.querySelector('.graph-slot');if(graph)graph.style.setProperty('--graph-scale',String(graph.clientWidth/515.828));
 }
 document.addEventListener("click",event=>{
+if(event.target.closest("#card-command-close")){document.getElementById("card-command-panel")?.remove();return}
 if(event.target.closest("#designer-verification")){toggleVerificationMenu();return}
 const verification=event.target.closest("[data-verification]");
 if(verification&&currentSite?.id===2){currentSite.verified=verification.dataset.verification==="true";render();drawCard();document.getElementById("designer-verification").focus();return}
 if(event.target.closest(".verification-dismiss")){toggleVerificationMenu();document.getElementById("designer-verification").focus();return}
 if(document.getElementById("verification-menu")&&!event.target.closest("#verification-menu"))toggleVerificationMenu();
+const command=event.target.closest(".card-top-tools button");
+if(command&&currentSite){
+const label=command.getAttribute("aria-label");
+if(label==="Настройки"||label==="SEO-аналитика"){openCardCommandPanel(label);return}
+if(label==="Просмотр"){window.open(new URL("site-preview.html",location.href).href,"_blank","noopener,noreferrer");return}
+if(label==="Ссылка"){copyCardLink();return}
+if(label==="Опубликовать"||label==="Снять с публикации"){confirmRegistryAction(currentSite.published?"unpublish":"publish",[currentSite.id]);return}
+}
 if(event.target.closest("#card-close"))closeCard();
 const tab=event.target.closest("[data-card-tab]");if(tab&&currentSite){cardTab=tab.dataset.cardTab;drawCard()}
 const page=event.target.closest("[data-card-page]");if(page){cardPage=Number(page.dataset.cardPage);drawCard()}
@@ -336,7 +346,7 @@ if(event.target.closest("#indexing-switch")){currentSite.settings.indexing=!curr
 const device=event.target.closest("[data-device]");if(device){document.querySelectorAll("[data-device]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===device)));document.getElementById("site-preview").classList.toggle("mobile",device.dataset.device==="mobile")}
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("card-command-panel")){document.getElementById("card-command-panel").remove()}else if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
 // Shared contrast search: Figma fLpLW1vBm7H88TenFl0GCv, 20067:12311.
 function syncSearchField(input){
 const wrapper=input?.closest('.search-control');if(!wrapper)return;
@@ -367,3 +377,47 @@ syncSearchField(input);
 enhanceSearchFields();
 function fit(){closeMarksMenu();const graph=document.querySelector(".graph-slot");if(graph)graph.style.setProperty("--graph-scale",String(graph.clientWidth/515.828))}addEventListener("resize",fit);fit();render();
 
+
+async function copyCardLink(){
+const url="https://"+currentSite.settings.domain.replace(/^https?:\/\//i,"");
+try{await navigator.clipboard.writeText(url);showCopiedToast()}
+catch{const field=document.createElement("textarea");field.value=url;field.style.cssText="position:fixed;opacity:0";stage.append(field);field.select();const copied=document.execCommand("copy");field.remove();if(copied)showCopiedToast()}
+}
+function openCardCommandPanel(name){
+document.getElementById("card-command-panel")?.remove();
+const panel=document.createElement("section");panel.id="card-command-panel";panel.className=name==="Настройки"?"command-settings":"command-seo";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label",name);
+const content=name==="Настройки"?'<header class="command-heading"><h2>Настройки</h2></header><div class="settings-layout"><div class="integration-card"><div><h3>Яндекс.Метрика и Директ</h3><p>Объединяет данные поведения пользователей на сайте и расходы на рекламу.<br>Позволяет автоматически собирать статистику по заданным сайтам и рекламным кампаниям для сквозной аналитики</p></div></div><nav class="settings-sections" aria-label="Разделы настроек"><button aria-current="page">Интеграции</button><button aria-disabled="true">Кто имеет доступ</button></nav></div>':'<header class="command-heading"><h2>SEO-аналитика</h2><button class="seo-run" aria-disabled="true">Запустить</button></header><div class="seo-site">'+esc(currentSite.name)+'<span class="seo-site-clear" aria-hidden="true">'+iconHtml("E66C","icon24")+'</span><span class="seo-site-menu" aria-hidden="true">'+iconHtml("EA90","icon24")+'</span></div><div class="seo-content"><div class="seo-progress"><span>5 шагов</span><div></div></div><ol class="seo-steps">'+["Безопасность сайта","Индексация","Мета-теги","Анализ юзабилити и поведения пользователей","Локальные факторы ранжирования"].map(label=>'<li>'+label+'</li>').join("")+'</ol><div class="seo-hint"><p class="seo-explanation">Saby поможет определить  соответствие сайта и его страниц требованиям поисковых систем и покажет проблемы, влияющие на позиции в выдаче, быстродействии, полноты наполнения и адаптивности сайта.</p><img src="assets/seo-hint.svg" width="200" height="200" alt=""></div></div>';
+panel.innerHTML='<div class="command-main">'+content+'</div><aside class="command-tools"><button id="card-command-close" aria-label="Закрыть '+name+'">'+iconHtml("E66C","icon24")+'</button>'+document.querySelector('#site-card .informers').outerHTML+'</aside>';stage.append(panel);panel.querySelector("#card-command-close").focus();
+}
+
+// Меню добавления сайта — согласованный состав, без новых сценариев.
+const addSiteButton=document.querySelector('main>header>.add');
+addSiteButton.setAttribute('aria-haspopup','menu');
+addSiteButton.setAttribute('aria-expanded','false');
+function closeAddSiteMenu(restoreFocus=false){
+const menu=document.getElementById('add-site-menu');if(!menu)return;
+menu.remove();addSiteButton.setAttribute('aria-expanded','false');
+if(restoreFocus)addSiteButton.focus();
+}
+function toggleAddSiteMenu(){
+if(document.getElementById('add-site-menu')){closeAddSiteMenu(true);return}
+const menu=document.createElement('div');menu.id='add-site-menu';menu.setAttribute('role','menu');menu.setAttribute('aria-label','Добавить сайт');
+menu.innerHTML='<div class="add-site-menu-heading"><span>ДОБАВИТЬ САЙТ</span><button type="button" aria-label="Закрыть меню добавления сайта">'+iconHtml('E66C','icon24')+'</button></div><button type="button" role="menuitem">Подключить</button><button type="button" role="menuitem">Создать новый</button>';
+stage.append(menu);
+const anchor=addSiteButton.getBoundingClientRect(),bounds=stage.getBoundingClientRect();
+menu.style.left=Math.max(4,Math.min(anchor.left-bounds.left,bounds.width-menu.offsetWidth-4))+'px';
+menu.style.top=anchor.top-bounds.top+'px';
+addSiteButton.setAttribute('aria-expanded','true');menu.querySelector('[role="menuitem"]').focus();
+menu.querySelector('.add-site-menu-heading button').addEventListener('click',()=>closeAddSiteMenu(true));
+}
+addSiteButton.addEventListener('click',toggleAddSiteMenu);
+document.addEventListener('click',event=>{if(!event.target.closest('#add-site-menu,main>header>.add'))closeAddSiteMenu()});
+document.addEventListener('keydown',event=>{
+const menu=document.getElementById('add-site-menu');if(!menu)return;
+if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();closeAddSiteMenu(true);return}
+if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
+event.preventDefault();const items=[...menu.querySelectorAll('[role="menuitem"]')],index=items.indexOf(document.activeElement);
+items[event.key==='Home'?0:event.key==='End'?items.length-1:(index+(event.key==='ArrowDown'?1:items.length-1))%items.length].focus();
+}
+},true);
+addEventListener('resize',()=>closeAddSiteMenu());
