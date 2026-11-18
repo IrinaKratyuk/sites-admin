@@ -1,0 +1,15 @@
+/* Figma 19791:40186: Menu / On click / one column. */
+.navigation-menu{--menu-fill:#3e5266;--menu-text:#e9ebec;--menu-icon:#9cb1c7;position:absolute;left:0;z-index:50;width:240px;border-radius:8px;color:var(--menu-text);font:400 16px/normal Inter,Arial,sans-serif;letter-spacing:-.2256px}
+.navigation-menu__surface{display:flex;flex-direction:column;gap:2px;padding-bottom:24px;overflow:hidden;background:var(--menu-fill);border-radius:8px;box-shadow:0 0 46px #0000001f,0 0 15px #0000001f}
+.navigation-menu__heading{padding:5px 6px 2px 4px}
+.navigation-menu__heading-row{display:flex;align-items:center;height:30px;border-radius:15px;overflow:hidden}
+.navigation-menu__icon{display:flex;align-items:center;justify-content:center;flex:none;padding:0 2px 0 10px;font:400 20px/normal Accordion-Font;color:var(--menu-icon)}
+.navigation-menu__caption{display:flex;align-items:center;align-self:stretch;flex:1;min-width:0;padding:0 10px 0 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.navigation-menu__items{display:flex;flex-direction:column;gap:2px;padding:0 6px 0 36px}
+.navigation-menu__item{display:flex;align-items:center;flex:none;width:100%;height:30px;padding:0 0 0 12px;border:0;border-radius:15px;background:var(--menu-fill);color:var(--menu-text);font:inherit;letter-spacing:inherit;text-align:left;overflow:hidden}
+.navigation-menu__label{flex:1;min-width:0;padding-right:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.navigation-menu__item.is-current,.navigation-menu__item:hover,.navigation-menu__item:focus-visible{background:#35495a}
+.navigation-menu__item[aria-disabled=true]{cursor:default}
+.navigation-menu__counter{display:flex;align-items:center;justify-content:center;flex:none;padding:4.5px 9px;border-left:1px solid var(--menu-fill);color:#ff9c6c;font:400 14px/normal Inter,Arial,sans-serif;letter-spacing:-.1974px}
+.navigation-menu__close{position:absolute;right:-32px;top:4px;width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:100px;background:rgba(202,202,202,.7);filter:drop-shadow(1px 1px 3px #0000001a)}
+.navigation-menu__close img{display:block}

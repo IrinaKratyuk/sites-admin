@@ -54,8 +54,8 @@ const multiButton=document.querySelector('.toolbar [aria-label="Панель"]')
 multiButton.setAttribute("aria-label","Множественный выбор");multiButton.title="Множественный выбор";
 sites.forEach(site=>{site.regionId ??= 1;site.published=!site.muted;site.settings={indexing:true,title:"Главная",description:"Разработка биллинговых систем для IT SaaS-сервисов.",access:"Без авторизации",domain:"s-billing.saby.ws",yandex:"7997d0c96385c573",google:"G8gPa3dRkLmNoPqRsTuVwXyZ1234567890AbCdEf",metrika:"25980874",vk:"5674532",gtm:"GTM-N842GS"}});
 const iconHtml=(hex,size="icon")=>'<i aria-hidden="true" class="'+size+'">'+icon(hex)+'</i>';
-function highlightMatch(value){
-const text=String(value??""), query=document.getElementById("search").value.trim();
+function highlightMatch(value, query=document.getElementById("search").value.trim()){
+const text=String(value??"");
 if(!query)return esc(text);
 const lower=text.toLocaleLowerCase("ru"), needle=query.toLocaleLowerCase("ru");let result="",start=0,index;
 while((index=lower.indexOf(needle,start))!==-1){result+=esc(text.slice(start,index))+'<mark>'+esc(text.slice(index,index+query.length))+'</mark>';start=index+query.length}
@@ -217,7 +217,7 @@ if(!event.target.closest('#sort-menu, [aria-label="Сортировать"]'))cl
 document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSort()});
 
 let companyDraft=null;
-function closeFilter(){closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false")}
+function closeFilter(){closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false");document.getElementById("showcase-branch-filter")?.setAttribute("aria-expanded","false")}
 function filterField(field,title,placeholder){
 const values=draft[field];
 return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line">'+(values.length?'<span class="lookup-value" title="'+esc(values[0])+'">'+esc(values[0])+'</span><button class="lookup-remove" data-remove-first="'+field+'" aria-label="Убрать '+esc(values[0])+'">'+iconHtml('E66C')+'</button>':'')+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" aria-label="Подсказки: '+title+'" hidden></div></div>';
@@ -226,11 +226,11 @@ function drawFilter(){
 let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
 const flagLabels=[['verified','Проверенные','Непроверенные'],['published','Опубликованные','Неопубликованные']];
 const selectedFlags=flagLabels.filter(([field])=>draft[field]!==null).map(([field,yes,no])=>'<div class="filter-selected-condition"><button class="filter-condition-label">'+(draft[field]?yes:no)+'</button><button class="filter-condition-remove" data-remove-flag="'+field+'" aria-label="Убрать условие '+(draft[field]?yes:no)+'">'+iconHtml('E66C')+'</button></div>').join('');
-const dirty=JSON.stringify(draft)!==JSON.stringify(emptyFilters())||JSON.stringify(draft)!==JSON.stringify(filters);
-panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div>'+panelCloseButton('filter-close','Закрыть фильтр')+'</div><div class="filter-fields">'+filterField('templates','Шаблон','Выберите шаблон')+filterField('companies','Организация','Выберите организацию')+selectedFlags+'</div><div class="filter-extra" '+(flagLabels.every(([field])=>draft[field]!==null)?'hidden':'')+'><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+flagLabels.filter(([field])=>draft[field]===null).map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
+const dirty=JSON.stringify(draft)!==JSON.stringify(emptyFilters())||JSON.stringify(draft)!==JSON.stringify(showcaseCurrent&&showcaseTab==='Филиалы'?showcaseBranchFilters:filters);
+panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div>'+panelCloseButton('filter-close','Закрыть фильтр')+'</div><div class="filter-fields">'+(showcaseCurrent&&showcaseTab==='Филиалы'?'':filterField('templates','Шаблон','Выберите шаблон'))+filterField('companies','Организация','Выберите организацию')+selectedFlags+'</div><div class="filter-extra" '+(flagLabels.every(([field])=>draft[field]!==null)?'hidden':'')+'><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+flagLabels.filter(([field])=>draft[field]===null).map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
 }
 const extraCompanies=['Вскрытие тары, Ярославль, ООО','Звезда Общепита, ООО','+КАТЮША PLUS+','СПК, АО','Шоколадка, ООО'];
-function lookupValues(field){return field==='templates'?templateCatalog.map(t=>t.name):[...new Set([...sites.map(s=>s.company).filter(Boolean),...extraCompanies])]}
+function lookupValues(field){if(field==='companies'&&showcaseCurrent&&showcaseTab==='Филиалы')return [...new Set(showcaseBranches().map(site=>site.company).filter(Boolean))];return field==='templates'?templateCatalog.map(t=>t.name):[...new Set([...sites.map(s=>s.company).filter(Boolean),...extraCompanies])]}
 function hideSuggestions(){document.querySelectorAll('.lookup-suggestions').forEach(list=>list.hidden=true);document.querySelectorAll('[data-lookup-input]').forEach(input=>input.setAttribute('aria-expanded','false'))}
 function searchLookup(input,showAll=false){
 const field=input.dataset.lookupInput,query=input.value.trim().toLocaleLowerCase('ru');hideSuggestions();
@@ -264,16 +264,16 @@ const line=event.target.closest('.lookup-line');if(line&&!event.target.closest('
 if(!event.target.closest('.lookup-field'))hideSuggestions();
 if(event.target.closest("#filter-close"))closeFilter();
 if(event.target.closest("#filter-reset")){draft=emptyFilters();drawFilter()}
-if(event.target.closest("#filter-apply")){filters=copyFilters(draft);render();closeFilter()}
+if(event.target.closest("#filter-apply")){if(showcaseCurrent&&showcaseTab==='Филиалы'){showcaseBranchFilters=copyFilters(draft);updateShowcaseBranchRows();closeFilter()}else{filters=copyFilters(draft);render();closeFilter()}}
 const removeFlag=event.target.closest("[data-remove-flag]");if(removeFlag){draft[removeFlag.dataset.removeFlag]=null;drawFilter();return}
 const flag=event.target.closest("[data-flag]");if(flag){const field=flag.dataset.flag,value=flag.dataset.value==="true";draft[field]=draft[field]===value?null:value;drawFilter()}
-if(filterOpen&&!wasInsideFilter&&!event.target.closest('[aria-label="Фильтр"]'))closeFilter();
+if(filterOpen&&!wasInsideFilter&&!event.target.closest('[aria-label="Фильтр"],#showcase-branch-filter'))closeFilter();
 });
 function closeCompanies(){document.getElementById('company-panel')?.remove();companyDraft=null;document.getElementById('filter-panel')?.removeAttribute('hidden')}
 function openCompanies(){
 companyDraft=[...draft.companies];document.getElementById('filter-panel').hidden=true;
 const panel=document.createElement('section');panel.id='company-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Выбор организаций');
-panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Все заведения</h2><button id="company-save" '+(!companyDraft.length?'hidden':'')+'>Выбрать</button></div><div class="company-search-row"><input id="company-search" type="search" placeholder="Найти по названию, ИНН" aria-label="Найти организацию"></div><div class="company-list">'+lookupValues('companies').map(company=>{const site=sites.find(s=>s.company===company);return '<label class="company-option"><input type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span class="company-option-text"><span class="company-option-line"><span class="company-option-name">'+esc(site?.name||company)+'</span><span class="company-option-address">'+esc(site?.address||'')+'</span></span><span class="company-option-details">'+esc(company)+(site?.inn?'　'+esc(site.inn):'')+'</span></span></label>'}).join('')+'</div></div><aside class="template-tools">'+panelCloseButton('company-close','Закрыть выбор организаций')+'<div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
+panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Все заведения</h2><button id="company-save" '+(!companyDraft.length?'hidden':'')+'>Выбрать</button></div><div class="company-search-row"><input id="company-search" type="search" placeholder="Найти по названию, ИНН" aria-label="Найти организацию"></div><div class="company-list">'+lookupValues('companies').map(company=>{const site=(showcaseCurrent&&showcaseTab==='Филиалы'?showcaseBranches():sites).find(s=>s.company===company);return '<label class="company-option"><input type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span class="company-option-text"><span class="company-option-line"><span class="company-option-name">'+esc(site?.name||company)+'</span><span class="company-option-address">'+esc(site?.address||'')+'</span></span><span class="company-option-details">'+esc(company)+(site?.inn?'　'+esc(site.inn):'')+'</span></span></label>'}).join('')+'</div></div><aside class="template-tools">'+panelCloseButton('company-close','Закрыть выбор организаций')+'<div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
 stage.append(panel);enhanceSearchFields(panel);
 panel.querySelector('#company-search').addEventListener('input',event=>{const query=event.target.value.trim().toLocaleLowerCase('ru');panel.querySelectorAll('.company-option').forEach(row=>row.hidden=!row.textContent.toLocaleLowerCase('ru').includes(query))});
 panel.addEventListener('change',event=>{if(event.target.matches('.company-option input')){const value=event.target.value;companyDraft=event.target.checked?[...new Set([...companyDraft,value])]:companyDraft.filter(company=>company!==value);panel.querySelector('#company-save').hidden=!companyDraft.length}});
@@ -381,12 +381,21 @@ function designerVerification(){
 
 return '<button id="designer-verification" class="verification-icon '+(currentSite.verified?'is-verified':'')+'" aria-label="Проверка дизайнером: '+(currentSite.verified?'Проверено':'Не проверено')+'" aria-haspopup="menu" aria-expanded="false">'+iconHtml("EB4D")+'</button>';
 }
-function toggleVerificationMenu(){
+// Card popovers are mutually exclusive; nested command submenus belong to their parent.
+function closeCardMenus(exceptId=null){
+ for(const [menuId,triggerIds] of [['verification-menu',['designer-verification','showcase-verification']],['card-more-menu',['card-more']],['showcase-more-menu',['showcase-more']]]){
+  if(menuId===exceptId)continue;
+  document.getElementById(menuId)?.remove();
+  for(const triggerId of triggerIds)document.getElementById(triggerId)?.setAttribute('aria-expanded','false');
+ }
+}
+function toggleVerificationMenu(site=currentSite, host=document.getElementById("site-card"), trigger=document.getElementById("designer-verification"), attribute="data-verification"){
 const existing=document.getElementById("verification-menu");
-if(existing){existing.remove();document.getElementById("designer-verification")?.setAttribute("aria-expanded","false");return}
+if(existing){closeCardMenus();return}
+closeCardMenus();
 const menu=document.createElement("div");menu.id="verification-menu";menu.setAttribute("role","menu");menu.setAttribute("aria-label","Проверка дизайнером");
-menu.innerHTML='<button class="verification-dismiss" aria-label="Закрыть меню проверки">'+iconHtml("E66C","icon24")+'</button>'+[true,false].map(value=>'<button role="menuitemradio" aria-checked="'+(Boolean(currentSite.verified)===value)+'" data-verification="'+value+'"><span class="verification-icon '+(value?'is-verified':'')+'">'+iconHtml("EB4D")+'</span>'+(value?'Проверено':'Не проверено')+'</button>').join("");
-document.getElementById("site-card").append(menu);document.getElementById("designer-verification").setAttribute("aria-expanded","true");menu.querySelector('[data-verification]').focus();
+menu.innerHTML='<button class="verification-dismiss" aria-label="Закрыть меню проверки">'+iconHtml("E66C","icon24")+'</button>'+[true,false].map(value=>'<button role="menuitemradio" aria-checked="'+(Boolean(site.verified)===value)+'" '+attribute+'="'+value+'"><span class="verification-icon '+(value?'is-verified':'')+'">'+iconHtml("EB4D")+'</span>'+(value?'Проверено':'Не проверено')+'</button>').join("");
+host.append(menu);trigger.setAttribute("aria-expanded","true");menu.querySelector('[role=menuitemradio]').focus();
 }
 // Shared panel close: exact 28px functionalButton SVG from Figma 19062:34148.
 function panelCloseButton(id,label){return '<button id="'+id+'" class="panel-close" aria-label="'+label+'"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>'}
@@ -418,8 +427,8 @@ if(event.target.closest("#card-command-close")){document.getElementById("card-co
 if(event.target.closest("#designer-verification")){toggleVerificationMenu();return}
 const verification=event.target.closest("[data-verification]");
 if(verification&&currentSite){currentSite.verified=verification.dataset.verification==="true";render();drawCard();document.getElementById("designer-verification").focus();return}
-if(event.target.closest(".verification-dismiss")){toggleVerificationMenu();document.getElementById("designer-verification").focus();return}
-if(document.getElementById("verification-menu")&&!event.target.closest("#verification-menu"))toggleVerificationMenu();
+if(event.target.closest(".verification-dismiss")&&!showcaseCurrent){toggleVerificationMenu();document.getElementById("designer-verification").focus();return}
+if(document.getElementById("verification-menu")&&!showcaseCurrent&&!event.target.closest("#verification-menu"))toggleVerificationMenu();
 if(event.target.closest('#card-more')){toggleCardMore();return}
 if(event.target.closest('#card-more-close')){document.getElementById('card-more-menu')?.remove();return}
 const extra=event.target.closest('[data-card-extra]');
@@ -445,7 +454,7 @@ const field=event.target.dataset.cardVisitFilter;if(!field||!currentSite)return;
 cardVisitFilters[field]=event.target.checked;drawCard();document.querySelector('[data-card-visit-filter="'+field+'"]').focus();
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){if(document.getElementById("card-command-panel")){document.getElementById("card-command-panel").remove()}else if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
+document.addEventListener("keydown",event=>{if(showcaseCurrent)return;if(event.key==="Escape"){if(document.getElementById("card-command-panel")){document.getElementById("card-command-panel").remove()}else if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
 // Shared contrast search: Figma fLpLW1vBm7H88TenFl0GCv, 20067:12311.
 function syncSearchField(input){
 const wrapper=input?.closest('.search-control');if(!wrapper)return;
@@ -522,11 +531,12 @@ items[event.key==='Home'?0:event.key==='End'?items.length-1:(index+(event.key===
 addEventListener('resize',()=>closeAddSiteMenu());
 
 function toggleCardMore(){
-const old=document.getElementById('card-more-menu');if(old){old.remove();return}
+const old=document.getElementById('card-more-menu');if(old){closeCardMenus();return}
+closeCardMenus();
 const menu=document.createElement('div');menu.id='card-more-menu';menu.setAttribute('role','menu');
 const row=(hex,label,attrs='')=>'<button role="menuitem" '+attrs+'>'+iconHtml(hex,'icon24')+'<span>'+label+'</span></button>';
 menu.innerHTML='<button id="card-more-close" aria-label="Закрыть меню">'+iconHtml('E66C','icon24')+'</button>'+'<div class="card-check-submenu">'+row('EB4D','Проверка карточки','aria-haspopup="menu"')+'<div role="menu">'+[true,false].map(value=>row('EB4D',value?'Проверено':'Не проверено','data-verification="'+value+'" class="'+(value?'verified':'')+'"')).join('')+'</div></div>'+[['EAA9','Настройки'],['EB5E','SEO-аналитика'],['E6A7','Ссылка'],['EAB9','Открыть сайт'],[currentSite.published?'E62F':'E631',currentSite.published?'Снять с публикации':'Опубликовать']].map(([hex,label])=>row(hex,label,'data-card-command aria-label="'+(label==='Открыть сайт'?'Просмотр':label)+'"')).join('')+row('E658','Показать историю','data-card-extra="history"')+row('E663','Очистить кэш','data-card-extra="cache"')+row('E65C','Удалить','data-card-extra="delete" class="delete-command"');
-document.getElementById('site-card').append(menu);menu.querySelector('[data-card-extra]').focus();
+document.getElementById('site-card').append(menu);document.getElementById('card-more').setAttribute('aria-expanded','true');menu.querySelector('[data-card-extra]').focus();
 }
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('card-more-menu')){event.preventDefault();event.stopImmediatePropagation();document.getElementById('card-more-menu').remove();document.getElementById('card-more').focus()}},true);
 
