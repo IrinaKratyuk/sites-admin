@@ -361,8 +361,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 /* functionalButton, 28px: same close component in every panel. SVG includes its resting circle. */
 #stage button.panel-close{width:28px;height:28px;min-width:28px;flex:none;padding:0;margin:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:transparent;box-shadow:none}
 #stage button.panel-close>img{display:block;width:28px;height:28px;flex:none}
-#stage button.panel-close:hover{background:#3333330d}
-#stage button.panel-close:active{background:#3333331a}
+#stage button.panel-close:hover,#stage button.panel-close:active{background:transparent}
 
 /* Compact name editor leaves the Appearance command in the header. */
 .card-name-editor{width:auto;flex:0 1 auto}
@@ -455,3 +454,132 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card-top-tools{align-items:center;width:32px}
 .card-top-tools>button{flex:none}
 .filter-trigger.has-filters{color:#cc3d00}
+
+/* Figma rightPanel: shared geometry only for sliding-panel toolbars. */
+.card-tools,.template-tools,.command-tools{width:52px;flex:none;display:flex;flex-direction:column;align-items:center;padding:7px 10px 6px;gap:6px;background:#f8f8f8;border-left:0;box-sizing:border-box}
+#company-panel .template-tools{border-left:0}
+.card-top-tools{display:flex;flex-direction:column;align-items:center;width:32px;gap:6px;min-height:0}
+#stage :is(.card-tools,.template-tools,.command-tools) button.panel-close{width:32px;height:32px;min-width:32px;position:relative;flex:none}
+.card-top-tools>.panel-close,.template-tools>.panel-close{margin-bottom:1px!important}
+.template-tools>button:not(.panel-close),.command-tools>button:not(.panel-close){flex:none;border-radius:100px}
+.template-tools>button:not(.panel-close):hover,.command-tools>button:not(.panel-close):hover{background:var(--background-contrast-pale_hover_color,#3333331a)}
+.template-informers{margin-bottom:0}
+
+/* Approved content surfaces; registries, menus and panel shells keep their styles. */
+:root{--border-radius-border-radius_s:8px;--surface-shadow-b:0 0 var(--blur-shadow-blur_b,8px) var(--color-shadow-color_b,#00000024)}
+#site-card :is(.visitor-summary,.site-preview,.visit-chart,.card-statistics,.parameter-sheet),#showcase-card .showcase-card-content:not(:has(.showcase-branches)){
+ border-radius:var(--border-radius-border-radius_s);box-shadow:var(--surface-shadow-b)
+}
+/* Only the panel component uses the new Figma states; filter stays separate. */
+#stage button.panel-close--sliding,#stage button.panel-close--sliding:hover,#stage button.panel-close--sliding:active{background:transparent;box-shadow:none}
+#stage button.panel-close--sliding{position:relative;width:32px;height:32px;min-width:32px}
+#stage .panel-close--sliding>img{position:absolute;left:2px;top:2px;width:28px;height:28px;pointer-events:none}
+#stage .panel-close--sliding>:is(.panel-close__hover,.panel-close__active){display:none}
+#stage .panel-close--sliding:hover>.panel-close__default,#stage .panel-close--sliding:active>.panel-close__default{display:none}
+#stage .panel-close--sliding:hover>.panel-close__hover{display:block}
+#stage .panel-close--sliding:active>.panel-close__hover{display:none}
+#stage .panel-close--sliding:active>.panel-close__active{display:block}
+.card-heading .appearance.btn{border:0;--btn-h:26px;--btn-px:12px}
+.settings-layout{flex:1;min-height:0;padding-bottom:8px}
+.settings-content{min-width:0;min-height:0;overflow:auto;scrollbar-width:thin}
+.settings-access{height:100%;min-height:0;background:white;border-radius:var(--border-radius-border-radius_s);box-shadow:var(--surface-shadow-b);padding:12px 16px;display:flex;flex-direction:column}
+.access-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:none;min-height:32px}
+.access-heading h3{font-size:18px;line-height:24px;margin:0;font-weight:600;white-space:nowrap}
+.access-tabs.tabs{height:32px;gap:24px;flex:none}
+.access-tabs .tabs__item{padding:0;height:32px;font-size:16px;font-weight:400;color:#313e78}
+.access-tabs .tabs__item[aria-current=page]{color:#000}
+.access-tabs .tabs__item[aria-current=page]:after{background:#05121e;height:3px;border-radius:2px}
+.access-tabs .tabs__item:disabled{opacity:1;cursor:default}
+.access-toolbar{height:56px;display:flex;align-items:center;gap:12px;flex:none}
+#access-search{height:24px;width:250px;max-width:40%;border:1px solid #e3e5ea;border-radius:24px;background:#f8f8f8;padding:0 10px;font-size:14px;outline:none}
+#access-search::placeholder{color:#b2b8cc}
+.access-allowed{margin-left:auto;background:#ebf4ff;border-radius:24px;padding:5px 10px;font-size:14px;white-space:nowrap}
+.access-toolbar>.tool{width:24px;height:24px;flex:none;opacity:1;cursor:default}
+.access-people{overflow:auto;min-height:0;flex:1;scrollbar-width:thin}
+.access-person{display:grid;grid-template-columns:40px minmax(0,1fr) minmax(180px,46%);align-items:start;gap:6px;min-height:47px;padding:0 4px 7px}
+.access-avatar{display:flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:8px;color:#fff;font-size:20px;object-fit:cover;flex:none}
+.access-person-name{font-size:16px;line-height:20px;align-self:center;min-width:0}
+.access-person-name small{display:block;font-size:14px;color:#ccc;line-height:20px}
+.access-permission{font-size:16px;line-height:20px;padding-top:1px}
+.access-empty{padding:12px;color:#999}
+
+.card-heading .appearance.btn .icon24{color:var(--btn-ic)}
+.access-tabs .tabs__item[aria-current=page]{box-shadow:inset 0 -3px #05121e}
+
+/* Let shadow_b paint around surfaces inside their scroll viewports. */
+#site-card .card-body{overflow:visible;clip-path:inset(-8px)}
+#site-card :is(.card-pages,.card-content){
+ width:calc(100% + 16px);height:calc(100% + 8px);margin:-8px;padding:8px;
+}
+.settings-content{margin:-8px;padding:8px}
+#showcase-card .showcase-card-body{overflow:visible;clip-path:inset(-8px)}
+
+.scroll-shadow{--offset-offset_s:8px;--components-scroll-shadow_start-color_scroll:#00000026;--components-scroll-shadow_end-color_scroll:#00000000}
+#site-card :is(.card-pages,.card-content).scroll-shadow,.settings-content.scroll-shadow{--scroll-shadow-inset:8px}
+
+#showcase-card .showcase-card-content:not(:has(.showcase-branches)){height:calc(100% - 8px)}
+/* The top scroll indicator belongs to the tab/body boundary, outside shadow padding. */
+#site-card .card-content.scroll-shadow::before{opacity:0}
+#site-card .card-content.is-scrolled{clip-path:inset(4px 0 0)}
+#site-card .card-body::after{
+ content:"";position:absolute;z-index:2;pointer-events:none;top:0;left:274px;right:-8px;height:8px;
+ background:linear-gradient(var(--components-scroll-shadow_start-color_scroll,#00000026),var(--components-scroll-shadow_end-color_scroll,#00000000));opacity:0;
+}
+#site-card .card-body:has(>.card-content.is-scrolled)::after{opacity:1}
+
+/* Access surface: keep a rounded white footer above the panel's bottom gap. */
+.command-settings .settings-layout{padding-bottom:0}
+.command-settings .settings-content:has(>.settings-access){overflow:visible}
+.command-settings .settings-access{overflow:hidden;border-radius:var(--border-radius-border-radius_s) var(--border-radius-border-radius_s) 0 0;padding-bottom:0}
+.command-settings #settings-history{background:transparent;color:#656c87;margin-top:1px}
+.command-settings #settings-history:hover{background:var(--background-contrast-pale_hover_color,#3333331a)}
+/* Access scroll indicator spans the white surface, including its side padding. */
+.command-settings .access-people.scroll-shadow{--scroll-shadow-inset:16px;margin-inline:-16px;padding-inline:16px;overflow-x:hidden;overflow-y:auto}
+
+/* Overlay thumb leaves the full white surface available for content and scroll shadows. */
+.command-settings .settings-access{position:relative}
+.command-settings .access-people{scrollbar-width:none}
+.command-settings .access-people::-webkit-scrollbar{display:none;width:0;height:0}
+.access-scrollbar{position:absolute;right:0;bottom:0;width:10px;z-index:3;touch-action:none;background:transparent}
+.access-scrollbar-thumb{position:absolute;top:0;right:2px;width:6px;min-height:24px;border-radius:8px;background:#0006;touch-action:none}
+.access-scrollbar-thumb:hover{background:#0009}
+
+.access-toolbar>.access-multi{width:24px;height:24px;flex:none;opacity:1}
+
+/* Settings refinements from the supplied reference screens. */
+#stage :is(.card-heading,.command-heading,.template-header) h2{font-size:20px}
+.command-settings .command-heading{padding-inline:20px}
+.command-settings .settings-layout{padding-left:20px;padding-right:20px}
+.integrations-list{display:flex;flex-direction:column;gap:4px}
+.integrations-list .integration-card{border:0;border-radius:8px;padding:12px;background:#fff;gap:12px;box-shadow:none;outline-offset:-2px}
+.integrations-list .integration-card>img{display:block;flex:none;width:52px;height:52px;border-radius:50%}
+.integrations-list .integration-card h3{font-size:18px;line-height:24px;margin:0}
+.integrations-list .integration-card p{font-size:14px;line-height:16px;margin:0;color:#999}
+.integrations-list .integration-card:not(.is-disabled):is(:hover,:focus-visible){box-shadow:var(--surface-shadow-b)}
+.integrations-list .integration-card.is-disabled{background:transparent;color:#999}
+.access-heading h3{font-size:17px;line-height:24px}
+.access-tabs{--inline_height-inline_height_xl:32px;--text-text-color:#000;--text-secondary_text-color:#313e78;--font-font-family-default:Inter;--font-font-size-font-size_l:16px;--font-font-weight-regular:400;--extra-item_selected_color:#05121e;--extra-marker_hover_color:#e5e7eb;--components-tabs-marker_thickness_tabs:3px;--border-radius-border-radius_2xs:4px;--offset-offset_m:0px}
+.access-tabs .tabs__item{margin:0;box-shadow:none}
+.access-toolbar>.access-filter{width:32px;height:32px;cursor:default}
+.access-allowed{border:0;cursor:pointer}
+.access-allowed:hover{background:#dbecff}
+.access-allowed:active{background:#cce4ff}
+.access-person{position:relative;padding:4px 16px;min-height:47px;margin-inline:-16px}
+.access-person:hover{background:#f3f4f8}
+.access-person>.access-check{position:absolute;left:4px;top:6px;opacity:0}
+.access-person:hover>.access-check,.is-multi .access-person>.access-check{opacity:1}
+.access-person.is-marked:before{content:"";position:absolute;left:0;top:7px;width:3px;height:16px;background:#cc3d00;border-radius:3px}
+.is-multi .access-person{padding-left:36px}
+.access-person--role{grid-template-columns:minmax(0,1fr) minmax(180px,46%);min-height:31px;align-items:center}
+.access-person--department{grid-template-columns:12px minmax(0,1fr);min-height:31px;align-items:center;gap:6px}
+.access-department-arrow{color:#313e78;display:flex}
+.access-department-count{color:#ccc;margin-left:4px}
+.access-operations{display:flex;align-items:center;gap:12px;min-height:36px;flex:none;background:#f5faff;border-radius:8px;box-shadow:0 0 6px #0000001a;margin-inline:-16px;padding:0 8px 0 4px;font-size:14px;z-index:2}
+.access-operations .checkbox{flex:none}
+.access-operations .btn{--btn-fs:14px;gap:4px}
+.access-reset-icon{color:#d00}
+.access-operations-close{margin-left:auto;display:flex;align-items:center;color:#ccc;width:24px;height:24px;flex:none}
+
+/* Reserve the checkbox slot in compact access rows, including hover. */
+.access-person--department,.access-person--role{padding-left:28px}
+.access-operations .btn__icon{color:#656c87}

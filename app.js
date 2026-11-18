@@ -398,12 +398,15 @@ menu.innerHTML='<button class="verification-dismiss" aria-label="Закрыть 
 host.append(menu);trigger.setAttribute("aria-expanded","true");menu.querySelector('[role=menuitemradio]').focus();
 }
 // Shared panel close: exact 28px functionalButton SVG from Figma 19062:34148.
-function panelCloseButton(id,label){return '<button id="'+id+'" class="panel-close" aria-label="'+label+'"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>'}
+function panelCloseButton(id,label){
+if(id==='filter-close')return '<button id="'+id+'" class="panel-close" aria-label="'+label+'"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>';
+return '<button id="'+id+'" class="panel-close panel-close--sliding" aria-label="'+label+'">'+['default','hover','active'].map(state=>'<img class="panel-close__'+state+'" src="assets/panel-close-'+state+'.svg" width="28" height="28" alt="">').join('')+'</button>';
+}
 const appearancePrototypeUrl='https://www.figma.com/proto/DBmmGUNJ5Pwg8BsFOI5Kuv/Создание--параметры-и-публикация-макета-сайта?page-id=7113%3A98771%3Fnode-id%3D7113-98909&p=f&viewport=147%2C-778%2C0.02&t=J1oMAC3fYUOZxb8s-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=7113%3A98909&node-id=7113-102688&hide-ui=1';
 function cardHeadingContent(){
-const appearance='<a class="appearance" href="'+appearancePrototypeUrl+'" target="_blank" rel="noopener noreferrer">Оформление'+iconHtml('E747','icon24')+'</a>';
+const appearance='<a class="appearance btn btn--same-outlined btn--style-brand btn--size-m" href="'+appearancePrototypeUrl+'" target="_blank" rel="noopener noreferrer"><span class="btn__caption">Оформление</span><span class="btn__icon">'+iconHtml('E747','icon24')+'</span></a>';
 if(cardNameDraft!==null)return '<form class="card-name-editor" id="card-name-editor"><input id="card-name-input" aria-label="Заголовок сайта" value="'+esc(cardNameDraft)+'" required autocomplete="off"><button type="submit" class="card-name-save" aria-label="Сохранить заголовок">'+iconHtml('E75E','icon24')+'</button><button type="button" id="card-name-cancel" aria-label="Отменить редактирование заголовка">'+iconHtml('E66C')+'</button></form>'+appearance+'<span class="heading-spacer"></span>';
-return '<h2>'+esc(currentSite.name)+'</h2><button aria-label="Название сайта" class="rename">'+iconHtml('E660','icon24')+'</button><a class="appearance" href="'+appearancePrototypeUrl+'" target="_blank" rel="noopener noreferrer">Оформление'+iconHtml('E747','icon24')+'</a><span class="heading-spacer"></span>';
+return '<h2>'+esc(currentSite.name)+'</h2><button aria-label="Название сайта" class="rename">'+iconHtml('E660','icon24')+'</button><a class="appearance btn btn--same-outlined btn--style-brand btn--size-m" href="'+appearancePrototypeUrl+'" target="_blank" rel="noopener noreferrer"><span class="btn__caption">Оформление</span><span class="btn__icon">'+iconHtml('E747','icon24')+'</span></a><span class="heading-spacer"></span>';
 }
 function finishCardNameEdit(save){
 if(!currentSite||cardNameDraft===null)return;
@@ -417,7 +420,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&cardNameDra
 function drawCard(){
 let panel=document.getElementById("site-card");if(!panel){panel=document.createElement("section");panel.id="site-card";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label","Карточка сайта");stage.append(panel)}
 panel.classList.toggle('is-statistics',cardTab==='Статистика');
-panel.innerHTML='<div class="card-main"><div class="card-header"><div class="card-heading">'+cardHeadingContent()+'</div><nav class="card-tabs tabs tabs--no-border" role="tablist" aria-label="Вкладки карточки">'+["Страницы","Параметры","Статистика","Источники","Посетители","Отклики"].map(name=>'<button class="tabs__item" role="tab"  data-card-tab="'+name+'" aria-selected="'+(cardTab===name)+'"><span class="tabs__caption" data-caption="'+name+'">'+name+'</span></button>').join("")+'</nav></div><div class="card-body"><aside class="card-pages"><div class="visitor-summary"><label class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" data-card-visit-filter="newVisitors" '+(cardVisitFilters.newVisitors?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span><span class="checkbox__caption">Новые за период</span><span class="visitor-summary-count">'+esc(cardVisitSummary().newVisitors)+'</span></label><label class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" data-card-visit-filter="repeatVisitors" '+(cardVisitFilters.repeatVisitors?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span><span class="checkbox__caption">Больше 1 визита</span><span class="visitor-summary-count">'+esc(cardVisitSummary().repeatVisitors)+'</span></label></div><div class="page-count-label">Посетители</div>'+cardPages().map(([name,count],i)=>'<button class="card-page '+(cardPage===i?'selected':'')+'" data-card-page="'+i+'"><span>'+name+'</span><span>'+count+'</span></button>').join("")+'</aside><div class="card-content">'+(cardTab==="Параметры"?cardParameters():cardTab==="Страницы"?cardPreview():cardAnalytics())+'</div></div></div><aside class="card-tools"><div class="card-top-tools">'+panelCloseButton('card-close','Закрыть карточку')+''+designerVerification()+[["EAA9","Настройки"],["EB5E","SEO-аналитика"],["E6A7","Ссылка"],["EAB9","Просмотр"],[currentSite.published?"E62F":"E631",currentSite.published?"Снять с публикации":"Опубликовать"]].map(([hex,label])=>'<button aria-label="'+label+'" '+(label==="Параметры"?'data-card-tab="Параметры"':'')+'>'+iconHtml(hex,"icon24")+'</button>').join("")+'<button id="card-more" aria-label="Все команды" aria-haspopup="menu"><span class="more-dots">'+iconHtml('EAB4','icon24')+'</span></button></div><div class="informers"><button class="date"><span>16</span><small>чт</small></button><button class="round icon"></button><button class="round icon"></button><button class="help"><img src="assets/56b4e.svg" width="12" height="16" alt="Помощь"></button></div></aside>';
+panel.innerHTML='<div class="card-main"><div class="card-header"><div class="card-heading">'+cardHeadingContent()+'</div><nav class="card-tabs tabs tabs--no-border" role="tablist" aria-label="Вкладки карточки">'+["Страницы","Параметры","Статистика","Источники","Посетители","Отклики"].map(name=>'<button class="tabs__item" role="tab"  data-card-tab="'+name+'" aria-selected="'+(cardTab===name)+'"><span class="tabs__caption" data-caption="'+name+'">'+name+'</span></button>').join("")+'</nav></div><div class="card-body"><aside class="card-pages scroll-shadow"><div class="visitor-summary"><label class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" data-card-visit-filter="newVisitors" '+(cardVisitFilters.newVisitors?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span><span class="checkbox__caption">Новые за период</span><span class="visitor-summary-count">'+esc(cardVisitSummary().newVisitors)+'</span></label><label class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" data-card-visit-filter="repeatVisitors" '+(cardVisitFilters.repeatVisitors?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span><span class="checkbox__caption">Больше 1 визита</span><span class="visitor-summary-count">'+esc(cardVisitSummary().repeatVisitors)+'</span></label></div><div class="page-count-label">Посетители</div>'+cardPages().map(([name,count],i)=>'<button class="card-page '+(cardPage===i?'selected':'')+'" data-card-page="'+i+'"><span>'+name+'</span><span>'+count+'</span></button>').join("")+'</aside><div class="card-content scroll-shadow">'+(cardTab==="Параметры"?cardParameters():cardTab==="Страницы"?cardPreview():cardAnalytics())+'</div></div></div><aside class="card-tools"><div class="card-top-tools">'+panelCloseButton('card-close','Закрыть карточку')+''+designerVerification()+[["EAA9","Настройки"],["EB5E","SEO-аналитика"],["E6A7","Ссылка"],["EAB9","Просмотр"],[currentSite.published?"E62F":"E631",currentSite.published?"Снять с публикации":"Опубликовать"]].map(([hex,label])=>'<button aria-label="'+label+'" '+(label==="Параметры"?'data-card-tab="Параметры"':'')+'>'+iconHtml(hex,"icon24")+'</button>').join("")+'<button id="card-more" aria-label="Все команды" aria-haspopup="menu"><span class="more-dots">'+iconHtml('EAB4','icon24')+'</span></button></div><div class="informers"><button class="date"><span>16</span><small>чт</small></button><button class="round icon"></button><button class="round icon"></button><button class="help"><img src="assets/56b4e.svg" width="12" height="16" alt="Помощь"></button></div></aside>';
 const graph=panel.querySelector('.graph-slot');if(graph)graph.style.setProperty('--graph-scale',String(graph.clientWidth/515.828));
 }
 document.addEventListener("click",event=>{
@@ -494,8 +497,8 @@ catch{const field=document.createElement("textarea");field.value=url;field.style
 function openCardCommandPanel(name){
 document.getElementById("card-command-panel")?.remove();
 const panel=document.createElement("section");panel.id="card-command-panel";panel.className=name==="Настройки"?"command-settings":"command-seo";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label",name);
-const content=name==="Настройки"?'<header class="command-heading"><h2>Настройки</h2></header><div class="settings-layout"><div class="integration-card"><div><h3>Яндекс.Метрика и Директ</h3><p>Объединяет данные поведения пользователей на сайте и расходы на рекламу.<br>Позволяет автоматически собирать статистику по заданным сайтам и рекламным кампаниям для сквозной аналитики</p></div></div><nav class="settings-sections" aria-label="Разделы настроек"><button aria-current="page">Интеграции</button><button aria-disabled="true">Кто имеет доступ</button></nav></div>':'<header class="command-heading"><h2>SEO-аналитика</h2><button class="seo-run" aria-disabled="true">Запустить</button></header><div class="seo-site">'+esc(currentSite.name)+'<span class="seo-site-clear" aria-hidden="true">'+iconHtml("E66C","icon24")+'</span><span class="seo-site-menu" aria-hidden="true">'+iconHtml("EA90","icon24")+'</span></div><div class="seo-content"><div class="seo-progress"><span>5 шагов</span><div></div></div><ol class="seo-steps">'+["Безопасность сайта","Индексация","Мета-теги","Анализ юзабилити и поведения пользователей","Локальные факторы ранжирования"].map(label=>'<li>'+label+'</li>').join("")+'</ol><div class="seo-hint"><p class="seo-explanation">Saby поможет определить  соответствие сайта и его страниц требованиям поисковых систем и покажет проблемы, влияющие на позиции в выдаче, быстродействии, полноты наполнения и адаптивности сайта.</p><img src="assets/seo-hint.svg" width="200" height="200" alt=""></div></div>';
-panel.innerHTML='<div class="command-main">'+content+'</div><aside class="command-tools">'+panelCloseButton('card-command-close','Закрыть '+name)+''+document.querySelector('#site-card .informers').outerHTML+'</aside>';stage.append(panel);panel.querySelector("#card-command-close").focus();
+const content=name==="Настройки"?'<header class="command-heading"><h2>Настройки</h2></header><div class="settings-layout"><div class="settings-content scroll-shadow">'+settingsIntegrationContent()+'</div><nav class="settings-sections" aria-label="Разделы настроек"><button data-settings-section="integrations" aria-current="page">Интеграции</button><button data-settings-section="access">Кто имеет доступ</button></nav></div>':'<header class="command-heading"><h2>SEO-аналитика</h2><button class="seo-run" aria-disabled="true">Запустить</button></header><div class="seo-site">'+esc(currentSite.name)+'<span class="seo-site-clear" aria-hidden="true">'+iconHtml("E66C","icon24")+'</span><span class="seo-site-menu" aria-hidden="true">'+iconHtml("EA90","icon24")+'</span></div><div class="seo-content"><div class="seo-progress"><span>5 шагов</span><div></div></div><ol class="seo-steps">'+["Безопасность сайта","Индексация","Мета-теги","Анализ юзабилити и поведения пользователей","Локальные факторы ранжирования"].map(label=>'<li>'+label+'</li>').join("")+'</ol><div class="seo-hint"><p class="seo-explanation">Saby поможет определить  соответствие сайта и его страниц требованиям поисковых систем и покажет проблемы, влияющие на позиции в выдаче, быстродействии, полноты наполнения и адаптивности сайта.</p><img src="assets/seo-hint.svg" width="200" height="200" alt=""></div></div>';
+panel.innerHTML='<div class="command-main">'+content+'</div><aside class="command-tools">'+panelCloseButton('card-command-close','Закрыть '+name)+(name==='Настройки'?'<button id="settings-history" aria-label="История изменений">'+iconHtml('E658','icon24')+'</button>':'')+document.querySelector('#site-card .informers').outerHTML+'</aside>';stage.append(panel);panel.querySelector("#card-command-close").focus();
 }
 
 // Меню добавления сайта — согласованный состав, без новых сценариев.
@@ -567,3 +570,96 @@ function openCurrentSitePreview(){
  win.document.write('<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="'+esc(document.baseURI)+'"><title>'+esc(currentSite.name)+' — '+esc(page.name)+'</title><link rel="stylesheet" href="styles.css"><style>html,body{height:auto;overflow:auto;background:#fff;margin:0}.standalone-site{max-width:1600px;margin:auto}.standalone-site>img{display:block;width:100%;height:auto}.standalone-site .site-page-image{height:auto;overflow:visible}</style></head><body><div class="standalone-site">'+preview+'</div></body></html>');
  win.document.close();
 }
+
+// Access panel content supplied in the user's reference screenshot.
+const siteAccessPeople=[
+['Александр','Ал','#dcd0e9','Полный с настройками'],
+['Анисья','Ан','#c4e0e2','Полный доступ'],
+['Диман','Ди','#e7c2d0','Полный доступ'],
+['Иван','Ив','#d8dac2','Полный с настройками'],
+['Легион','','','Полный доступ','Техподдержка','access-legion.png'],
+['Пригл','Пр','#dcd0e9','Просмотр'],
+['Сосиска','','','Полный доступ','Верховный друид','access-sosiska.png'],
+['Тимур Фларидович','Ти','#dcd0e9','Полный доступ'],
+['. Человек','','','Полный доступ','Художник','access-person.png'],
+['689 689','','','Полный доступ','Заклинатель туалета','access-689.png'],
+['Abramovs Viktor','Ab','#dcd0e9','Полный с настройками'],
+['assembly fix','As','#c4e0e2','Полный доступ'],
+['asssaas','As','#c4e0e2','Полный доступ'],
+['auto sil84','Au','#d8dac2','Полный доступ'],
+['bas cust-basic-account','Ba','#dcd0e9','Полный доступ'],
+['Bell Mary','Be','#d8dac2','Полный доступ','Подмышка Горькая']
+];
+const accessDepartments=[['Администрация',3],['Отдел продаж',7],['Отдел маркетинга',4],['Служба поддержки',6],['Бухгалтерия',3],['Отдел разработки',5],['Отдел кадров',2],['Отдел закупок',4],['Юридический отдел',2],['Отдел логистики',5],['Региональный офис',4],['Проектный офис',3],['Отдел аналитики',2],['Учебный центр',3],['Отдел качества',2],['Склад',4],['Сервисный центр',3],['Отдел сопровождения',5],['Управление персоналом',2]];
+const accessRoles=[['Администратор сайта','Полный с настройками'],['Редактор сайта','Просмотр и изменение'],['Контент-менеджер','Просмотр и изменение'],['Маркетолог','Просмотр и изменение'],['Руководитель отдела','Полный с настройками'],['Аналитик','Просмотр'],['Специалист поддержки','Просмотр и изменение'],['Менеджер по продажам','Просмотр'],['Дизайнер','Просмотр и изменение'],['Разработчик','Полный с настройками'],['Администратор системы','Полный с настройками'],['Директор','Просмотр и изменение'],['Бухгалтер','Просмотр'],['Специалист по рекламе','Просмотр и изменение'],['Аудитор','Просмотр'],['Наблюдатель','Просмотр']];
+let accessCategory='Сотрудники',accessMulti=false;
+const accessMarked=new Set();
+function settingsIntegrationContent(){return '<div class="integrations-list">'+[
+['metrika','Яндекс Метрика и Директ','Объединяет данные поведения пользователей на сайте и расходы на рекламу. Позволяет автоматически собирать статистику по заданным сайтам и рекламным кампаниям для сквозной аналитики'],
+['webmaster','Яндекс Вебмастер','Сервис поможет провести оптимизацию сайта для поисковых систем'],
+['topvisor','Топвизор','Инструментальный сервис для аналитики сайта в поисковиках и нейросетях']
+].map(([key,title,description])=>'<div class="integration-card'+(key==='topvisor'?' is-disabled':'')+'"'+(key==='topvisor'?' aria-disabled="true"':' tabindex="0"')+'><img src="assets/integration-'+key+'.png" width="52" height="52" alt=""><div><h3>'+title+'</h3><p>'+description+'</p></div></div>').join('')+'</div>'}
+function settingsAccessContent(){return '<section class="settings-access" aria-label="Кто имеет доступ"><div class="access-heading"><h3>Кто имеет доступ</h3><nav class="access-tabs tabs tabs--no-border tabs--style-unaccented tabs--padding-null" role="tablist" aria-label="Категории доступа">'+['Сотрудники','Отделы','Роли'].map(label=>'<button class="tabs__item" role="tab" data-access-tab="'+label+'" aria-selected="'+(label===accessCategory)+'"><span class="tabs__caption">'+label+'</span></button>').join('')+'</nav></div><div class="access-toolbar"><input id="access-search" type="search" placeholder="Найти" aria-label="Найти запись доступа"><button class="btn btn--link btn--style-secondary btn--size-m btn--icon access-multi" aria-label="Множественный выбор записей" aria-pressed="'+accessMulti+'"><span class="btn__icon">'+iconHtml(accessMulti?'EB8E':'E644','icon24')+'</span></button><button class="access-allowed">Разрешено</button><button class="tool access-filter" aria-label="Фильтр доступа" aria-disabled="true">'+iconHtml('E94C','icon24')+'</button></div><div class="access-operations" hidden></div><div class="access-people scroll-shadow" role="list"></div><div class="access-scrollbar" aria-hidden="true"><span class="access-scrollbar-thumb"></span></div></section>'}
+function accessRecords(){return accessCategory==='Сотрудники'?siteAccessPeople:accessCategory==='Отделы'?accessDepartments:accessRoles}
+function accessCheckbox(label,index,checked){return '<label class="checkbox checkbox--outlined access-check"><input class="checkbox__input" type="checkbox" aria-label="'+esc(label)+'" '+(index==='all'?'data-access-all':'data-access-check="'+index+'"')+(checked?' checked':'')+'><span class="checkbox__box" aria-hidden="true"></span></label>'}
+function renderAccessPeople(query=document.getElementById('access-search')?.value||''){
+const list=document.querySelector('.access-people');if(!list)return;
+const matched=accessRecords().map((record,index)=>({record,index})).filter(({record})=>record[0].toLocaleLowerCase('ru').includes(query.toLocaleLowerCase('ru')));
+list.closest('.settings-access').classList.toggle('is-multi',accessMulti);
+const multiButton=document.querySelector('.access-multi');multiButton.setAttribute('aria-pressed',accessMulti);multiButton.querySelector('.btn__icon').innerHTML=iconHtml(accessMulti?'EB8E':'E644','icon24');
+list.innerHTML=matched.map(({record,index})=>{
+const [name,initials,color,permission,subtitle,photo]=record;
+const checked=accessMarked.has(accessCategory+':'+index);
+let content='';
+if(accessCategory==='Сотрудники')content=(photo?'<img class="access-avatar" src="assets/'+photo+'" width="40" height="40" alt="">':'<span class="access-avatar" style="background:'+color+'">'+esc(initials)+'</span>')+'<div class="access-person-name">'+esc(name)+(subtitle?'<small>'+esc(subtitle)+'</small>':'')+'</div><span class="access-permission">'+esc(permission)+'</span>';
+else if(accessCategory==='Отделы')content='<span class="access-department-arrow" aria-hidden="true">'+iconHtml('EA8B')+'</span><span class="access-person-name">'+esc(name)+' <span class="access-department-count">('+initials+')</span></span>';
+else content='<span class="access-person-name">'+esc(name)+'</span><span class="access-permission">'+esc(initials)+'</span>';
+return '<div class="access-person access-person--'+(accessCategory==='Сотрудники'?'employee':accessCategory==='Отделы'?'department':'role')+(checked?' is-marked':'')+'" role="listitem">'+accessCheckbox('Отметить '+name,index,checked)+content+'</div>';
+}).join('')||'<p class="access-empty">Ничего не найдено</p>';
+const bar=document.querySelector('.access-operations');const count=[...accessMarked].filter(key=>key.startsWith(accessCategory+':')).length;
+bar.hidden=!accessMulti;bar.innerHTML=accessCheckbox('Отметить все записи','all',!!matched.length&&matched.every(({index})=>accessMarked.has(accessCategory+':'+index)))+'<span>'+(count?'Отмечено '+count:'Отметить')+'</span><button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon">'+iconHtml('E604','icon24')+'</span><span class="btn__caption">Выгрузить</span></button>'+(count?'<button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon access-reset-icon">'+iconHtml('E663','icon24')+'</span><span class="btn__caption">Сбросить индивидуальные настройки</span></button>':'')+'<button class="access-operations-close" aria-label="Закрыть множественный выбор">'+iconHtml('E66C','icon24')+'</button>';
+const all=bar.querySelector('input');all.indeterminate=count>0&&!all.checked;
+requestAnimationFrame(syncAccessScrollbar);
+}
+stage.addEventListener('click',event=>{
+ const tab=event.target.closest('[data-access-tab]');
+ if(tab){accessCategory=tab.dataset.accessTab;accessMulti=false;accessMarked.clear();document.querySelectorAll('[data-access-tab]').forEach(button=>button.setAttribute('aria-selected',button===tab));document.getElementById('access-search').value='';renderAccessPeople();return}
+ if(event.target.closest('.access-multi,.access-operations-close')){accessMulti=event.target.closest('.access-operations-close')?false:!accessMulti;if(!accessMulti)accessMarked.clear();const button=document.querySelector('.access-multi');button.setAttribute('aria-pressed',accessMulti);button.querySelector('.btn__icon').innerHTML=iconHtml(accessMulti?'EB8E':'E644','icon24');renderAccessPeople()}
+});
+stage.addEventListener('change',event=>{
+ if(event.target.matches('[data-access-check]')){accessMulti=true;const key=accessCategory+':'+event.target.dataset.accessCheck;if(event.target.checked)accessMarked.add(key);else accessMarked.delete(key);document.querySelector('.access-multi').setAttribute('aria-pressed','true');renderAccessPeople()}
+ if(event.target.matches('[data-access-all]')){const checked=event.target.checked;const query=document.getElementById('access-search').value.toLocaleLowerCase('ru');accessRecords().forEach((record,index)=>{if(record[0].toLocaleLowerCase('ru').includes(query)){const key=accessCategory+':'+index;if(checked)accessMarked.add(key);else accessMarked.delete(key)}});renderAccessPeople()}
+});
+stage.addEventListener('click',event=>{
+const button=event.target.closest('[data-settings-section]');if(!button)return;
+const panel=button.closest('.command-settings');const content=panel.querySelector('.settings-content');
+if(!panel._integrationContent)panel._integrationContent=content.innerHTML;
+panel.querySelectorAll('[data-settings-section]').forEach(item=>{if(item===button)item.setAttribute('aria-current','page');else item.removeAttribute('aria-current')});
+content.innerHTML=button.dataset.settingsSection==='access'?settingsAccessContent():panel._integrationContent;
+if(button.dataset.settingsSection==='access'){accessCategory='Сотрудники';accessMulti=false;accessMarked.clear();content.innerHTML=settingsAccessContent();renderAccessPeople()}
+});
+stage.addEventListener('input',event=>{if(event.target.id==='access-search')renderAccessPeople(event.target.value)});
+
+stage.addEventListener('click',event=>{if(event.target.closest('#settings-history'))openCardHistory()});
+
+function syncAccessScrollbar(){
+ const surface=document.querySelector('.settings-access');if(!surface)return;
+ const list=surface.querySelector('.access-people'),track=surface.querySelector('.access-scrollbar');
+ const height=list.clientHeight,range=list.scrollHeight-height;
+ track.hidden=range<=1;track.style.top=(list.getBoundingClientRect().top-surface.getBoundingClientRect().top)+'px';
+ const thumbHeight=Math.max(24,height*height/list.scrollHeight);
+ const thumb=track.firstElementChild;thumb.style.height=thumbHeight+'px';thumb.style.transform='translateY('+(range>0?list.scrollTop/range*(height-thumbHeight):0)+'px)';
+}
+stage.addEventListener('scroll',event=>{if(event.target.matches?.('.access-people'))syncAccessScrollbar()},true);
+window.addEventListener('resize',syncAccessScrollbar);
+let accessScrollDrag=null;
+stage.addEventListener('pointerdown',event=>{
+ const track=event.target.closest('.access-scrollbar');if(!track)return;
+ const list=track.closest('.settings-access').querySelector('.access-people'),thumb=track.firstElementChild;
+ const travel=track.clientHeight-thumb.getBoundingClientRect().height,range=list.scrollHeight-list.clientHeight;
+ if(event.target===track){list.scrollTop=(event.clientY-track.getBoundingClientRect().top-thumb.getBoundingClientRect().height/2)/travel*range;syncAccessScrollbar()}
+ accessScrollDrag={target:event.target,y:event.clientY,scroll:list.scrollTop,list,travel,range};event.target.setPointerCapture(event.pointerId);event.preventDefault();
+});
+stage.addEventListener('pointermove',event=>{if(!accessScrollDrag)return;const d=accessScrollDrag;if(d.travel>0)d.list.scrollTop=d.scroll+(event.clientY-d.y)*d.range/d.travel;syncAccessScrollbar()});
+stage.addEventListener('pointerup',()=>{accessScrollDrag=null});
+stage.addEventListener('pointercancel',()=>{accessScrollDrag=null});
