@@ -257,11 +257,11 @@ main>header>.header-right{width:auto;min-width:0;align-self:center}
 .showcase-mode .regions button{cursor:default}
 .showcase-mode .regions button:hover{background:transparent}
 .showcase-mode .regions button.selected:hover{background:#ebf4ff}
-.showcase-mode .columns,.showcase-row{display:grid;grid-template-columns:minmax(260px,1fr) 44px 36px 56px 88px 60px 132px;column-gap:12px;padding-left:14px;padding-right:12px;min-width:800px}
+.showcase-mode .columns,.showcase-row{display:grid;grid-template-columns:minmax(260px,1fr) 44px 36px 28px 56px 88px 60px 132px;column-gap:12px;padding-left:14px;padding-right:12px;min-width:800px}
 .showcase-mode .columns{height:27px;padding-top:6px;padding-bottom:6px;justify-content:normal}
 .showcase-mode .columns>span{width:auto;min-width:0;text-align:left}
-.showcase-mode .columns>span:first-child{grid-column:5}
-.showcase-mode .columns>span:last-child{grid-column:6}
+.showcase-mode .columns>span:first-child{grid-column:6}
+.showcase-mode .columns>span:last-child{grid-column:7}
 .showcase-row{min-height:43px;padding-top:4px;padding-bottom:6px;align-items:start;cursor:default;font-size:12px;color:#999}
 .showcase-site{min-width:0}
 .showcase-site .site-name{font-size:15px;flex:0 1 auto;max-width:100%}
@@ -270,7 +270,7 @@ main>header>.header-right{width:auto;min-width:0;align-self:center}
 .showcase-site .address{min-width:0;flex:1}
 .showcase-site .company-line{gap:6px}
 .showcase-site .company{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.showcase-type,.showcase-status{display:flex;align-items:center;justify-content:center;height:20px;color:#656c87}
+.showcase-type,.showcase-status,.showcase-network{display:flex;align-items:center;justify-content:center;height:20px;color:#656c87}
 .showcase-status.is-muted{color:#ccc}
 .showcase-accordion-icon{display:inline-flex;align-items:center;justify-content:center;font:16px Accordion-Font}
 .showcase-date,.showcase-visitors,.showcase-orders,.showcase-category{padding-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -278,7 +278,7 @@ main>header>.header-right{width:auto;min-width:0;align-self:center}
 #showcase-search-placeholder>span{font-size:14px;line-height:18px;color:#8991a999}
 
 .showcase-site .site-name{color:#000}
-.showcase-status .icon24{font-size:16px}
+.showcase-status .icon24,.showcase-network .icon24{font-size:16px}
 
 /* Fade only labels which actually overflow the accordion width. */
 .nav-item .caption{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:clip}
@@ -396,7 +396,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 #card-more-menu #card-more-close{position:absolute;right:-14px;top:8px;width:28px;min-height:28px;height:28px;padding:2px;background:#ddd;justify-content:center}
 #card-more-menu #card-more-close .icon24{color:white}
 .card-check-submenu{position:relative}
-.card-check-submenu>button:after{content:'›';margin-left:auto;color:#656c87}
+.card-check-submenu>button:after{content:'›';margin-left:auto;color:#656c87;font-size:24px;line-height:1}
 .card-check-submenu>div{display:none;position:absolute;right:100%;top:0;width:190px;padding:8px;background:white;border-radius:8px;box-shadow:0 8px 24px #0003}
 .card-check-submenu:hover>div,.card-check-submenu:focus-within>div{display:block}
 #card-more-menu .verified .icon24{color:#159b32}
@@ -428,3 +428,25 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .cache-notice strong{font-weight:600}
 .cache-notice p{margin:6px 0 0;display:flex;gap:8px;align-items:center;color:#999;font-size:13px}
 .cache-notice .copied-check{font-size:18px;line-height:18px}
+
+/* Match the standard card command menu. */
+#verification-menu{border-radius:8px;padding:12px 8px;min-width:190px}
+#verification-menu [role=menuitemradio]{gap:12px;min-height:38px;height:38px;padding:4px 12px;font-size:16px;border-radius:24px}
+#verification-menu [role=menuitemradio]:hover{background:#f3f3f7}
+#verification-menu .verification-icon{width:24px}
+#verification-menu .verification-icon .icon{font-size:24px}
+#verification-menu .verification-dismiss{right:-14px;top:8px;width:28px;height:28px}
+.visitor-summary .checkbox{gap:0}
+.visitor-summary .checkbox>span{margin-left:0;color:inherit}
+.visitor-summary .checkbox>.visitor-summary-count{margin-left:auto;color:#000}
+.visitor-summary .checkbox>.checkbox__box{margin:0 3px 6px 4px}
+.visitor-summary input.checkbox__input,.visitor-summary input.checkbox__input:checked{position:absolute;width:1px;height:1px;background:none}
+
+/* Demo click hint: same pin as popups, only on the available other section. */
+.navigation-click-pin{position:absolute;right:12px;top:8px;z-index:1;width:24px;height:24px}
+.navigation-click-pin:before{content:"";position:absolute;inset:0;border-radius:50%;background:#6cc;opacity:.5}
+.navigation-click-pin img{position:absolute;left:50%;top:62.5%}
+.navigation-click-pin:hover{opacity:0}
+
+#section-menu .navigation-menu__item{position:relative}
+#section-menu .navigation-click-pin{top:3px;right:12px}
