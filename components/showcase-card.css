@@ -6,7 +6,7 @@
 .showcase-master{width:250px;padding:7px 4px 0}.showcase-master .card-page{margin-bottom:2px}.showcase-card-content{min-width:0;min-height:0;height:100%;margin-left:6px;overflow:auto;background:#fff;border-radius:8px 8px 0 0;box-shadow:0 0 8px #0000000f;scrollbar-width:none}
 .showcase-card-content.is-preview{background:#f9f4ef}.showcase-parent-back{color:#656c87;flex:none}
 .showcase-parameters{padding:12px;min-height:100%;background:#fff}.showcase-company{font-size:15px;font-weight:600;margin-bottom:16px}.showcase-parameters h3{font-size:15px;font-weight:600;margin:0 0 4px;line-height:24px}.showcase-parameters h3:not(:first-child){margin-top:0}
-.showcase-field{display:flex;align-items:center;gap:8px;min-height:28px}.showcase-field>span{width:200px;flex:none;color:#8991a9;font-size:14px;display:flex;align-items:center;gap:4px}.field-info{display:inline-flex;color:#8991a9}.showcase-field input{width:0;min-width:0;flex:1;height:24px;background:transparent;border:0;border-bottom:1px solid #eaeaea;padding:0 0 2px;font:400 14px Inter;outline:none}.showcase-field input::placeholder{color:#8991a999}.showcase-field input:focus{border-bottom-color:#0085f2}
+.showcase-field{display:flex;align-items:center;gap:8px;min-height:28px}.showcase-field>span{width:200px;flex:none;color:#8991a9;font-size:14px;display:flex;align-items:center;gap:4px}.field-info{display:inline-flex;color:#8991a9}
 .showcase-device-switch{height:56px;background:#fff;gap:0}.showcase-device-switch button{width:40px;padding:0;background:#3333330d;box-shadow:none;color:#656c87}.showcase-device-switch button[aria-pressed=true]{background:#fff;color:#656c87;box-shadow:0 0 3px #0002}
 .showcase-ordinary-frame{padding:12px 8px 0;margin:0 12px;overflow:auto;background:white;border-radius:12px;min-height:0;max-height:calc(100% - 92px)}
 .showcase-ordinary-frame.is-mobile{width:360px;max-width:100%;margin:auto}.showcase-ordinary{position:relative;background:#959576;min-height:730px;color:#47382f;overflow:hidden}.showcase-cat-banner{height:229px;position:relative}.showcase-cat-banner>img{display:block;width:100%;height:229px;object-fit:cover}.customer-back,.customer-heart{position:absolute;top:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:white;background:#0003;border-radius:50%}.customer-back{left:16px}.customer-heart{right:16px}.showcase-customer-name{position:absolute;top:156px;left:17px;display:flex;gap:12px;align-items:center}.showcase-customer-name strong{font-size:24px;font-weight:600;color:#4a3726}.showcase-cat-avatar{width:42px;height:42px;border-radius:50%;background:#f9f4ef;display:flex;align-items:center;justify-content:center}
@@ -79,3 +79,35 @@
 #showcase-more-menu #showcase-more-close .icon24{color:#fff}
 
 .showcase-image-placeholder{height:100%;display:flex;align-items:center;justify-content:center;background:#fafafa;color:#ccc}
+/* Shared input markup and states from the UI kit; labels follow the card reference. */
+.showcase-field.input{align-items:baseline;min-height:28px}
+.showcase-field.input>.input__label{width:200px;color:#000;align-items:baseline}
+.showcase-field.input>.input__body{width:auto;flex:1;display:flex;color:#000}
+.showcase-field.input .input__control{width:100%;height:auto;flex:1;border:0;padding:0 0 2px;font:inherit}
+.showcase-field.input .input__control:focus{border:0}
+.showcase-branches{padding:0}
+.showcase-branch-toolbar{padding:0 12px}
+
+
+.showcase-branch-row{padding-inline:20px 12px}
+.showcase-branch-row:first-child:before{left:12px}
+.showcase-editor-top{height:48px;display:flex;align-items:center;padding:0 16px;font-size:14px}
+.showcase-editor-top .icon24{vertical-align:middle}
+.showcase-editor-sections{display:flex;flex-wrap:wrap;gap:8px 12px;padding:0 10px 10px}
+.is-editing{position:relative}
+.is-editing .showcase-device-switch{position:absolute;top:0;left:45%;height:48px}
+.is-editing .showcase-ordinary-frame{max-height:calc(100% - 160px)}
+#showcase-edit-save{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#12a12c;color:#fff;margin-left:auto}
+#showcase-card:has(#showcase-edit-save) .card-chip{display:none}
+#showcase-edit-save+.heading-spacer{display:none}
+#showcase-card #verification-menu .verification-icon.is-verified{color:#159b32}
+#filter-panel:has(~ #showcase-card),#stage:has(#showcase-card) #filter-panel{z-index:25}
+.showcase-field.input>.input__body{align-items:stretch;gap:0}
+.showcase-field.input .input__field{width:100%}
+
+.showcase-template-navigation{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.showcase-next{display:flex;transform:rotate(180deg)}
+.showcase-editor-history{display:flex;align-items:center;gap:8px;margin-left:auto;color:#656c87}
+.showcase-editor-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.showcase-editor-icon:hover{background:#3333330d}
+#showcase-card .showcase-editor-icon:disabled{opacity:1;color:#ccc}

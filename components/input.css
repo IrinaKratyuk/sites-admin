@@ -1,0 +1,10 @@
+/* UI kit components/input, default light tokens. Source: https://mariesmi.github.io/ui-kit/components/input/input.css */
+.input{--in-h:24px;--in-gap:0px;--in-line:#d2d6da;--in-bg:transparent;--in-pl:0px;position:relative;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;min-width:0;font-family:Inter,sans-serif;font-size:14px;font-weight:400;line-height:normal;letter-spacing:-.0141em;color:#000}
+.input__label{flex:0 0 auto;display:inline-flex;color:#8991a9;white-space:nowrap}
+.input__body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.input__field{position:relative;box-sizing:border-box;display:flex;align-items:flex-end;gap:4px;height:var(--in-h);padding:0 0 var(--in-gap) var(--in-pl);border-bottom:1px solid var(--in-line);background:var(--in-bg)}
+.input__control{flex:1 1 auto;min-width:0;box-sizing:border-box;margin:0;padding:0 0 2px;border:0;border-radius:0;outline:0;background:transparent;color:inherit;caret-color:currentColor;font:inherit;letter-spacing:inherit;appearance:none}
+.input__control::placeholder{color:#8991a999;opacity:1}
+.input:not(.input--textarea).is-focus,.input:not(.input--textarea) .input__field:is(:focus-within,.is-focus){--in-line:#8f99a3}
+
+.input__control:focus-visible{outline:0}
