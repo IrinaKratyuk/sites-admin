@@ -338,7 +338,7 @@ return '<div class="visit-chart"><strong>ПОСЕТИТЕЛИ</strong><div class
 }
 let cardNameDraft=null;
 function openCard(id){cardNameDraft=null;cardVisitFilters={newVisitors:false,repeatVisitors:false};closeFilter();currentSite=sites.find(s=>s.id===id);cardTab="Страницы";cardPage=0;drawCard();document.getElementById("card-close").focus()}
-function closeCard(){cardNameDraft=null;document.getElementById("card-command-panel")?.remove();document.getElementById("site-card")?.remove();currentSite=null;rows.querySelector('[data-site="'+selected+'"]')?.focus()}
+function closeCard(){cardNameDraft=null;document.getElementById("card-history-panel")?.remove();document.getElementById("card-command-panel")?.remove();document.getElementById("site-card")?.remove();currentSite=null;rows.querySelector('[data-site="'+selected+'"]')?.focus()}
 function cardParameters(){
 const settings=currentSite.settings;
 if(cardPage)return '<div class="parameter-sheet"><h3>'+esc(cardPages()[cardPage][0])+'</h3><label class="access">Доступ <select data-setting="access" aria-label="Доступ"><option '+(settings.access==="Без авторизации"?"selected":"")+'>Без авторизации</option><option '+(settings.access==="Только авторизованным"?"selected":"")+'>Только авторизованным</option></select></label>'+indexingSwitch(settings)+'<h3>SEO</h3><label class="stacked-field">Заголовок<input data-setting="title" value="'+esc(settings.title)+'"></label><label class="stacked-field">Описание<textarea data-setting="description">'+esc(settings.description)+'</textarea></label></div>';
@@ -426,6 +426,7 @@ const graph=panel.querySelector('.graph-slot');if(graph)graph.style.setProperty(
 document.addEventListener("click",event=>{
 if(event.target.closest('#site-card .rename')){cardNameDraft=currentSite.name;document.querySelector('#site-card .card-heading').innerHTML=cardHeadingContent();const input=document.getElementById('card-name-input');input.focus();input.setSelectionRange(input.value.length,input.value.length);return}
 if(event.target.closest('#card-name-cancel')){finishCardNameEdit(false);return}
+if(event.target.closest("#card-history-close")){closeCardHistory();return}
 if(event.target.closest("#card-command-close")){document.getElementById("card-command-panel")?.remove();return}
 if(event.target.closest("#designer-verification")){toggleVerificationMenu();return}
 const verification=event.target.closest("[data-verification]");
@@ -457,7 +458,7 @@ const field=event.target.dataset.cardVisitFilter;if(!field||!currentSite)return;
 cardVisitFilters[field]=event.target.checked;drawCard();document.querySelector('[data-card-visit-filter="'+field+'"]').focus();
 });
 document.addEventListener("input",event=>{if(currentSite&&event.target.dataset.setting)currentSite.settings[event.target.dataset.setting]=event.target.value});
-document.addEventListener("keydown",event=>{if(showcaseCurrent)return;if(event.key==="Escape"){if(document.getElementById("card-command-panel")){document.getElementById("card-command-panel").remove()}else if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
+document.addEventListener("keydown",event=>{if(showcaseCurrent)return;if(event.key==="Escape"){if(document.getElementById("card-history-panel")){closeCardHistory()}else if(document.getElementById("card-command-panel")){document.getElementById("card-command-panel").remove()}else if(document.getElementById("verification-menu")){toggleVerificationMenu();document.getElementById("designer-verification").focus()}else if(companyDraft!==null)closeCompanies();else if(templateDraft!==null)closeTemplates();else if(filterOpen)closeFilter();else if(currentSite)closeCard();else if(multi){multi=false;selectedOnly=false;selectedSites.clear();render()}}});
 // Shared contrast search: Figma fLpLW1vBm7H88TenFl0GCv, 20067:12311.
 function syncSearchField(input){
 const wrapper=input?.closest('.search-control');if(!wrapper)return;
@@ -495,6 +496,7 @@ try{await navigator.clipboard.writeText(url);showCopiedToast()}
 catch{const field=document.createElement("textarea");field.value=url;field.style.cssText="position:fixed;opacity:0";stage.append(field);field.select();const copied=document.execCommand("copy");field.remove();if(copied)showCopiedToast()}
 }
 function openCardCommandPanel(name){
+document.getElementById("card-history-panel")?.remove();
 document.getElementById("card-command-panel")?.remove();
 const panel=document.createElement("section");panel.id="card-command-panel";panel.className=name==="Настройки"?"command-settings":"command-seo";panel.setAttribute("role","dialog");panel.setAttribute("aria-modal","true");panel.setAttribute("aria-label",name);
 const content=name==="Настройки"?'<header class="command-heading"><h2>Настройки</h2></header><div class="settings-layout"><div class="settings-content scroll-shadow">'+settingsIntegrationContent()+'</div><nav class="settings-sections" aria-label="Разделы настроек"><button data-settings-section="integrations" aria-current="page">Интеграции</button><button data-settings-section="access">Кто имеет доступ</button></nav></div>':'<header class="command-heading"><h2>SEO-аналитика</h2><button class="seo-run" aria-disabled="true">Запустить</button></header><div class="seo-site">'+esc(currentSite.name)+'<span class="seo-site-clear" aria-hidden="true">'+iconHtml("E66C","icon24")+'</span><span class="seo-site-menu" aria-hidden="true">'+iconHtml("EA90","icon24")+'</span></div><div class="seo-content"><div class="seo-progress"><span>5 шагов</span><div></div></div><ol class="seo-steps">'+["Безопасность сайта","Индексация","Мета-теги","Анализ юзабилити и поведения пользователей","Локальные факторы ранжирования"].map(label=>'<li>'+label+'</li>').join("")+'</ol><div class="seo-hint"><p class="seo-explanation">Saby поможет определить  соответствие сайта и его страниц требованиям поисковых систем и покажет проблемы, влияющие на позиции в выдаче, быстродействии, полноты наполнения и адаптивности сайта.</p><img src="assets/seo-hint.svg" width="200" height="200" alt=""></div></div>';
@@ -550,10 +552,11 @@ const list=document.getElementById('card-history-list');
 const entries=cardHistoryEntries.filter(entry=>entry.join(' ').toLocaleLowerCase('ru').includes(query.toLocaleLowerCase('ru')));
 list.innerHTML=entries.map(([date,time,description])=>'<div class="history-row"><div class="history-date">'+esc(date)+'<small>'+esc(time)+'</small></div><div>'+esc(description)+'</div><div>Изменение</div><div class="history-author"><span class="history-avatar">АВ</span><div><span>Авдеева Васили...</span><small>Аврора ТУР, ООО (...</small></div></div></div>').join('')||'<p class="history-empty">Ничего не найдено</p>';
 }
+function closeCardHistory(){document.getElementById('card-history-panel')?.remove();document.getElementById('settings-history')?.focus()}
 function openCardHistory(){
-document.getElementById('card-command-panel')?.remove();
-const panel=document.createElement('section');panel.id='card-command-panel';panel.className='command-history';panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','История изменений');
-panel.innerHTML='<div class="command-main"><header class="command-heading"><h2>История изменений</h2></header><div class="history-search"><input type="search" placeholder="Найти" aria-label="Найти в истории"><span class="history-filter" aria-hidden="true">'+iconHtml('E94C','icon24')+'</span></div><div id="card-history-list" aria-label="Изменения сайта"></div></div><aside class="command-tools">'+panelCloseButton('card-command-close','Закрыть историю изменений')+'</aside>';
+document.getElementById('card-history-panel')?.remove();
+const panel=document.createElement('section');panel.id='card-history-panel';panel.className='command-history';panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','История изменений');
+panel.innerHTML='<div class="command-main"><header class="command-heading"><h2>История изменений</h2></header><div class="history-surface"><div class="history-search"><input type="search" placeholder="Найти" aria-label="Найти в истории"><button class="tool filter-trigger history-filter" aria-label="Фильтр истории изменений">'+iconHtml('E94C','icon24')+'</button></div><div id="card-history-list" aria-label="Изменения сайта"></div></div></div><aside class="command-tools">'+panelCloseButton('card-history-close','Закрыть историю изменений')+'</aside>';
 stage.append(panel);drawCardHistory();panel.querySelector('input').addEventListener('input',event=>drawCardHistory(event.target.value));panel.querySelector('input').focus();
 }
 function showCacheNotice(){
@@ -592,19 +595,19 @@ const siteAccessPeople=[
 ];
 const accessDepartments=[['Администрация',3],['Отдел продаж',7],['Отдел маркетинга',4],['Служба поддержки',6],['Бухгалтерия',3],['Отдел разработки',5],['Отдел кадров',2],['Отдел закупок',4],['Юридический отдел',2],['Отдел логистики',5],['Региональный офис',4],['Проектный офис',3],['Отдел аналитики',2],['Учебный центр',3],['Отдел качества',2],['Склад',4],['Сервисный центр',3],['Отдел сопровождения',5],['Управление персоналом',2]];
 const accessRoles=[['Администратор сайта','Полный с настройками'],['Редактор сайта','Просмотр и изменение'],['Контент-менеджер','Просмотр и изменение'],['Маркетолог','Просмотр и изменение'],['Руководитель отдела','Полный с настройками'],['Аналитик','Просмотр'],['Специалист поддержки','Просмотр и изменение'],['Менеджер по продажам','Просмотр'],['Дизайнер','Просмотр и изменение'],['Разработчик','Полный с настройками'],['Администратор системы','Полный с настройками'],['Директор','Просмотр и изменение'],['Бухгалтер','Просмотр'],['Специалист по рекламе','Просмотр и изменение'],['Аудитор','Просмотр'],['Наблюдатель','Просмотр']];
-let accessCategory='Сотрудники',accessMulti=false;
+let accessCategory='Сотрудники',accessMulti=false,accessLastAction=null,accessSelectedOnly=false;
 const accessMarked=new Set();
 function settingsIntegrationContent(){return '<div class="integrations-list">'+[
 ['metrika','Яндекс Метрика и Директ','Объединяет данные поведения пользователей на сайте и расходы на рекламу. Позволяет автоматически собирать статистику по заданным сайтам и рекламным кампаниям для сквозной аналитики'],
 ['webmaster','Яндекс Вебмастер','Сервис поможет провести оптимизацию сайта для поисковых систем'],
 ['topvisor','Топвизор','Инструментальный сервис для аналитики сайта в поисковиках и нейросетях']
 ].map(([key,title,description])=>'<div class="integration-card'+(key==='topvisor'?' is-disabled':'')+'"'+(key==='topvisor'?' aria-disabled="true"':' tabindex="0"')+'><img src="assets/integration-'+key+'.png" width="52" height="52" alt=""><div><h3>'+title+'</h3><p>'+description+'</p></div></div>').join('')+'</div>'}
-function settingsAccessContent(){return '<section class="settings-access" aria-label="Кто имеет доступ"><div class="access-heading"><h3>Кто имеет доступ</h3><nav class="access-tabs tabs tabs--no-border tabs--style-unaccented tabs--padding-null" role="tablist" aria-label="Категории доступа">'+['Сотрудники','Отделы','Роли'].map(label=>'<button class="tabs__item" role="tab" data-access-tab="'+label+'" aria-selected="'+(label===accessCategory)+'"><span class="tabs__caption">'+label+'</span></button>').join('')+'</nav></div><div class="access-toolbar"><input id="access-search" type="search" placeholder="Найти" aria-label="Найти запись доступа"><button class="btn btn--link btn--style-secondary btn--size-m btn--icon access-multi" aria-label="Множественный выбор записей" aria-pressed="'+accessMulti+'"><span class="btn__icon">'+iconHtml(accessMulti?'EB8E':'E644','icon24')+'</span></button><button class="access-allowed">Разрешено</button><button class="tool access-filter" aria-label="Фильтр доступа" aria-disabled="true">'+iconHtml('E94C','icon24')+'</button></div><div class="access-operations" hidden></div><div class="access-people scroll-shadow" role="list"></div><div class="access-scrollbar" aria-hidden="true"><span class="access-scrollbar-thumb"></span></div></section>'}
+function settingsAccessContent(){return '<section class="settings-access" aria-label="Кто имеет доступ"><div class="access-heading"><h3>Кто имеет доступ</h3><nav class="access-tabs tabs tabs--no-border tabs--style-unaccented tabs--padding-null" role="tablist" aria-label="Категории доступа">'+['Сотрудники','Отделы','Роли'].map(label=>'<button class="tabs__item" role="tab" data-access-tab="'+label+'" aria-selected="'+(label===accessCategory)+'"><span class="tabs__caption">'+label+'</span></button>').join('')+'</nav></div><div class="access-toolbar"><input id="access-search" type="search" placeholder="Найти" aria-label="Найти запись доступа"><button class="btn btn--link btn--style-secondary btn--size-m btn--icon access-multi" aria-label="Множественный выбор записей" aria-pressed="'+accessMulti+'"><span class="btn__icon">'+iconHtml(accessMulti?'EB8E':'E644','icon24')+'</span></button><button class="access-allowed">Разрешено</button><button class="tool filter-trigger access-filter" aria-label="Фильтр доступа">'+iconHtml('E94C','icon24')+'</button></div><div class="access-operations" hidden></div><div class="access-people scroll-shadow" role="list"></div><div class="access-scrollbar" aria-hidden="true"><span class="access-scrollbar-thumb"></span></div></section>'}
 function accessRecords(){return accessCategory==='Сотрудники'?siteAccessPeople:accessCategory==='Отделы'?accessDepartments:accessRoles}
 function accessCheckbox(label,index,checked){return '<label class="checkbox checkbox--outlined access-check"><input class="checkbox__input" type="checkbox" aria-label="'+esc(label)+'" '+(index==='all'?'data-access-all':'data-access-check="'+index+'"')+(checked?' checked':'')+'><span class="checkbox__box" aria-hidden="true"></span></label>'}
 function renderAccessPeople(query=document.getElementById('access-search')?.value||''){
 const list=document.querySelector('.access-people');if(!list)return;
-const matched=accessRecords().map((record,index)=>({record,index})).filter(({record})=>record[0].toLocaleLowerCase('ru').includes(query.toLocaleLowerCase('ru')));
+const matched=accessRecords().map((record,index)=>({record,index})).filter(({record,index})=>record[0].toLocaleLowerCase('ru').includes(query.toLocaleLowerCase('ru'))&&(!accessSelectedOnly||accessMarked.has(accessCategory+':'+index)));
 list.closest('.settings-access').classList.toggle('is-multi',accessMulti);
 const multiButton=document.querySelector('.access-multi');multiButton.setAttribute('aria-pressed',accessMulti);multiButton.querySelector('.btn__icon').innerHTML=iconHtml(accessMulti?'EB8E':'E644','icon24');
 list.innerHTML=matched.map(({record,index})=>{
@@ -614,21 +617,21 @@ let content='';
 if(accessCategory==='Сотрудники')content=(photo?'<img class="access-avatar" src="assets/'+photo+'" width="40" height="40" alt="">':'<span class="access-avatar" style="background:'+color+'">'+esc(initials)+'</span>')+'<div class="access-person-name">'+esc(name)+(subtitle?'<small>'+esc(subtitle)+'</small>':'')+'</div><span class="access-permission">'+esc(permission)+'</span>';
 else if(accessCategory==='Отделы')content='<span class="access-department-arrow" aria-hidden="true">'+iconHtml('E96E')+'</span><span class="access-person-name">'+esc(name)+' <span class="access-department-count">('+initials+')</span></span>';
 else content='<span class="access-person-name">'+esc(name)+'</span><span class="access-permission">'+esc(initials)+'</span>';
-return '<div class="access-person access-person--'+(accessCategory==='Сотрудники'?'employee':accessCategory==='Отделы'?'department':'role')+(checked?' is-marked':'')+'" role="listitem">'+accessCheckbox('Отметить '+name,index,checked)+content+'</div>';
+return '<div class="access-person access-person--'+(accessCategory==='Сотрудники'?'employee':accessCategory==='Отделы'?'department':'role')+(accessLastAction===accessCategory+':'+index?' is-marked':'')+'" role="listitem">'+accessCheckbox('Отметить '+name,index,checked)+content+'</div>';
 }).join('')||'<p class="access-empty">Ничего не найдено</p>';
 const bar=document.querySelector('.access-operations');const count=[...accessMarked].filter(key=>key.startsWith(accessCategory+':')).length;
-bar.hidden=!accessMulti;bar.innerHTML=accessCheckbox('Отметить все записи','all',!!matched.length&&matched.every(({index})=>accessMarked.has(accessCategory+':'+index)))+'<span>'+(count?'Отмечено '+count:'Отметить')+'</span><button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon">'+iconHtml('EA31','icon24')+'</span><span class="btn__caption">Выгрузить</span></button>'+(count?'<button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon access-reset-icon">'+iconHtml('E65C','icon24')+'</span><span class="btn__caption">Сбросить индивидуальные настройки</span></button>':'')+'<button class="access-operations-close" aria-label="Закрыть множественный выбор">'+iconHtml('E66C','icon24')+'</button>';
+bar.hidden=!accessMulti;bar.innerHTML=accessCheckbox('Отметить все записи','all',!!matched.length&&matched.every(({index})=>accessMarked.has(accessCategory+':'+index)))+'<button id="access-marks-toggle" aria-haspopup="menu" aria-expanded="false">'+(count?'Отмечено '+count:'Отметить')+'</button><button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon">'+iconHtml('EA31')+'</span><span class="btn__caption">Выгрузить</span></button>'+(count?'<button class="btn btn--link btn--style-default btn--size-m" aria-disabled="true"><span class="btn__icon access-reset-icon">'+iconHtml('E65C')+'</span><span class="btn__caption">Сбросить индивидуальные настройки</span></button>':'')+'<button class="access-operations-close" aria-label="Закрыть множественный выбор">'+iconHtml('E66C','icon24')+'</button>';
 const all=bar.querySelector('input');all.indeterminate=count>0&&!all.checked;
 requestAnimationFrame(syncAccessScrollbar);
 }
 stage.addEventListener('click',event=>{
  const tab=event.target.closest('[data-access-tab]');
- if(tab){accessCategory=tab.dataset.accessTab;accessMulti=false;accessMarked.clear();document.querySelectorAll('[data-access-tab]').forEach(button=>button.setAttribute('aria-selected',button===tab));document.getElementById('access-search').value='';renderAccessPeople();return}
- if(event.target.closest('.access-multi,.access-operations-close')){accessMulti=event.target.closest('.access-operations-close')?false:!accessMulti;if(!accessMulti)accessMarked.clear();const button=document.querySelector('.access-multi');button.setAttribute('aria-pressed',accessMulti);button.querySelector('.btn__icon').innerHTML=iconHtml(accessMulti?'EB8E':'E644','icon24');renderAccessPeople()}
+ if(tab){accessCategory=tab.dataset.accessTab;accessMulti=false;accessMarked.clear();accessLastAction=null;accessSelectedOnly=false;closeAccessMarksMenu();document.querySelectorAll('[data-access-tab]').forEach(button=>button.setAttribute('aria-selected',button===tab));document.getElementById('access-search').value='';renderAccessPeople();return}
+ if(event.target.closest('.access-multi,.access-operations-close')){accessMulti=event.target.closest('.access-operations-close')?false:!accessMulti;if(!accessMulti){accessMarked.clear();accessSelectedOnly=false;closeAccessMarksMenu()}const button=document.querySelector('.access-multi');button.setAttribute('aria-pressed',accessMulti);button.querySelector('.btn__icon').innerHTML=iconHtml(accessMulti?'EB8E':'E644','icon24');renderAccessPeople()}
 });
 stage.addEventListener('change',event=>{
- if(event.target.matches('[data-access-check]')){accessMulti=true;const key=accessCategory+':'+event.target.dataset.accessCheck;if(event.target.checked)accessMarked.add(key);else accessMarked.delete(key);document.querySelector('.access-multi').setAttribute('aria-pressed','true');renderAccessPeople()}
- if(event.target.matches('[data-access-all]')){const checked=event.target.checked;const query=document.getElementById('access-search').value.toLocaleLowerCase('ru');accessRecords().forEach((record,index)=>{if(record[0].toLocaleLowerCase('ru').includes(query)){const key=accessCategory+':'+index;if(checked)accessMarked.add(key);else accessMarked.delete(key)}});renderAccessPeople()}
+ if(event.target.matches('[data-access-check]')){accessMulti=true;const key=accessCategory+':'+event.target.dataset.accessCheck;accessLastAction=key;if(event.target.checked)accessMarked.add(key);else accessMarked.delete(key);document.querySelector('.access-multi').setAttribute('aria-pressed','true');renderAccessPeople()}
+ if(event.target.matches('[data-access-all]')){const checked=event.target.checked;const query=document.getElementById('access-search').value.toLocaleLowerCase('ru');accessRecords().forEach((record,index)=>{if(record[0].toLocaleLowerCase('ru').includes(query)){const key=accessCategory+':'+index;accessLastAction=key;if(checked)accessMarked.add(key);else accessMarked.delete(key)}});renderAccessPeople()}
 });
 stage.addEventListener('click',event=>{
 const button=event.target.closest('[data-settings-section]');if(!button)return;
@@ -636,7 +639,7 @@ const panel=button.closest('.command-settings');const content=panel.querySelecto
 if(!panel._integrationContent)panel._integrationContent=content.innerHTML;
 panel.querySelectorAll('[data-settings-section]').forEach(item=>{if(item===button)item.setAttribute('aria-current','page');else item.removeAttribute('aria-current')});
 content.innerHTML=button.dataset.settingsSection==='access'?settingsAccessContent():panel._integrationContent;
-if(button.dataset.settingsSection==='access'){accessCategory='Сотрудники';accessMulti=false;accessMarked.clear();content.innerHTML=settingsAccessContent();renderAccessPeople()}
+if(button.dataset.settingsSection==='access'){accessCategory='Сотрудники';accessMulti=false;accessMarked.clear();accessLastAction=null;accessSelectedOnly=false;closeAccessMarksMenu();content.innerHTML=settingsAccessContent();renderAccessPeople()}
 });
 stage.addEventListener('input',event=>{if(event.target.id==='access-search')renderAccessPeople(event.target.value)});
 
@@ -663,3 +666,30 @@ stage.addEventListener('pointerdown',event=>{
 stage.addEventListener('pointermove',event=>{if(!accessScrollDrag)return;const d=accessScrollDrag;if(d.travel>0)d.list.scrollTop=d.scroll+(event.clientY-d.y)*d.range/d.travel;syncAccessScrollbar()});
 stage.addEventListener('pointerup',()=>{accessScrollDrag=null});
 stage.addEventListener('pointercancel',()=>{accessScrollDrag=null});
+
+function closeAccessMarksMenu(){document.getElementById('access-marks-menu')?.remove();document.getElementById('access-marks-toggle')?.setAttribute('aria-expanded','false')}
+function openAccessMarksMenu(){
+ if(document.getElementById('access-marks-menu')){closeAccessMarksMenu();return}
+ const menu=document.createElement('section');menu.id='access-marks-menu';menu.setAttribute('role','menu');menu.setAttribute('aria-label','Отметки доступа');
+ const count=[...accessMarked].filter(key=>key.startsWith(accessCategory+':')).length;
+ menu.innerHTML='<div class="marks-title">ОТМЕЧЕНО '+count+'<button data-access-marks-close aria-label="Закрыть меню отметок доступа">'+iconHtml('E66C','icon24')+'</button></div>'+[['all','Отметить все'],['clear','Снять'],['invert','Инвертировать'],['only','Отобрать отмеченные']].map(([value,label])=>'<button role="menuitem" data-access-marks="'+value+'">'+label+'</button>').join('');
+ const bounds=document.querySelector('.access-operations').getBoundingClientRect(),origin=stage.getBoundingClientRect(),scale=origin.width/stage.offsetWidth;
+ menu.style.left=(bounds.left-origin.left)/scale+'px';menu.style.top=(bounds.top-origin.top)/scale-4+'px';stage.append(menu);document.getElementById('access-marks-toggle').setAttribute('aria-expanded','true');
+}
+stage.addEventListener('click',event=>{
+ if(event.target.closest('#access-marks-toggle')){openAccessMarksMenu();return}
+ if(event.target.closest('[data-access-marks-close]')){closeAccessMarksMenu();return}
+ const command=event.target.closest('[data-access-marks]');
+ if(command){
+  const action=command.dataset.accessMarks,query=document.getElementById('access-search').value.toLocaleLowerCase('ru');
+  if(action==='clear'){accessMarked.clear();accessSelectedOnly=false}
+  if(action==='only')accessSelectedOnly=true;
+  if(action==='all'||action==='invert')accessRecords().forEach((record,index)=>{
+   const key=accessCategory+':'+index;if(!record[0].toLocaleLowerCase('ru').includes(query)||(accessSelectedOnly&&!accessMarked.has(key)))return;
+   accessLastAction=key;if(action==='invert'&&accessMarked.has(key))accessMarked.delete(key);else accessMarked.add(key);
+  });
+  closeAccessMarksMenu();renderAccessPeople();return;
+ }
+ if(!event.target.closest('#access-marks-menu'))closeAccessMarksMenu();
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeAccessMarksMenu()});

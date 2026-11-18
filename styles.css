@@ -86,9 +86,9 @@ main{flex:1;min-width:0;display:flex;flex-direction:column;height:900px}header{h
 .confirm-accent{display:block;width:40px;height:3px;border-radius:2px;background:#0085f2;margin:0 auto 22px}
 .registry-confirm-box p{font-size:18px;line-height:24px;margin:0 0 26px;letter-spacing:-.254px}
 .confirm-actions{display:flex;gap:8px;justify-content:center}.confirm-actions button{width:86px;height:24px;border:1px solid #0085f2;background:white;border-radius:20px;font-size:14px;line-height:20px}.confirm-actions #registry-confirm-yes{border-color:#ff8151}.confirm-actions button:hover{background:#ebf4ff}.confirm-actions #registry-confirm-yes:hover{background:#fff2eb}.confirm-actions button:focus:not(:focus-visible){outline:none}
-#marks-menu{position:absolute;width:220px;z-index:15;background:#f5faff;border-radius:8px;padding:12px 0 10px;box-shadow:0 5px 24px #00000026}
+:is(#marks-menu,#access-marks-menu){position:absolute;width:220px;z-index:15;background:#f5faff;border-radius:8px;padding:12px 0 10px;box-shadow:0 5px 24px #00000026}
 .marks-title{position:relative;padding:0 36px 0 20px;height:28px;font-size:14px;letter-spacing:1.5px;color:#8991a9}.marks-title button{position:absolute;right:12px;top:0;width:24px;height:24px;color:#656c87;letter-spacing:0}
-#marks-menu>[data-marks]{display:block;width:100%;height:38px;text-align:left;padding:0 20px;font-size:16px}#marks-menu>[data-marks]:hover{background:#ebedf2}
+:is(#marks-menu,#access-marks-menu)>:is([data-marks],[data-access-marks]){display:block;width:100%;height:38px;text-align:left;padding:0 20px;font-size:16px}:is(#marks-menu,#access-marks-menu)>:is([data-marks],[data-access-marks]):hover{background:#ebedf2}
 #registry-toast{position:absolute;right:16px;bottom:16px;z-index:45;display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(105deg,#dff2e4,#f5fbf6);border-radius:6px;box-shadow:0 0 8px #00000026;font-size:16px}
 .copied-check{color:#279a3f;font-size:24px;line-height:24px}#registry-toast button{width:24px;height:24px;color:#656c87}
 
@@ -316,7 +316,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .row-commands [data-row-action="delete"]:hover,.row-commands [data-row-action="delete"]:active{color:#e50c00;background:transparent}
 
 /* Вложенные панели карточки по предоставленным скриншотам. */
-#card-command-panel{position:absolute;inset:0 0 0 auto;width:min(1200px,100%);z-index:20;display:flex;background:#f8f8f8;box-shadow:-3px 0 8px #00000012}
+:is(#card-command-panel,#card-history-panel){position:absolute;inset:0 0 0 auto;width:min(1200px,100%);z-index:20;display:flex;background:#f8f8f8;box-shadow:-3px 0 8px #00000012}
 #card-command-panel.command-seo{width:min(652px,100%)}
 .command-main{flex:1;min-width:0;display:flex;flex-direction:column}
 .command-heading{height:46px;padding:0 12px;flex:none;display:flex;justify-content:space-between;align-items:center}
@@ -404,7 +404,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card-pages,#site-card .card-content{height:100%}
 .domain-line input{width:auto!important;field-sizing:content}
 
-#card-command-panel.command-history{width:min(800px,100%);background:#fff}
+#card-history-panel.command-history{z-index:21;width:min(800px,100%);background:#fff}
 .command-history .command-heading{height:48px;background:#f8f8f8;border-bottom:1px solid #eee;padding:0 16px}
 .command-history .command-heading h2{font-size:22px}
 .command-history .command-tools{background:#f8f8f8}
@@ -560,7 +560,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .access-heading h3{font-size:17px;line-height:24px}
 .access-tabs{--inline_height-inline_height_xl:32px;--text-text-color:#000;--text-secondary_text-color:#313e78;--font-font-family-default:Inter;--font-font-size-font-size_l:16px;--font-font-weight-regular:400;--extra-item_selected_color:#05121e;--extra-marker_hover_color:#e5e7eb;--components-tabs-marker_thickness_tabs:3px;--border-radius-border-radius_2xs:4px;--offset-offset_m:0px}
 .access-tabs .tabs__item{margin:0;box-shadow:none}
-.access-toolbar>.access-filter{width:32px;height:32px;cursor:default}
+.access-toolbar>.access-filter{width:32px;height:32px;cursor:pointer}
 .access-allowed{border:0;cursor:pointer}
 .access-allowed:hover{background:#dbecff}
 .access-allowed:active{background:#cce4ff}
@@ -583,3 +583,32 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 /* Reserve the checkbox slot in compact access rows, including hover. */
 .access-person--department,.access-person--role{padding-left:28px}
 .access-operations .btn__icon{color:#656c87}
+
+/* Analytics list surfaces continue to the panel's bottom edge. */
+#site-card .card-analytics:has(> :is(.sources,.visitors,.replies)){
+ display:flex;flex-direction:column;min-height:calc(100% + 8px);
+}
+#site-card .card-analytics> :is(.sources,.visitors,.replies){flex:1 0 auto;border-bottom-left-radius:0;border-bottom-right-radius:0}
+
+/* Access rows keep their checkbox slot in every selection state. */
+.command-settings .settings-access{margin-left:-20px;width:calc(100% + 20px);border-top-left-radius:0}
+.settings-access .access-person{padding-left:20px}
+.settings-access .access-person>.access-check{margin:0;left:0}
+.access-operations .access-reset-icon{color:#d00}
+#access-marks-toggle:hover,.access-operations .btn:hover>.btn__caption{text-decoration:underline;text-underline-offset:2px}
+.access-operations .btn:hover>.btn__caption{color:#575757}
+#access-marks-menu{z-index:30}
+
+/* PMO command component: Figma 6323:55467. */
+.access-operations .btn{--btn-h:32px;--btn-fs:14px;--btn-px:0px;gap:4px;padding-bottom:1px;background:transparent;border:0;box-shadow:none;letter-spacing:-.1974px;font-weight:400}
+.access-operations .btn .btn__icon{width:16px;height:16px;flex:none;padding-bottom:1px;color:#656c87}
+.access-operations .btn .btn__icon>.icon{font:400 16px/normal cbuc-icons;width:16px;height:16px}
+.access-operations .btn .access-reset-icon{color:#c2140a}
+.access-operations .btn:is(:hover,:focus-visible){background:transparent;box-shadow:none}
+.access-operations .btn:hover .btn__icon{color:#1e5391}
+.access-operations .btn:hover .access-reset-icon{color:#e50c00}
+.access-operations .btn:hover .btn__caption{color:#575757;text-decoration:underline;text-underline-offset:auto;text-decoration-skip-ink:none;text-underline-position:from-font}
+
+#card-history-panel.command-history{background:#f8f8f8}
+.command-history .history-surface{display:flex;flex-direction:column;flex:1;min-height:0;background:#fff;border-top-right-radius:var(--border-radius-border-radius_s);box-shadow:var(--surface-shadow-b);position:relative}
+.command-history .command-heading{border-bottom:0}
