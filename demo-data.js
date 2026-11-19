@@ -845,4 +845,4 @@ const showcaseSites = [
 ['Greenflow','г. Калининград, ул. Пугачева, д. 13','Молоко, ООО (Greenflow)','8054542679','24 авг','21','','Продукты','verified-page',0],
 ['Деревянный ключик','г. Ярославль, пр-кт Ленина, д. 36','Золотой Ключик, ООО','4211020645','4 сен','13','','Рестораны','muted-page',0],
 ['Головая','г. Москва','АН Александр Владимирович, ИП','400400149130','9 ноя','3','','Рестораны','muted-page',0]
-].map(([name,address,company,inn,date,visitors,orders,category,kind,regionId],index)=>({name,address,company,inn,date,visitors,orders,category,kind,regionId,network:index===0,published:!kind.startsWith('muted')}));
+].map(([name,address,company,inn,date,visitors,orders,category,kind,regionId],index)=>({name,address,company,inn,date,visitors,orders,category,kind,regionId,network:[0,1,2,12].includes(index),published:!kind.startsWith('muted')}));

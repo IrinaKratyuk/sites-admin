@@ -45,9 +45,9 @@ main{flex:1;min-width:0;display:flex;flex-direction:column;height:900px}header{h
 .row-commands{position:absolute;right:0;bottom:0;display:flex;align-items:flex-end;gap:6px;padding:4px 6px 3px;background:#f3f4f8;visibility:hidden;pointer-events:none}
 .row-commands button{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#656c87;border-radius:100px}
 .row-commands button:hover,.row-commands button:active{background:transparent;color:#1e5391}.row-commands [data-row-action="delete"]{color:#c2140a}
-.site-row:hover .row-commands,.site-row:focus-within .row-commands{visibility:visible;pointer-events:auto}
-.site-row:focus-within .check{opacity:1}.check{visibility:hidden}.site-row:hover .check,.site-row:focus-within .check,.multi-mode .check{visibility:visible}
-.multi-mode .site-row[aria-selected=true]{background:transparent}.multi-mode .site-row:hover,.multi-mode .site-row:focus-within{background:#f3f4f8}
+.site-row:hover .row-commands,.site-row:is(:focus-visible,:has(:focus-visible)) .row-commands{visibility:visible;pointer-events:auto}
+.site-row:is(:focus-visible,:has(:focus-visible)) .check{opacity:1}.check{visibility:hidden}.site-row:hover .check,.site-row:is(:focus-visible,:has(:focus-visible)) .check,.multi-mode .check{visibility:visible}
+.multi-mode .site-row[aria-selected=true]{background:transparent}.multi-mode .site-row:hover,.multi-mode .site-row:is(:focus-visible,:has(:focus-visible)){background:#f3f4f8}
 .site-row[aria-selected=true]:before{display:none}.site-row[data-current=true]:before,.multi-mode .site-row[data-current=true]:before{content:"";display:block;position:absolute;top:2px;left:0;width:3px;height:16px;border-radius:4px;background:#cc3d00}
 #operations{position:sticky;top:0;z-index:5;background:#f5faff;border-radius:8px 8px 0 0;min-height:36px}
 .columns{position:sticky;top:0;z-index:4;background:white}.multi-mode .columns{top:36px}.detail .columns{box-shadow:none}.detail.is-scrolled .columns{box-shadow:0 3px 4px #0000000d}
@@ -318,6 +318,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 /* Вложенные панели карточки по предоставленным скриншотам. */
 :is(#card-command-panel,#card-history-panel){position:absolute;inset:0 0 0 auto;width:min(1200px,100%);z-index:20;display:flex;background:#f8f8f8;box-shadow:-3px 0 8px #00000012}
 #card-command-panel.command-seo{width:min(652px,100%)}
+#card-command-panel.command-settings{width:min(954px,100%)}
 .command-main{flex:1;min-width:0;display:flex;flex-direction:column}
 .command-heading{height:46px;padding:0 12px;flex:none;display:flex;justify-content:space-between;align-items:center}
 .command-heading h2{font-size:24px;font-weight:600;margin:0}
@@ -511,13 +512,24 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 #site-card :is(.card-pages,.card-content){
  width:calc(100% + 16px);height:calc(100% + 8px);margin:-8px;padding:8px;
 }
+/* Master rows keep 4px inside the panel, beyond the 8px shadow gutter. */
+#site-card .card-pages{padding-inline:12px}
+#site-card .card-pages .visitor-summary{margin-left:4px}
 .settings-content{margin:-8px;padding:8px}
 #showcase-card .showcase-card-body{overflow:visible;clip-path:inset(-8px)}
 
 .scroll-shadow{--offset-offset_s:8px;--components-scroll-shadow_start-color_scroll:#00000026;--components-scroll-shadow_end-color_scroll:#00000000}
 #site-card :is(.card-pages,.card-content).scroll-shadow,.settings-content.scroll-shadow{--scroll-shadow-inset:8px}
 
-#showcase-card .showcase-card-content:not(:has(.showcase-branches)){height:calc(100% - 8px)}
+#showcase-card .showcase-card-content:not(:has(.showcase-branches)){height:100%}
+#showcase-card .showcase-card-body{position:relative}
+#showcase-card .showcase-card-content.scroll-shadow::after{display:none}
+#showcase-card .showcase-card-body::after{
+ content:"";position:absolute;z-index:2;pointer-events:none;left:256px;right:0;bottom:0;height:8px;
+ background:linear-gradient(var(--components-scroll-shadow_end-color_scroll,#00000000),var(--components-scroll-shadow_start-color_scroll,#00000026));opacity:0;
+}
+#showcase-card .showcase-card-body:has(>.showcase-card-content.is-more-below)::after{opacity:1}
+#showcase-card.is-branch .showcase-card-body::after{left:6px}
 /* The top scroll indicator belongs to the tab/body boundary, outside shadow padding. */
 #site-card .card-content.scroll-shadow::before{opacity:0}
 #site-card .card-content.is-scrolled{clip-path:inset(4px 0 0)}
@@ -526,6 +538,14 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
  background:linear-gradient(var(--components-scroll-shadow_start-color_scroll,#00000026),var(--components-scroll-shadow_end-color_scroll,#00000000));opacity:0;
 }
 #site-card .card-body:has(>.card-content.is-scrolled)::after{opacity:1}
+/* Bottom scroll shadows follow the content surface, outside its shadow gutter. */
+#site-card .card-content.scroll-shadow::after{display:none}
+#site-card .card-body::before{
+ content:"";position:absolute;z-index:2;pointer-events:none;left:282px;right:0;bottom:0;height:8px;
+ background:linear-gradient(var(--components-scroll-shadow_end-color_scroll,#00000000),var(--components-scroll-shadow_start-color_scroll,#00000026));opacity:0;
+}
+#site-card .card-body:has(>.card-content.is-more-below)::before{opacity:1}
+@media(max-width:900px){#site-card .card-body::before{left:192px}}
 
 /* Access surface: keep a rounded white footer above the panel's bottom gap. */
 .command-settings .settings-layout{padding-bottom:0}
@@ -549,7 +569,7 @@ html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 /* Settings refinements from the supplied reference screens. */
 #stage :is(.card-heading,.command-heading,.template-header) h2{font-size:20px}
 .command-settings .command-heading{padding-inline:20px}
-.command-settings .settings-layout{padding-left:20px;padding-right:20px}
+.command-settings .settings-layout{padding-left:20px;padding-right:12px;column-gap:12px}
 .integrations-list{display:flex;flex-direction:column;gap:4px}
 .integrations-list .integration-card{border:0;border-radius:8px;padding:12px;background:#fff;gap:12px;box-shadow:none;outline-offset:-2px}
 .integrations-list .integration-card>img{display:block;flex:none;width:52px;height:52px;border-radius:50%}
