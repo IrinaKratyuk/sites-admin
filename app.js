@@ -216,18 +216,35 @@ if(!event.target.closest('#sort-menu, [aria-label="Сортировать"]'))cl
 });
 document.addEventListener("keydown",event=>{if(event.key==="Escape")closeSort()});
 
-let companyDraft=null;
-function closeFilter(){closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false");document.getElementById("showcase-branch-filter")?.setAttribute("aria-expanded","false")}
+let companyDraft=null, companyCurrent=null;
+function closeFilter(){filterValuesObserver.disconnect();closeCompanies();closeTemplates();draft=copyFilters(filters);document.getElementById("filter-panel")?.remove();filterOpen=false;filterButton.setAttribute("aria-expanded","false");document.getElementById("showcase-branch-filter")?.setAttribute("aria-expanded","false")}
 function filterField(field,title,placeholder){
 const values=draft[field];
-return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line">'+(values.length?'<span class="lookup-value" title="'+esc(values[0])+'">'+esc(values[0])+'</span><button class="lookup-remove" data-remove-first="'+field+'" aria-label="Убрать '+esc(values[0])+'">'+iconHtml('E66C')+'</button>':'')+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" aria-label="Подсказки: '+title+'" hidden></div></div>';
+const entries=values.slice(0,2).map(value=>'<span class="lookup-entry"><span class="lookup-value" title="'+esc(value)+'">'+esc(value)+'</span><button class="lookup-remove" data-remove-lookup="'+field+'" data-value="'+esc(value)+'" aria-label="Убрать '+esc(value)+'">'+iconHtml('E66C')+'</button></span>').join('');
+return '<div class="lookup-field" data-lookup="'+field+'"><label for="filter-'+field+'">'+title+'</label><div class="lookup-line" data-value-count="'+values.length+'">'+entries+(values.length>1?'<button class="lookup-count" data-open-picker="'+field+'" aria-label="Выбрано: '+values.length+'">('+values.length+')</button>':'')+'<input id="filter-'+field+'" data-lookup-input="'+field+'" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions-'+field+'" placeholder="'+placeholder+'">'+(values.length>1?'<button class="lookup-clear" data-clear-lookup="'+field+'" aria-label="'+(field==='templates'?'Очистить шаблоны':'Очистить организации')+'">'+iconHtml('E66C')+'</button>':'')+'<button class="lookup-picker" data-open-picker="'+field+'" aria-label="'+(field==='templates'?'Выбрать шаблоны':'Выбрать организации')+'"><img src="assets/filter-field-picker.svg" width="16" height="16" alt=""></button></div><div id="suggestions-'+field+'" class="lookup-suggestions" aria-label="Подсказки: '+title+'" hidden></div></div>';
 }
+function layoutFilterValues(){
+document.querySelectorAll('#filter-panel .lookup-line').forEach(line=>{
+const entries=[...line.querySelectorAll('.lookup-entry')],count=line.querySelector('.lookup-count');
+if(entries.length<2)return;
+entries[1].hidden=false;count.hidden=false;
+const naturalWidth=entries.reduce((width,entry)=>width+entry.querySelector('.lookup-value').scrollWidth+16,0);
+const countWidth=count.offsetWidth+8,clearWidth=16,pickerWidth=20;
+const inputWidth=line.matches(':focus-within')?60:0;
+const fits=naturalWidth+6+clearWidth+pickerWidth+inputWidth+(Number(line.dataset.valueCount)>2?countWidth:0)<=line.clientWidth;
+entries[1].hidden=!fits;
+count.hidden=fits&&Number(line.dataset.valueCount)===2;
+});
+}
+const filterValuesObserver=new ResizeObserver(layoutFilterValues);
+document.fonts.ready.then(layoutFilterValues);
 function drawFilter(){
-let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");stage.append(panel)}
+let panel=document.getElementById("filter-panel");if(!panel){panel=document.createElement("section");panel.id="filter-panel";panel.setAttribute("role","dialog");panel.setAttribute("aria-label","Фильтр сайтов");panel.addEventListener('focusin',layoutFilterValues);panel.addEventListener('focusout',()=>requestAnimationFrame(layoutFilterValues));stage.append(panel)}
 const flagLabels=[['verified','Проверенные','Непроверенные'],['published','Опубликованные','Неопубликованные']];
 const selectedFlags=flagLabels.filter(([field])=>draft[field]!==null).map(([field,yes,no])=>'<div class="filter-selected-condition"><button class="filter-condition-label">'+(draft[field]?yes:no)+'</button><button class="filter-condition-remove" data-remove-flag="'+field+'" aria-label="Убрать условие '+(draft[field]?yes:no)+'">'+iconHtml('E66C')+'</button></div>').join('');
 const dirty=JSON.stringify(draft)!==JSON.stringify(emptyFilters())||JSON.stringify(draft)!==JSON.stringify(showcaseCurrent&&showcaseTab==='Филиалы'?showcaseBranchFilters:filters);
 panel.innerHTML='<div class="filter-title"><img src="assets/6d0b9.svg" width="14" height="14" alt=""><span>ФИЛЬТР</span><div class="filter-actions" '+(!dirty?'hidden':'')+'><button id="filter-reset">Сбросить</button><button id="filter-apply" aria-label="Применить фильтр">'+iconHtml("E75E")+'</button></div>'+panelCloseButton('filter-close','Закрыть фильтр')+'</div><div class="filter-fields">'+(showcaseCurrent&&showcaseTab==='Филиалы'?'':filterField('templates','Шаблон','Выберите шаблон'))+filterField('companies','Организация','Выберите организацию')+selectedFlags+'</div><div class="filter-extra" '+(flagLabels.every(([field])=>draft[field]!==null)?'hidden':'')+'><div>МОЖНО ОТОБРАТЬ</div><div class="filter-flags">'+flagLabels.filter(([field])=>draft[field]===null).map(([field,label])=>'<span><button data-flag="'+field+'" data-value="true" aria-pressed="'+(draft[field]===true)+'">'+label+'</button><b aria-hidden="true"></b><button data-flag="'+field+'" data-value="false" aria-pressed="'+(draft[field]===false)+'">Нет</button></span>').join("")+'</div></div>';
+filterValuesObserver.disconnect();panel.querySelectorAll('.lookup-line').forEach(line=>filterValuesObserver.observe(line));layoutFilterValues();
 }
 const extraCompanies=['Вскрытие тары, Ярославль, ООО','Звезда Общепита, ООО','+КАТЮША PLUS+','СПК, АО','Шоколадка, ООО'];
 function lookupValues(field){if(field==='companies'&&showcaseCurrent&&showcaseTab==='Филиалы')return [...new Set(showcaseBranches().map(site=>site.company).filter(Boolean))];return field==='templates'?templateCatalog.map(t=>t.name):[...new Set([...sites.map(s=>s.company).filter(Boolean),...extraCompanies])]}
@@ -257,7 +274,7 @@ document.addEventListener("click",event=>{
 const wasInsideFilter=Boolean(event.target.closest("#filter-panel, #template-panel, #company-panel"));
 if(event.target.closest('[data-close-suggestions]')){hideSuggestions();return}
 const option=event.target.closest('[data-lookup-option]');if(option){selectLookup(option.dataset.lookupOption,option.dataset.value);return}
-const remove=event.target.closest('[data-remove-first]');if(remove){draft[remove.dataset.removeFirst].shift();drawFilter();return}
+const remove=event.target.closest('[data-remove-lookup]');if(remove){const field=remove.dataset.removeLookup;draft[field]=draft[field].filter(value=>value!==remove.dataset.value);drawFilter();return}
 const clear=event.target.closest('[data-clear-lookup]');if(clear){draft[clear.dataset.clearLookup]=[];drawFilter();return}
 const picker=event.target.closest('[data-open-picker]');if(picker){hideSuggestions();if(picker.dataset.openPicker==='templates')openTemplates();else openCompanies();return}
 const line=event.target.closest('.lookup-line');if(line&&!event.target.closest('button,input'))line.querySelector('input').focus();
@@ -271,12 +288,13 @@ if(filterOpen&&!wasInsideFilter&&!event.target.closest('[aria-label="Фильт�
 });
 function closeCompanies(){document.getElementById('company-panel')?.remove();companyDraft=null;document.getElementById('filter-panel')?.removeAttribute('hidden')}
 function openCompanies(){
-companyDraft=[...draft.companies];document.getElementById('filter-panel').hidden=true;
+companyDraft=[...draft.companies];let companySaveVisible=companyDraft.length>0;document.getElementById('filter-panel').hidden=true;
 const panel=document.createElement('section');panel.id='company-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Выбор организаций');
-panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Все заведения</h2><button id="company-save" '+(!companyDraft.length?'hidden':'')+'>Выбрать</button></div><div class="company-search-row"><input id="company-search" type="search" placeholder="Найти по названию, ИНН" aria-label="Найти организацию"></div><div class="company-list">'+lookupValues('companies').map(company=>{const site=(showcaseCurrent&&showcaseTab==='Филиалы'?showcaseBranches():sites).find(s=>s.company===company);return '<label class="company-option"><span class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span></span><span class="company-option-text"><span class="company-option-line"><span class="company-option-name">'+esc(site?.name||company)+'</span><span class="company-option-address">'+esc(site?.address||'')+'</span></span><span class="company-option-details">'+esc(company)+(site?.inn?'　'+esc(site.inn):'')+'</span></span></label>'}).join('')+'</div></div><aside class="template-tools">'+panelCloseButton('company-close','Закрыть выбор организаций')+'<div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
+panel.innerHTML='<div class="template-main"><div class="template-header"><h2>Все заведения</h2><button id="company-save" '+(!companyDraft.length?'hidden':'')+'>Выбрать</button></div><div class="company-surface"><div class="company-search-row"><input id="company-search" type="search" placeholder="Найти по названию, ИНН" aria-label="Найти организацию"></div><div class="company-list">'+lookupValues('companies').map(company=>{const site=(showcaseCurrent&&showcaseTab==='Филиалы'?showcaseBranches():sites).find(s=>s.company===company);return '<label class="company-option" data-current="'+(companyCurrent===company)+'"><span class="checkbox checkbox--outlined"><input class="checkbox__input" type="checkbox" value="'+esc(company)+'" '+(companyDraft.includes(company)?'checked':'')+'><span class="checkbox__box" aria-hidden="true"></span></span><span class="company-option-text"><span class="company-option-line"><span class="company-option-name">'+esc(site?.name||company)+'</span><span class="company-option-address">'+esc(site?.address||'')+'</span></span><span class="company-option-details">'+esc(company)+(site?.inn?'　'+esc(site.inn):'')+'</span></span></label>'}).join('')+'</div></div></div><aside class="template-tools">'+panelCloseButton('company-close','Закрыть выбор организаций')+'<div class="template-informers">'+document.querySelector('.informers').innerHTML+'</div></aside>';
 stage.append(panel);enhanceSearchFields(panel);
 panel.querySelector('#company-search').addEventListener('input',event=>{const query=event.target.value.trim().toLocaleLowerCase('ru');panel.querySelectorAll('.company-option').forEach(row=>row.hidden=!row.textContent.toLocaleLowerCase('ru').includes(query))});
-panel.addEventListener('change',event=>{if(event.target.matches('.company-option input')){const value=event.target.value;companyDraft=event.target.checked?[...new Set([...companyDraft,value])]:companyDraft.filter(company=>company!==value);panel.querySelector('#company-save').hidden=!companyDraft.length}});
+panel.addEventListener('click',event=>{const row=event.target.closest('.company-option');if(row){panel.querySelectorAll('.company-option[data-current]').forEach(item=>item.removeAttribute('data-current'));companyCurrent=row.querySelector('input').value;row.dataset.current='true'}});
+panel.addEventListener('change',event=>{if(event.target.matches('.company-option input')){const value=event.target.value;companyDraft=event.target.checked?[...new Set([...companyDraft,value])]:companyDraft.filter(company=>company!==value);companySaveVisible ||= companyDraft.length>0;panel.querySelector('#company-save').hidden=!companySaveVisible}});
 panel.addEventListener('click',event=>{event.stopPropagation();if(event.target.closest('#company-save')){draft.companies=[...companyDraft];closeCompanies();drawFilter()}else if(event.target.closest('#company-close'))closeCompanies()});
 }
 const templateCatalog=[{name:"Доставка из ресторана",image:"7182c.png",color:"#d9dbc7"},{name:"Отель",image:"60285.png",color:"#eae1d7"},{name:"Услуги",image:"787d1.png",color:"#f7e2c5"}];
@@ -375,7 +393,7 @@ return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http:
 function cardPreview(){
 const pageIndex=cardPage===0?0:cardPage-1,page=sitePagePreviews[pageIndex],domain=previewDomain(currentSite),stats=cardStatistics();
 const preview=currentSite.id===2?'<div class="site-page-image site-page-image--'+page.variant+'"><img src="assets/'+page.image+'" alt="'+page.name+' — '+esc(currentSite.name)+'"></div>':'<img src="'+esc(demoSitePreview(currentSite,pageIndex))+'" alt="'+page.name+' — '+esc(currentSite.name)+'">';
-return '<div class="card-link"><button class="btn btn--link btn--style-link btn--size-m" data-open-preview><span class="btn__caption">'+esc(domain+page.path)+'</span></button></div><div class="site-preview" id="site-preview" aria-label="Превью: '+page.name+'">'+preview+'</div><div class="device-switch"><button aria-label="Компьютер" aria-pressed="true" data-device="desktop"><img src="assets/56aee.svg" width="16" height="16" alt=""></button><button aria-label="Телефон" aria-pressed="false" data-device="mobile"><img src="assets/7074e.svg" width="16" height="16" alt=""></button></div>'+visitorChart()+'<div class="card-statistics live-statistics"><div><span>Посетители</span><strong>'+esc(stats.visitors)+'</strong></div><div><span>Отклики</span><strong>'+esc(stats.responses)+'</strong></div><div><span>Продажи</span><strong>—</strong></div></div>';
+return '<div class="card-link"><button class="btn btn--link btn--style-link btn--size-m" data-open-preview><span class="btn__caption">'+esc(domain+page.path)+'</span></button></div><div class="site-preview" id="site-preview" aria-label="Превью: '+page.name+'">'+preview+'</div><div class="device-switch"><button aria-label="Компьютер" aria-pressed="true" aria-disabled="true" data-device="desktop"><img src="assets/56aee.svg" width="16" height="16" alt=""></button><button aria-label="Телефон" aria-pressed="false" aria-disabled="true" data-device="mobile"><img src="assets/7074e.svg" width="16" height="16" alt=""></button></div>'+visitorChart()+'<div class="card-statistics live-statistics"><div><span>Посетители</span><strong>'+esc(stats.visitors)+'</strong></div><div><span>Отклики</span><strong>'+esc(stats.responses)+'</strong></div><div><span>Продажи</span><strong>—</strong></div></div>';
 }
 function designerVerification(){
 
@@ -399,7 +417,7 @@ host.append(menu);trigger.setAttribute("aria-expanded","true");menu.querySelecto
 }
 // Shared panel close: exact 28px functionalButton SVG from Figma 19062:34148.
 function panelCloseButton(id,label){
-if(id==='filter-close')return '<button id="'+id+'" class="panel-close" aria-label="'+label+'"><img src="assets/d52a1.svg" width="28" height="28" alt=""></button>';
+if(id==='filter-close')return '<button id="'+id+'" class="panel-close" aria-label="'+label+'"><img src="assets/filter-close-default.svg" width="28" height="28" alt=""></button>';
 return '<button id="'+id+'" class="panel-close panel-close--sliding" aria-label="'+label+'">'+['default','hover','active'].map(state=>'<img class="panel-close__'+state+'" src="assets/panel-close-'+state+'.svg" width="28" height="28" alt="">').join('')+'</button>';
 }
 const appearancePrototypeUrl='https://www.figma.com/proto/DBmmGUNJ5Pwg8BsFOI5Kuv/Создание--параметры-и-публикация-макета-сайта?page-id=7113%3A98771%3Fnode-id%3D7113-98909&p=f&viewport=147%2C-778%2C0.02&t=J1oMAC3fYUOZxb8s-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=7113%3A98909&node-id=7113-102688&hide-ui=1';
@@ -434,10 +452,10 @@ if(verification&&currentSite){currentSite.verified=verification.dataset.verifica
 if(event.target.closest(".verification-dismiss")&&!showcaseCurrent){toggleVerificationMenu();document.getElementById("designer-verification").focus();return}
 if(document.getElementById("verification-menu")&&!showcaseCurrent&&!event.target.closest("#verification-menu"))toggleVerificationMenu();
 if(event.target.closest('#card-more')){toggleCardMore();return}
-if(event.target.closest('#card-more-close')){document.getElementById('card-more-menu')?.remove();return}
+if(event.target.closest('#card-more-close')){closeCardMenus('verification-menu');return}
 const extra=event.target.closest('[data-card-extra]');
-if(extra){const action=extra.dataset.cardExtra;document.getElementById('card-more-menu')?.remove();if(action==='history')openCardHistory();if(action==='cache')showCacheNotice();if(action==='edit')window.open(appearancePrototypeUrl,'_blank','noopener,noreferrer');if(action==='delete')confirmRegistryAction('delete',[currentSite.id]);return}
-if(document.getElementById('card-more-menu')&&!event.target.closest('#card-more-menu'))document.getElementById('card-more-menu').remove();
+if(extra){const action=extra.dataset.cardExtra;closeCardMenus('verification-menu');if(action==='history')openCardHistory();if(action==='cache')showCacheNotice();if(action==='edit')window.open(appearancePrototypeUrl,'_blank','noopener,noreferrer');if(action==='delete')confirmRegistryAction('delete',[currentSite.id]);return}
+if(document.getElementById('card-more-menu')&&!event.target.closest('#card-more-menu'))closeCardMenus('verification-menu');
 const command=event.target.closest(".card-top-tools button, [data-card-command]");
 if(command&&currentSite){
 const label=command.getAttribute("aria-label");
@@ -451,7 +469,7 @@ if(event.target.closest("#card-close"))closeCard();
 const tab=event.target.closest("[data-card-tab]");if(tab&&currentSite){cardTab=tab.dataset.cardTab;drawCard()}
 const page=event.target.closest("[data-card-page]");if(page){cardPage=Number(page.dataset.cardPage);drawCard();document.querySelector('#site-card .card-content').scrollTop=0}
 if(event.target.closest("#indexing-switch")){currentSite.settings.indexing=!currentSite.settings.indexing;drawCard()}
-const device=event.target.closest("[data-device]");if(device){document.querySelectorAll("[data-device]").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===device)));document.getElementById("site-preview").classList.toggle("mobile",device.dataset.device==="mobile")}
+// The constructor device switch is display-only; keep its hover styles.
 });
 document.addEventListener('change',event=>{
 const field=event.target.dataset.cardVisitFilter;if(!field||!currentSite)return;
@@ -543,7 +561,7 @@ const row=(hex,label,attrs='')=>'<button role="menuitem" '+attrs+'>'+iconHtml(he
 menu.innerHTML='<button id="card-more-close" aria-label="Закрыть меню">'+iconHtml('E66C','icon24')+'</button>'+'<div class="card-check-submenu">'+row('EB4D','Проверка карточки','aria-haspopup="menu"')+'<div role="menu">'+[true,false].map(value=>row('EB4D',value?'Проверено':'Не проверено','data-verification="'+value+'" class="'+(value?'verified':'')+'"')).join('')+'</div></div>'+[['EAA9','Настройки'],['EB5E','SEO-аналитика'],['E6A7','Ссылка'],['EAB9','Открыть сайт'],[currentSite.published?'E62F':'E631',currentSite.published?'Снять с публикации':'Опубликовать']].map(([hex,label])=>row(hex,label,'data-card-command aria-label="'+(label==='Открыть сайт'?'Просмотр':label)+'"')).join('')+row('E67D','Показать историю','data-card-extra="history"')+row('E663','Очистить кэш','data-card-extra="cache"')+row('E65C','Удалить','data-card-extra="delete" class="delete-command"');
 document.getElementById('site-card').append(menu);document.getElementById('card-more').setAttribute('aria-expanded','true');menu.querySelector('[data-card-extra]').focus();
 }
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('card-more-menu')){event.preventDefault();event.stopImmediatePropagation();document.getElementById('card-more-menu').remove();document.getElementById('card-more').focus()}},true);
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.getElementById('card-more-menu')){event.preventDefault();event.stopImmediatePropagation();closeCardMenus('verification-menu');document.getElementById('card-more').focus()}},true);
 
 const cardHistoryEntries=[
 ['13 ноя','10:26','Изменены привязки сайта'],['4 ноя','17:56','Изменены привязки сайта'],['23 окт','11:09',"Фрейм 'Раскладка' изменен"],['14 авг','13:17',"Фрейм 'Раскладка' изменен"],['','',"Фрейм 'Карточка товара' изменен"],['','',"Фрейм 'Филиалы' изменен"],['','',"Фрейм 'Профиль' изменен"],['','',"Фрейм 'О нас' изменен"],['','',"Фрейм 'Заказы' изменен"],['','',"Фрейм 'Каталог' изменен"],['7 июл','10:26',"Задана новая тема сайта: 'b0770084-38c8-4be7-a92a-455bf2f1941b'"],['25 июн','18:29','Изменены привязки сайта'],['16 июн','11:37',"Фрейм 'О нас' изменен"]];
